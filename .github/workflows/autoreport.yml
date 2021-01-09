@@ -1,11 +1,9 @@
 name: 'GitHub Actions LZU Auto COVID Health Report'
 
 on:
-  watch:
-    types: started
-  push:
+  workflow_dispatch:  # Allow manual triggers
   schedule:
-    - cron: '0 0,4,12 * * *'
+    - cron: '0 0,4,12 * * *' # Schedule on CST 8, 12, 20 everyday
 
 jobs:
   bot:
