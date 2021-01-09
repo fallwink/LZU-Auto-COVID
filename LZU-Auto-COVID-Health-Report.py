@@ -8,7 +8,7 @@
 对于使用本代码所造成的一切不良后果，本人将不负任何责任！
 
 Warning:
-For TESTING ONLY, not for any ILLIGAL USE!
+For TESTING ONLY, not for any ILLEGAL USE!
 I will not be responsible for any adverse consequences caused by using this code.
 
 '''
@@ -17,7 +17,6 @@ import time
 import os
 import requests
 import json
-import sys
 import random
 from selenium import webdriver
 
