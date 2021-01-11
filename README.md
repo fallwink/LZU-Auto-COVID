@@ -117,7 +117,7 @@ You can fork this repository first, and then set related settings in your forked
 
 We Use [Server Chan](http://sc.ftqq.com/) to realize its functionality. For its configuration method, please refer to its documentation (In Chinese).
 
-Then, you just need to follow the [Usage](#使用方法) step 1 to create an Actions Secret whose name is `SERVERCHANSCKEY` and value is [Your SCKEY](http://sc.ftqq.com/?c=code). Then the workflow can automatically push the relevant information of the automatic health reporting results for you.
+Then, you just need to follow the [Usage](#Usage) step 1 to create an Actions Secret whose name is `SERVERCHANSCKEY` and value is [Your SCKEY](http://sc.ftqq.com/?c=code). Then the workflow can automatically push the relevant information of the automatic health reporting results for you.
 
 *Effect Graphs*：
 
@@ -136,7 +136,7 @@ If you are referring to the health reporting system in the Lanzhou University AP
 If you are referring to GitHub actions, please check the running record directly. If there is no error in workflow, the reporting is successful. If it fails, GitHub will send a message to prompt workflow to fail.
 
 
-Of course, you can also configure to use [SeverChan Wechat push] (#optional-wechat-push-results).
+Of course, you can also configure to use [SeverChan Wechat push](#optional-wechat-push-results).
 
 2. There is no temperature option you gave in reporting system
 
