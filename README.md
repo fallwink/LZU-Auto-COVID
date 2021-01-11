@@ -27,7 +27,7 @@
 
 ## 使用方法
 
-（强烈建议你首先自己打一次卡之后再使用本软件，从而初始化平台打卡系统中的数据，本软件将会一直沿用你最新填报的打卡信息。如果需要更改打卡数据，请自己手动在填报平台任意时间段填报一次最新的信息就好）
+（强烈建议你首先自己打一次卡之后再使用本软件，从而初始化平台打卡系统中的数据。本软件将会一直沿用你在系统中最新填报的`是否在校`、`所在省市区`，`是否出国`、`出国地点`打卡信息，并会一直上报最健康的状态。）
 
 你可以首先fork本仓库，之后在你fork的仓库中进行相关设置。
 
@@ -95,7 +95,7 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/85427e4d855887ec
 
 ## Usage
 
-(It is strongly recommended that you first report your own situation by yourself before using this software so that the system's data can be initialized. This software will always use the data you keep in the system. If you need to change the reporting data, please manually fill in your latest information at any time in the reporting platform.)
+(It is strongly recommended that you first report your own situation by yourself before using this software so that the system's data can be initialized. This software will always use the `at university`, `your location`, `whether at abroad`, `abroad location` you kept in the system, and report the healthiest status.)
 
 You can fork this repository first, and then set related settings in your forked repository.
 

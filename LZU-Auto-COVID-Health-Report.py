@@ -33,33 +33,32 @@ def getSubmit(auToken, dailyCookie, info, now, FilledInfo):
     info_data = info['data']['list'][0]
     sfzx = info_data['sfzx'] if info_data['sfzx'] else FilledInfo['sfzx'],
     info_data = {
-        "bh": info_data['bh'],
+        "bh": info_data['bh'],  # 编号
         "xykh": info_data['xykh'],  # 校园卡号
-        "twfw": "0",
-        "sfzx": sfzx[0],  # 是否在校
-        "sfgl": "0",
-        "szsf": info_data['szsf'] if info_data['szsf'] else FilledInfo['jgsf'],
-        "szds": info_data['szds'] if info_data['szds'] else FilledInfo['jgds'],
-        "szxq": info_data['szxq'] if info_data['szxq'] else FilledInfo['jgxq'],
-        # 是否出国
-        "sfcg": info_data['sfcg'] if info_data['sfcg'] else FilledInfo['sfcg'],
-        "cgdd": "",
-        "gldd": "",
-        "jzyy": "",
-        "bllb": "0",
-        "sfjctr": "0",
-        "jcrysm": "",
-        "xgjcjlsj": "",
-        "xgjcjldd": "",
-        "xgjcjlsm": "",
-        # 早体温
+        "twfw": "0",  # 体温范围(0为小于37.3摄氏度)
+        "sfzx": sfzx[0],  # 是否在校(0离校，1在校)
+        "sfgl": "0",  # 是否隔离(0正常，1隔离)
+        "szsf": info_data['szsf'] if info_data['szsf'] else FilledInfo['xszsf'],  # 所在省份（没有打卡记录则是基本信息中现所在省份）
+        "szds": info_data['szds'] if info_data['szds'] else FilledInfo['xszds'],  # 所在地级市（没有打卡记录则是基本信息中现所在地级市）
+        "szxq": info_data['szxq'] if info_data['szxq'] else FilledInfo['xszxq'],  # 所在县/区（没有打卡记录则是基本信息中现所在县/区）
+        "sfcg": info_data['sfcg'] if info_data['sfcg'] else FilledInfo['sfcg'],  # 是否出国（没有打卡记录则是基本信息中是否出国）
+        "cgdd": info_data['cgdd'] if info_data['cgdd'] else FilledInfo['cgdd'],  # 出国地点（没有打卡记录则是基本信息中出国地点）
+        "gldd": "",  # 隔离地点
+        "jzyy": "",  # 就诊医院
+        "bllb": "0",  # 是否被列入(疑似/确诊)病例(0没有，其它为疑似/确诊)
+        "sfjctr": "0",  # 是否接触他人(0否，1是)
+        "jcrysm": "",  # 接触人员说明
+        "xgjcjlsj": "", # 相关接触经历时间
+        "xgjcjldd": "", # 相关接触经历地点
+        "xgjcjlsm": "", # 相关接触经历说明
         "zcwd": round(random.uniform(36.3, 36.8), 1) if 7 <= now < 9 and sfzx[0] == "1" else (info_data['zcwd'] if info_data['zcwd'] else 0.0),
-        # 中体温
+        # 早晨温度(体温)
         "zwwd": round(random.uniform(36.3, 36.8), 1) if 11 <= now < 13 and sfzx[0] == "1" else (info_data['zwwd'] if info_data['zcwd'] else 0.0),
-        # 晚体温
+        # 中午温度(体温)
         "wswd": round(random.uniform(36.3, 36.8), 1) if 19 <= now < 21 and sfzx[0] == "1" else (info_data['wswd'] if info_data['zcwd'] else 0.0),
-        "sbr": info_data['sbr'],
-        "sjd": info['data']['sjd']
+        # 晚上温度(体温)
+        "sbr": info_data['sbr'], # 上报人
+        "sjd": info['data']['sjd'] # 时间段
     }
 
     res = session.post(subApi, info_data, headers=subHeaders).text
