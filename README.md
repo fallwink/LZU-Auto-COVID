@@ -129,24 +129,25 @@ Details：
 
 ## Q&A
 
-1. 怎么查看自己有没有打卡成功？
+1. How to check whether you have reported your health successfully?
 
-如果你指的是兰大app里面的健康打卡系统，请把兰大app里面的健康打卡系统中“教职工是否在兰（学生是否在校）”那一栏选中状态取消并手动打一次卡。成功打卡后，打开APP会提示“当日填报完成，如变化请更新！”。
+If you are referring to the health reporting system in the Lanzhou University APP, please cancel the "whether the staff are in Lanzhou (whether the students are in school)" column and then report manually. After successfully reported, again open the app and you will be prompted "当日填报完成，如变化请更新！".
 
-如果你指的是Github Actions里面请直接查看运行记录。workflow运行无报错，则打卡成功。失败Github会站内消息提示workflow运行失败。
+If you are referring to GitHub actions, please check the running record directly. If there is no error in workflow, the reporting is successful. If it fails, GitHub will send a message to prompt workflow to fail.
 
-当然另外你还可以配置使用[sever酱微信推送](#可选：微信推送打卡结果)。
 
-2. 打卡应用里面没有你给的那个体温选项
+Of course, you can also configure to use [SeverChan Wechat push] (#optional-wechat-push-results).
 
-返校的时候，如果学校要一日三报，是会有的。
+2. There is no temperature option you gave in reporting system
 
-在假期不需要一日三次上报体温，这个功能是为未来返校的时候做的。我的程序会自动判断当前是否在校，如果不在校是不会有体温数据的（都是0.0），另外每次post数据都是要有这一项的。
+When returning to school, if the university still wants to report three times a day, there will be.
 
-另外设置的Github Actions是每日三次运行程序，如果你不需要，可以将[这里](
+You don't need to report your temperature three times a day during the holidays. This function is for the future when you go back to school. My program will automatically determine whether you are currently in school or not. If you are not in school, there will be no valid temperature data (all 0.0). In addition, these items are required for every post data.
+
+And also, GitHub actions is set to run the program three times a day. If you don't need it, you can replace [here](
 https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/85427e4d855887ec06fa21721037bed84cb25c54/.github/workflows/autoreport.yml#L6)
-更改为`    - cron: '0 23 * * *' # Schedule on CST 7 everyday`，
-即每日只在北京时间早上7点运行。
+with `    - cron: '0 23 * * *' # Schedule on CST 7 everyday`，
+That is, only runs at 7 a.m. Beijing time every day.
 
 **Warning**:
 
