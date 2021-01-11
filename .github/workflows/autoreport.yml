@@ -38,10 +38,12 @@ jobs:
         - name: 'Error logging and Notifying Using ServerChan'
           env:
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
+            OPENID: ${{ secrets.OPENID }}
           if: ${{ failure() }}
           run: python Notify-Using-SeverChan.py failure && cat information.txt
         - name: 'Notify Success Using ServerChan'
           env:
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
+            OPENID: ${{ secrets.OPENID }}
           if: ${{ success() }}
           run: python Notify-Using-SeverChan.py success

@@ -58,6 +58,12 @@
 点开详情：
 ![](img/ServerChanMessage.jpg)
 
+### Server酱测试号版
+
+如果要使用[Server酱测试号版](https://sct.ftqq.com/)，请创建一个/修改Name为`SERVERCHANSCKEY`，value为[你的SendKey值](https://sct.ftqq.com/sendkey)的Actions secret。另外创建一个Name为`OPENID`的Actions secret，如果value值为`0`则是通过公众号仅发给自己。否则将value值设定为关注你测试公众号的那个用户的微信号openid，这时将发给自己的同时还会发送给那个指定用户。
+
+如果需要转换回普通的Sever酱请将`OPENID` Actions secret删除即可。
+
 ## Q&A
 
 1. 怎么查看自己有没有打卡成功？
@@ -125,6 +131,12 @@ Pushing Effect：
 
 Details：
 ![](img/ServerChanMessage.jpg)
+
+### ServerChan Testing Subscription Version
+
+If you want to use [ServerChan Testing Subscription Version](https://sct.ftqq.com/), please create/modify the Actions secret with the Name `SERVERCHANSCKEY` and the value [your sendkey value](https://sct.ftqq.com/sendkey). In addition, create a Actions secret with Name as `OPENID`, if the value is `0`, it is only send to yourself. Otherwise, set the value to be the specified user's Wechat openid who subscribed the Testing Subscription account, then it will send it to the designated user and yourself at the same time.
+
+If you need to switch back to normal SeverChan, please delete the `OPENID` actions secret.
 
 ## Q&A
 
