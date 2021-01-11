@@ -27,14 +27,14 @@
 
 ## 使用方法
 
-（强烈建议你首先自己打一次卡之后再使用本软件，本软件将会一直沿用你保留在打卡系统中的打卡数据）
+（强烈建议你首先自己打一次卡之后再使用本软件，从而初始化平台打卡系统中的数据，本软件将会一直沿用你最新填报的打卡信息。如果需要更改打卡数据，请自己手动在填报平台任意时间段填报一次最新的信息就好）
 
 你可以首先fork本仓库，之后在你fork的仓库中进行相关设置。
 
 1. 首先，按下图所示点击1，2，3的次序，进入新建Actions secrets的界面。我们需要两个Actions secrets，一个的Name为`CARDID`，value为你的兰州大学校园卡号；另一个的Name为`PASSWORD`，value为你的兰州大学个人工作台的账户密码。依次按上述要求创建这两个secrets即可。创建完成后你将在右下部分看到两个Actions secrets。
 ![](img/secrets.png)
 
-2. 然后，按下图所示点击1，2，3，4的次序，你可以手动触发工作流的执行来进行测试。另外工作流还自动会在北京时间每天的7点，11点，19点自动运行。
+2. 然后，按下图所示点击1，2，3，4的次序，你可以手动触发工作流的执行来进行测试。（**注意：**：如果因为你多次重复因为账号密码错误登录失败，会导致验证码的出现，此时程序会被阻止自动登录。因而请确保你已经在[兰州大学个人工作台](http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn)处测试过你的账号密码是正确的。）另外工作流还自动会在北京时间每天的7点，11点，19点自动运行。
 ![](img/workflow.png)
 
 3. 点开任意一个运行记录，依次点开下图所示1，2，你可以看到运行记录以及错误说明。
@@ -61,14 +61,14 @@
 
 ## Usage
 
-(it is strongly recommended that you first report your own situation by yourself before using this software. This software will always use the data that kept in the system.)
+(It is strongly recommended that you first report your own situation by yourself before using this software so that the system's data can be initialized. This software will always use the data you keep in the system. If you need to change the reporting data, please manually fill in your latest information at any time in the reporting platform.)
 
 You can fork this repository first, and then set related settings in your forked repository.
 
 1. First, click in the order of 1, 2 and 3 as shown in the figure below to enter creating the new actions secrets interface. We need two actions secrets, one name is `CARDID`, value is your student card number of Lanzhou University; the other is `PASSWORD`, value is the account password of your personal workbench of Lanzhou University. Create these two secrets in turn according to the above requirements. After the creation, you will see two actions secrets as in the lower right section.
 ![](img/secrets.png)
 
-2. Then, click in the order of 1, 2, 3 and 4 as shown in the figure below. You can manually trigger the execution of workflow to test. In addition, the workflow will automatically run at 7:00, 11:00 and 19:00 Beijing time every day.
+1. Then, click in the order of 1, 2, 3 and 4 as shown in the figure below. You can manually trigger the execution of workflow to test. (**Note:**: if you repeatedly fail to log in because of the wrong account or password, the program will be prevented from logging in automatically by reCAPTCHA. So please make sure that you can successfully logged into [Lanzhou University personal workbench](http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn) with your account number and password and that they are correct.) In addition, the workflow will automatically run at 7:00, 11:00 and 19:00 Beijing time every day.
 ![](img/workflow.png)
 
 3. Click any running record, and then click in the order of 1 and 2 as shown in the figure below. You can see the running record and error description.

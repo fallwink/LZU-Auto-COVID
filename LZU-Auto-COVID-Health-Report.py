@@ -166,7 +166,7 @@ def getDailyToken(user, password):
     iPlanetDirectoryPro = browser.get_cookie("iPlanetDirectoryPro")
     browser.close()
     if not iPlanetDirectoryPro:
-        raise Exception("Wrong password or user!")
+        raise Exception("Wrong password or user! If you have tried many times, it may be the ReCAPTCHA that stops you from logging.")
     dayCok = iPlanetDirectoryPro['value']
     return dayCok
 
