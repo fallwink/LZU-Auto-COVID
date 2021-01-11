@@ -8,10 +8,11 @@ import json
 import urllib.parse
 
 sckey = os.environ['SERVERCHANSCKEY']
+info = ""
 if sckey:
     try:
-        with open("information.txt") as info:
-            info = urllib.parse.urlencode(info.read())
+        with open("information.txt") as infofile:
+            info = urllib.parse.urlencode(infofile.read())
     except Exception:
         pass
     finally:
