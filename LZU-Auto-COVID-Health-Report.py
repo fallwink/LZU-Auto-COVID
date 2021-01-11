@@ -211,13 +211,13 @@ if __name__ == "__main__":
     try:
         submitCard()
     except Exception:
-        print("第一次尝试失败, 再次尝试中...")
+        print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第一次尝试失败, 再次尝试中...")
         try:
             submitCard()
         except Exception:
-            print("第二次尝试失败, 再次尝试中...")
+            print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第二次尝试失败, 再次尝试中...")
             try:
                 submitCard()
             except Exception:
-                print("第三次尝试失败, 再次尝试中...")
+                print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第三次尝试失败, 再次尝试中...")
                 submitCard()
