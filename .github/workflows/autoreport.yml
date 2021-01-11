@@ -35,13 +35,13 @@ jobs:
             CARDID: ${{ secrets.CARDID }}
             PASSWORD: ${{ secrets.PASSWORD }}
           run: export TZ='Asia/Shanghai' && python LZU-Auto-COVID-Health-Report.py >> information.txt && cat information.txt
-        - name: 'Error logging'
+        - name: 'Error logging and Notifying Using ServerChan'
+          env:
+            SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
           if: ${{ failure() }}
-          run: cat information.txt
-        - name: 'Notify using ServerChan'
+          run: python Notify-Using-SeverChan.py failure && cat information.txt
+        - name: 'Notify Success Using ServerChan'
           env:
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
           if: ${{ success() }}
           run: python Notify-Using-SeverChan.py success
-          if: ${{ failure() }}
-          run: python Notify-Using-SeverChan.py failure
