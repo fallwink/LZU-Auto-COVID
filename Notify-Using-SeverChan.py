@@ -14,7 +14,8 @@ info = ""
 if sckey:
     try:
         with open("information.txt") as infofile:
-            info = urllib.parse.quote_plus(infofile.read().replace('\n','\r\n'))
+            info = urllib.parse.quote_plus(
+                infofile.read().replace('\n', '<br />'))
     except Exception as e:
         print(e)
     finally:
