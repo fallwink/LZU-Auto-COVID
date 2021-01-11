@@ -38,4 +38,4 @@ jobs:
         - name: 'Notify using ServerChan'
           env:
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
-          run: cat infomation.txt
+          run: python Notify-Using-SeverChan.py
