@@ -13,8 +13,8 @@ if sckey:
     try:
         with open("information.txt") as infofile:
             info = urllib.parse.urlencode(infofile.read())
-    except Exception:
-        pass
+    except Exception as e:
+        print(e)
     finally:
         if not info:
             info = "工作流或者打卡程序存在问题，请查看运行记录并提交issue!"

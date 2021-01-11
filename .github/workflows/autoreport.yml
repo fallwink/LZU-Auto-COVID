@@ -34,7 +34,7 @@ jobs:
           env:
             CARDID: ${{ secrets.CARDID }}
             PASSWORD: ${{ secrets.PASSWORD }}
-          run: export TZ='Asia/Shanghai' && python LZU-Auto-COVID-Health-Report.py >> infomation.txt && cat information.txt
+          run: export TZ='Asia/Shanghai' && python LZU-Auto-COVID-Health-Report.py >> information.txt && cat information.txt
         - name: 'Error logging'
           if: ${{ failure() }}
           run: cat information.txt
