@@ -1,4 +1,3 @@
-
 # 兰州大学疫情期间自动定时健康打卡工作流
 
 [![last-commit](https://img.shields.io/github/last-commit/HollowMan6/LZU-Auto-COVID-Health-Report)](../../graphs/commit-activity)
@@ -67,7 +66,7 @@
 
 如果你指的是Github Actions里面请直接查看运行记录。workflow运行无报错，则打卡成功。失败Github会站内消息提示workflow运行失败。
 
-当然另外你还可以配置使用[sever酱微信推送](#可选：微信推送打卡结果)。
+当然另外你还可以配置使用[sever酱微信推送](#可选微信推送打卡结果)。
 
 2. 打卡应用里面没有你给的那个体温选项
 
