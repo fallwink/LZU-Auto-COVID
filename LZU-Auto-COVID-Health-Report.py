@@ -167,12 +167,13 @@ def getDailyToken(user, password):
     browser.find_element_by_class_name('g-recaptcha').click()
     time.sleep(2)
     iPlanetDirectoryPro = browser.get_cookie("iPlanetDirectoryPro")
+    cardID = browser.execute_script("a = document.getElementById('personUserECard'); if(a) return a.innerText")
     browser.close()
     if not iPlanetDirectoryPro:
         print("Wrong password or user! If you have tried many times, it may be the ReCAPTCHA that stops you from logging.")
         raise Exception("Wrong password or user! If you have tried many times, it may be the ReCAPTCHA that stops you from logging.")
     dayCok = iPlanetDirectoryPro['value']
-    return dayCok
+    return dayCok, cardID
 
 
 def submitCard():
@@ -181,7 +182,7 @@ def submitCard():
     print(timeStamp, "正在打卡中...")
     cardID = os.environ['CARDID']
     passwd = os.environ['PASSWORD']
-    dayCok = getDailyToken(cardID, passwd)
+    dayCok, cardID = getDailyToken(cardID, passwd)
     ST = getST(dayCok)
     AuToken = getAuthToken(ST, cardID, dayCok)
     MD5 = getSeqMD5(cardID, AuToken, dayCok)
