@@ -170,8 +170,8 @@ def getDailyToken(user, password):
     cardID = browser.execute_script("a = document.getElementById('personUserECard'); if(a) return a.innerText")
     browser.close()
     if not iPlanetDirectoryPro:
-        print("Wrong password or user! If you have tried many times, it may be the ReCAPTCHA that stops you from logging.")
-        raise Exception("Wrong password or user! If you have tried many times, it may be the ReCAPTCHA that stops you from logging.")
+        print("Wrong password or user! Please make sure you set related Action Secrets correctly.")
+        raise Exception("Wrong password or user! Please make sure you set related Action Secrets correctly.")
     dayCok = iPlanetDirectoryPro['value']
     return dayCok, cardID
 
