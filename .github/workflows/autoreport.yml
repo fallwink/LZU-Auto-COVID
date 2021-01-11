@@ -35,3 +35,7 @@ jobs:
             CARDID: ${{ secrets.CARDID }}
             PASSWORD: ${{ secrets.PASSWORD }}
           run: export TZ='Asia/Shanghai' && python LZU-Auto-COVID-Health-Report.py >> infomation.txt && cat infomation.txt
+        - name: 'Notify using ServerChan'
+          env:
+            SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
+          run: cat infomation.txt
