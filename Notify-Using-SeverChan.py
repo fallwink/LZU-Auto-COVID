@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*-coding:utf-8-*-
+# by 'hollowman6' from Lanzhou University(兰州大学)
+
 import os
 import requests
 import json
@@ -15,4 +19,4 @@ if sckey:
         else:
             raise Exception(res.text)
 else:
-    print("未设置sckey，程序退出...")
+    print("未设置SERVERCHANSCKEY，程序退出...")

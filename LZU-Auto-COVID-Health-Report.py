@@ -80,6 +80,7 @@ def getST(dailyCookie):
     if stDic['state'] == 1:
         return str(stDic['data'])
     else:
+        print("Error Getting ST-Token!")
         raise Exception("Error Getting ST-Token!")
 
 
@@ -95,6 +96,7 @@ def getAuthToken(stToken, cardID, dailyCookie):
     if auDic['code'] == 1:
         return str(auDic['data']['accessToken'])
     else:
+        print("Getting AU-Token Failed!")
         raise Exception("Getting AU-Token Failed!")
 
 
@@ -113,6 +115,7 @@ def getSeqMD5(cardID, auToken, dailyCookie):
     if seqMD5Dic['code'] == 1:
         return str(seqMD5Dic['data'])
     else:
+        print("Getting card-Enc-MD5 Failed!")
         raise Exception("Getting card-Enc-MD5 Failed!")
 
 
@@ -146,6 +149,7 @@ def getFilledInfo(cardID, cardMD5, auToken):
     if FilledInfoDic['code'] == 1:
         return FilledInfoDic
     else:
+        print("Error Getting Sequence-Number!")
         raise Exception("Error Getting Sequence-Number!")
 
 
@@ -166,6 +170,7 @@ def getDailyToken(user, password):
     iPlanetDirectoryPro = browser.get_cookie("iPlanetDirectoryPro")
     browser.close()
     if not iPlanetDirectoryPro:
+        print("Wrong password or user! If you have tried many times, it may be the ReCAPTCHA that stops you from logging.")
         raise Exception("Wrong password or user! If you have tried many times, it may be the ReCAPTCHA that stops you from logging.")
     dayCok = iPlanetDirectoryPro['value']
     return dayCok
@@ -184,6 +189,7 @@ def submitCard():
     info = getSeqInfo(cardID, MD5, AuToken)
     FilledInfo = getFilledInfo(cardID, MD5, AuToken)
     if info['code'] != 1:
+        print(str(timeStamp)+" 未知错误，无法打卡!")
         raise Exception(str(timeStamp)+" 未知错误，无法打卡!")
     now = int(time.strftime("%H", time.localtime()))
     response, info_data = getSubmit(AuToken, dayCok, info, now, FilledInfo)
@@ -195,6 +201,8 @@ def submitCard():
                         19 <= now < 21) else ""
                 ))) if info_data['sfzx'][0] == '1' else "，疫情期间，记得好好在家呆着!"))
     else:
+        print(str(timeStamp) + "打卡失败, " +
+                        str(response) + "，请提交相关问题到issue中!")
         raise Exception(str(timeStamp) + "打卡失败, " +
                         str(response) + "，请提交相关问题到issue中!")
 
