@@ -35,13 +35,13 @@ if sckey:
         res = requests.get(host + sckey + ".send?text=" + message +
                            "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1&desp=" + info + user)
         result = json.loads(res.text)
-        if openid and result['errno'] == 0:
+        if not openid and result['errno'] == 0:
             print("成功将结果通知给用户!")
-        elif not openid and result['data']['errno'] == 0:
+        elif openid and result['data']['errno'] == 0:
             if openid == "0":
                 print("成功将结果通知到测试公众号的创建用户!")
             else:
-                print("成功将结果通知到测试公众号指定关注用户!")
+                print("成功将结果通知到测试公众号的指定关注用户和创建用户!")
         else:
             raise Exception(res.text)
 else:
