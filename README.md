@@ -46,7 +46,17 @@
 
 ## 可选：微信推送打卡结果
 
-这里使用[Server酱](http://sc.ftqq.com/)来实现，它的配置方法请参考其说明文档。
+### PushPlus(推荐)
+
+首先[登录PushPlus](https://pushplus.hxtrip.com/login)，然后在pushplus网站中找到您的token，仿照[使用方法](#使用方法)步骤1，创建一个Name为`PPTOKEN`，value为您的token值的TokenActions secret，就可以进行一对一推送自动打卡结果相关信息。
+
+如果需要对多个账号推送自动打卡结果相关信息，即一对多推送，还需要另外新建一个群组，记下群组编码，然后创建一个Name为`PPTOPIC`，value为您的群组编码的Actions secret。
+
+![](https://pushplus.hxtrip.com/doc/img/c1.png)
+
+### Server酱
+
+如使用[Server酱](http://sc.ftqq.com/)来实现，它的配置方法请参考其说明文档。
 
 然后，你只需要仿照[使用方法](#使用方法)步骤1，创建一个Name为`SERVERCHANSCKEY`，value为[你的SCKEY调用代码值](http://sc.ftqq.com/?c=code)的Actions secret即可自动让仓库的工作流通过Server酱为你推送自动打卡结果相关信息。
 
@@ -119,6 +129,16 @@ You can fork this repository first, and then set related settings in your forked
 ![](img/cancel.png)
 
 ## Optional: WeChat push results
+
+### PushPlus(Recommended)
+
+First [log into pushplus](https://pushplus.hxtrip.com/login), and then find your token in pushplus website, follow [Usage](#Usage) step 1, create a actions secret with the name of `PPTOKEN` and the value of your token value, and then one-to-one push the related information of automatic reporting results.
+
+If you need to push the related information of automatic reporting results to multiple Wechat accounts, that is, one-to-many push, you need to create a group, write down the group code, and then create an actions secret with the name of `PPTOPIC` and the value of your group code.
+
+![](https://pushplus.hxtrip.com/doc/img/c1.png)
+
+### ServerChan
 
 We Use [Server Chan](http://sc.ftqq.com/) to realize its functionality. For its configuration method, please refer to its documentation (In Chinese).
 

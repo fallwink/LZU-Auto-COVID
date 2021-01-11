@@ -208,6 +208,10 @@ def submitCard():
 
 
 if __name__ == "__main__":
+    if not os.environ['CARDID']:
+        raise Exception("未设置Actions Secrets变量CARDID，请检查！")
+    if not os.environ['PASSWORD']:
+        raise Exception("未设置Actions Secrets变量PASSWORD，请检查！")
     try:
         submitCard()
     except Exception:
