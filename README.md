@@ -45,6 +45,40 @@
 5. 将来某一天疫情过去了，不需要再打卡，你可以按下图操作关闭：
 ![](img/cancel.png)
 
+## 可选：微信推送打卡结果
+
+这里使用[Server酱](http://sc.ftqq.com/)来实现，它的配置方法请参考其说明文档。
+
+然后，你只需要仿照[使用方法](#使用方法)步骤1，创建一个Name为`SERVERCHANSCKEY`，value为[你的SCKEY调用代码值](http://sc.ftqq.com/?c=code)的Actions secret即可自动让仓库的工作流通过Server酱为你推送自动打卡结果相关信息。
+
+*效果示意*：
+
+推送效果：
+![](img/ServerChan.jpg)
+
+点开详情：
+![](img/ServerChanMessage.jpg)
+
+## Q&A
+
+1. 怎么查看自己有没有打卡成功？
+
+如果你指的是兰大app里面的健康打卡系统，请把兰大app里面的健康打卡系统中“教职工是否在兰（学生是否在校）”那一栏选中状态取消并手动打一次卡。成功打卡后，打开APP会提示“当日填报完成，如变化请更新！”。
+
+如果你指的是Github Actions里面请直接查看运行记录。workflow运行无报错，则打卡成功。失败Github会站内消息提示workflow运行失败。
+
+当然另外你还可以配置使用[sever酱微信推送](#可选：微信推送打卡结果)。
+
+2. 打卡应用里面没有你给的那个体温选项
+
+返校的时候，如果学校要一日三报，是会有的。
+
+在假期不需要一日三次上报体温，这个功能是为未来返校的时候做的。我的程序会自动判断当前是否在校，如果不在校是不会有体温数据的（都是0.0），另外每次post数据都是要有这一项的。
+
+另外设置的Github Actions是每日三次运行程序，如果你不需要，可以将[这里](
+https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/85427e4d855887ec06fa21721037bed84cb25c54/.github/workflows/autoreport.yml#L6)
+更改为`    - cron: '0 23 * * *' # Schedule on CST 7 everyday`，
+即每日只在北京时间早上7点运行。
 
 **警告**：
 
@@ -78,6 +112,41 @@ You can fork this repository first, and then set related settings in your forked
 
 5. One day, when the COVID-19 is over, and you don't need to report your health any more. You can disable it according to the following figure:
 ![](img/cancel.png)
+
+## Optional: WeChat push results
+
+We Use [Server Chan](http://sc.ftqq.com/) to realize its functionality. For its configuration method, please refer to its documentation (In Chinese).
+
+Then, you just need to follow the [Usage](#使用方法) step 1 to create an Actions Secret whose name is `SERVERCHANSCKEY` and value is [Your SCKEY](http://sc.ftqq.com/?c=code). Then the workflow can automatically push the relevant information of the automatic health reporting results for you.
+
+*Effect Graphs*：
+
+Pushing Effect：
+![](img/ServerChan.jpg)
+
+Details：
+![](img/ServerChanMessage.jpg)
+
+## Q&A
+
+1. 怎么查看自己有没有打卡成功？
+
+如果你指的是兰大app里面的健康打卡系统，请把兰大app里面的健康打卡系统中“教职工是否在兰（学生是否在校）”那一栏选中状态取消并手动打一次卡。成功打卡后，打开APP会提示“当日填报完成，如变化请更新！”。
+
+如果你指的是Github Actions里面请直接查看运行记录。workflow运行无报错，则打卡成功。失败Github会站内消息提示workflow运行失败。
+
+当然另外你还可以配置使用[sever酱微信推送](#可选：微信推送打卡结果)。
+
+2. 打卡应用里面没有你给的那个体温选项
+
+返校的时候，如果学校要一日三报，是会有的。
+
+在假期不需要一日三次上报体温，这个功能是为未来返校的时候做的。我的程序会自动判断当前是否在校，如果不在校是不会有体温数据的（都是0.0），另外每次post数据都是要有这一项的。
+
+另外设置的Github Actions是每日三次运行程序，如果你不需要，可以将[这里](
+https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/85427e4d855887ec06fa21721037bed84cb25c54/.github/workflows/autoreport.yml#L6)
+更改为`    - cron: '0 23 * * *' # Schedule on CST 7 everyday`，
+即每日只在北京时间早上7点运行。
 
 **Warning**:
 
