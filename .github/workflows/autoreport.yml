@@ -39,7 +39,9 @@ jobs:
           if: ${{ failure() }}
           run: cat information.txt
         - name: 'Notify using ServerChan'
-          if: ${{ success() }} || ${{ failure() }}
           env:
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
-          run: python Notify-Using-SeverChan.py
+          if: ${{ success() }}
+          run: python Notify-Using-SeverChan.py success
+          if: ${{ failure() }}
+          run: python Notify-Using-SeverChan.py failure
