@@ -42,7 +42,7 @@ jobs:
             PPTOKEN: ${{ secrets.PPTOKEN }}
             PPTOPIC: ${{ secrets.PPTOPIC }}
           if: ${{ failure() }}
-          run: python Notify-Using-SeverChan-And-PushPlus.py failure && cat information.txt
+          run: python Notify-Using-SeverChan-Or-PushPlus.py failure && cat information.txt
         - name: 'Notify Success Using ServerChan or PushPlus'
           env:
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
@@ -50,4 +50,4 @@ jobs:
             PPTOKEN: ${{ secrets.PPTOKEN }}
             PPTOPIC: ${{ secrets.PPTOPIC }}
           if: ${{ success() }}
-          run: python Notify-Using-SeverChan-And-PushPlus.py success
+          run: python Notify-Using-SeverChan-Or-PushPlus.py success
