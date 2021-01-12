@@ -167,13 +167,14 @@ def getDailyToken(user, password):
     browser.find_element_by_class_name('g-recaptcha').click()
     time.sleep(2)
     iPlanetDirectoryPro = browser.get_cookie("iPlanetDirectoryPro")
-    cardID = browser.execute_script("a = document.getElementById('personUserECard'); if(a) return a.innerText")
+    if not (user.isdigit() and len(user) == 12):
+        user = browser.execute_script("a = document.getElementById('personUserECard'); if(a) return a.innerText")
     browser.close()
     if not iPlanetDirectoryPro:
         print("Wrong password or user! Please make sure you set related Action Secrets correctly.")
         raise Exception("Wrong password or user! Please make sure you set related Action Secrets correctly.")
     dayCok = iPlanetDirectoryPro['value']
-    return dayCok, cardID
+    return dayCok, user
 
 
 def submitCard():
