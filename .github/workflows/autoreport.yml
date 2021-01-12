@@ -3,7 +3,7 @@ name: 'GitHub Actions LZU Auto COVID Health Report'
 on:
   workflow_dispatch:  # Allow manual triggers
   schedule:
-    - cron: '0 23,3,11 * * *' # Schedule on CST 7, 11, 19 everyday
+    - cron: '0 23 * 1,2,7,8 *' # Schedule on CST 7 everyday during Jan. Feb. Jul. Aug.
 
 jobs:
   bot:
@@ -34,7 +34,8 @@ jobs:
           env:
             CARDID: ${{ secrets.CARDID }}
             PASSWORD: ${{ secrets.PASSWORD }}
-          run: export TZ='Asia/Shanghai' && python LZU-Auto-COVID-Health-Report.py >> information.txt && cat information.txt
+            TZ: Asia/Shanghai
+          run: python LZU-Auto-COVID-Health-Report.py >> information.txt && cat information.txt
         - name: 'Error logging and Notifying Using ServerChan or PushPlus'
           env:
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
