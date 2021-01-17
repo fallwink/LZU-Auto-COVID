@@ -18,6 +18,8 @@
 
 (English version is down below)
 
+### 好用记得收藏(右上角**加星★Star**)哦!
+
 [Python库依赖](../../network/dependencies)
 
 [自动打卡脚本](LZU-Auto-COVID-Health-Report.py)
@@ -101,6 +103,8 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/85427e4d855887ec
 
 ***对于使用本代码所造成的一切不良后果，本人将不负任何责任！***
 # LZU Auto COVID Health Report using Github Action
+
+### Please **★Star** if you think it's great!
 
 [Python library dependency](../../network/dependencies)
 
