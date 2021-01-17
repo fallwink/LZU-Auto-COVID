@@ -28,6 +28,8 @@
 
 ## 使用方法
 
+*注:* 如要在自己的Linux服务器上使用crontab执行定时任务来进行自动打卡，请clone本仓库并仿照[工作流配置文件](.github/workflows/autoreport.yml)中的执行步骤进行改编，这里不再提供相关配置方法。
+
 （强烈建议你首先自己打一次卡之后再使用本软件，从而初始化平台打卡系统中的数据。本软件将会一直沿用你在系统中最新填报的`是否在校`、`所在省市区`，`是否出国`、`出国地点`打卡信息，并会一直上报最健康的状态。）
 
 你可以首先fork本仓库，之后在你fork的仓库中进行相关设置。
@@ -113,6 +115,8 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/85427e4d855887ec
 [Workflow](.github/workflows/autoreport.yml)
 
 ## Usage
+
+*PS:* If you want to use crontab on your own Linux server to execute the auto Health Report, please clone this repository and make your own shell script imitating steps in the [workflow configure files here](.github/workflows/autoreport.yml), I won't offer any guides for it.
 
 (It is strongly recommended that you first report your own situation by yourself before using this software so that the system's data can be initialized. This software will always use the `at university`, `your location`, `whether at abroad`, `abroad location` you kept in the system, and report the healthiest status.)
 

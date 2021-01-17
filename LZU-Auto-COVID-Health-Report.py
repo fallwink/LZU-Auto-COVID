@@ -192,8 +192,14 @@ def submitCard():
     timeStamp = time.strftime("%Y-%m-%d %H:%M", time.localtime())
     print("***************************")
     print(timeStamp, "正在打卡中...")
+
     cardID = os.environ['CARDID']
     passwd = os.environ['PASSWORD']
+    # Test Code: python LZU-Auto-COVID-Health-Report.py [cardID] [password]
+    # import sys
+    # cardID = sys.argv[1]
+    # passwd = sys.argv[2]
+
     dayCok, cardID = getDailyToken(cardID, passwd)
     ST = getST(dayCok)
     AuToken = getAuthToken(ST, cardID, dayCok)
@@ -220,20 +226,26 @@ def submitCard():
 
 
 if __name__ == "__main__":
+
+    # Delete for test
     if not os.environ['CARDID']:
         raise Exception("未设置Actions Secrets变量CARDID，请检查！")
     if not os.environ['PASSWORD']:
         raise Exception("未设置Actions Secrets变量PASSWORD，请检查！")
+
     try:
         submitCard()
     except Exception:
         print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第一次尝试失败, 再次尝试中...")
         try:
+            time.sleep(60)
             submitCard()
         except Exception:
             print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第二次尝试失败, 再次尝试中...")
             try:
+                time.sleep(60)
                 submitCard()
             except Exception:
                 print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第三次尝试失败, 再次尝试中...")
+                time.sleep(60)
                 submitCard()
