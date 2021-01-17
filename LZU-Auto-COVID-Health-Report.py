@@ -18,7 +18,8 @@ import os
 import requests
 import json
 import random
-from selenium import webdriver
+import re
+from lxml import etree
 
 session = requests.session()
 
@@ -153,28 +154,38 @@ def getFilledInfo(cardID, cardMD5, auToken):
 
 
 def getDailyToken(user, password):
-    login = 'http://my.lzu.edu.cn/login'
-    option = webdriver.ChromeOptions()
-    option.add_argument('headless')
-    option.add_argument('no-sandbox')
-    option.add_argument('disable-dev-shm-usage')
-    option.add_experimental_option(
-        "excludeSwitches", ['enable-automation', 'enable-logging'])
-    browser = webdriver.Chrome('/usr/bin/chromedriver', options=option)
-    browser.get(login)
-    browser.find_element_by_id('username').send_keys(user)
-    browser.find_element_by_id('password').send_keys(password)
-    browser.find_element_by_class_name('g-recaptcha').click()
-    time.sleep(2)
-    iPlanetDirectoryPro = browser.get_cookie("iPlanetDirectoryPro")
-    if not (user.isdigit() and len(user) == 12):
-        user = browser.execute_script("a = document.getElementById('personUserECard'); if(a) return a.innerText")
-    browser.close()
-    if not iPlanetDirectoryPro:
+    login_url = 'http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn'
+    header = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4385.0 Safari/537.36',
+    }
+    response = session.get(login_url, headers=header)
+    tree = etree.HTML(response.text)
+    lt = tree.xpath("//*[@id='loginForm']/div[3]/div[2]/input[2]/@value")
+    execution = tree.xpath("//*[@id='loginForm']/div[3]/div[2]/input[3]/@value")
+    eventId = tree.xpath("//*[@id='loginForm']/div[3]/div[2]/input[4]/@value")
+    captcha = tree.xpath("//*[@id='loginForm']/div[3]/div[2]/input[5]/@value")
+    formData = {
+        'username': user,
+        'password': password,
+        'lt': lt,
+        'execution': execution,
+        '_eventId': eventId,
+        'captcha': captcha
+    }
+    response = session.post(login_url, formData,
+                            headers=header, allow_redirects=False)
+    if response.status_code != 302:
         print("Wrong password or user! Please make sure you set related Action Secrets correctly.")
         raise Exception("Wrong password or user! Please make sure you set related Action Secrets correctly.")
-    dayCok = iPlanetDirectoryPro['value']
-    return dayCok, user
+    else:
+        wrongurl = response.headers['location']
+        if not "/?" in wrongurl:
+            wrongurl = wrongurl.replace("?","/?")
+        response = session.post(wrongurl, headers=header)
+        if not (user.isdigit() and len(user) == 12):
+            user = ''.join(re.findall(r"var personId = '(.+?)';", response.text))
+        dayCok = requests.utils.dict_from_cookiejar(session.cookies)['iPlanetDirectoryPro']
+        return dayCok, user
 
 
 def submitCard():
