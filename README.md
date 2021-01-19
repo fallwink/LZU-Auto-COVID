@@ -30,14 +30,16 @@
 
 *注:* 如要在自己的Linux服务器上使用crontab执行定时任务来进行自动打卡，请clone本仓库并仿照[工作流配置文件](.github/workflows/autoreport.yml)中的执行步骤进行改编，这里不再提供相关配置方法。
 
+因为大陆网络环境导致图片无法显示的可以前往Gitee查看(下述操作步骤仍然要在Github平台上完成哦!)：https://gitee.com/hollowman6/LZU-Auto-COVID-Health-Report#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95
+
 （强烈建议你首先自己打一次卡之后再使用本软件，从而初始化平台打卡系统中的数据。本软件将会一直沿用你在系统中最新填报的`是否在校`、`所在省市区`，`是否出国`、`出国地点`打卡信息，并会一直上报最健康的状态。）
 
-你可以首先fork本仓库，之后在你fork的仓库中进行相关设置。
+对于直接在Github Actions上使用工作流进行自动打卡，你可以首先fork本仓库，之后在你fork的仓库中进行相关设置。
 
 1. 首先，按下图所示点击1，2，3的次序，进入新建Actions secrets的界面。我们需要两个Actions secrets，一个的Name为`CARDID`，value为你的兰州大学校园卡号(也可接受兰大邮箱账号(不含@lzu.edu.cn后缀))；另一个的Name为`PASSWORD`，value为你的兰州大学个人工作台的账户密码（和你的兰大邮箱密码相同）。依次按上述要求创建这两个secrets即可。创建完成后你将在右下部分看到两个Actions secrets。
 ![](img/secrets.png)
 
-2. 然后，按下图所示点击1，2，3，4的次序，你可以手动触发工作流的执行来进行测试。（**注意：**如果因为你多次重复因为账号密码错误登录失败，很有可能会导致验证码的出现，此时程序会被阻止自动登录。因而请确保你已经在[兰州大学个人工作台](http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn)处测试过你的账号密码是正确的。）另外工作流还自动会在北京时间每天的~~7点，11点，19点~~7点寒暑假时间(1月，2月，7月，8月)自动运行。（因为Github方的原因，可能会有半小时左右的延迟）
+2. 然后，按下图所示点击1，2，3，4的次序，你可以手动触发工作流的执行来进行测试。（**注意：** 如果因为你多次重复因为账号密码错误登录失败，很有可能会导致验证码的出现，此时程序会被阻止自动登录。因而请确保你已经在[兰州大学个人工作台](http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn)处测试过你的账号密码是正确的。）另外工作流还自动会在北京时间每天的~~7点，11点，19点~~7点寒暑假时间(1月，2月，7月，8月)自动运行。（因为Github方的原因，可能会有半小时左右的延迟）
 ![](img/workflow.png)
 
 3. 点开任意一个运行记录，依次点开下图所示1，2，你可以看到运行记录以及错误说明。
@@ -120,7 +122,7 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/85427e4d855887ec
 
 (It is strongly recommended that you first report your own situation by yourself before using this software so that the system's data can be initialized. This software will always use the `at university`, `your location`, `whether at abroad`, `abroad location` you kept in the system, and report the healthiest status.)
 
-You can fork this repository first, and then set related settings in your forked repository.
+To auto report with Github Actions workflow, you can fork this repository first, and then set related settings in your forked repository.
 
 1. First, click in the order of 1, 2 and 3 as shown in the figure below to enter creating the new actions secrets interface. We need two actions secrets, one name is `CARDID`, value is your student card number of Lanzhou University(or the LZU email account user name(without `@lzu.edu.cn`)); the other is `PASSWORD`, value is the account password of your personal workbench of Lanzhou University(It's the same as your email password). Create these two secrets in turn according to the above requirements. After the creation, you will see two actions secrets as in the lower right section.
 ![](img/secrets.png)
