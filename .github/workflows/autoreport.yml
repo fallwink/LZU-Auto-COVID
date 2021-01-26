@@ -13,11 +13,11 @@ jobs:
   bot:
     runs-on: ubuntu-latest
     steps:
-        - name: Time wait for the specified input
+        - name: Time wait ${{ github.event.inputs.delays }}
           if: ${{ github.event.inputs.delays != '' }} 
           uses: jakejarvis/wait-action@master
           with:
-            time: ${{ github.event.inputs.delays }}
+            time: '${{ github.event.inputs.delays }}'
         - name: 'Checkout codes'
           uses: actions/checkout@v2
         - name: 'Set up Python'
@@ -50,7 +50,7 @@ jobs:
             PPTOPIC: ${{ secrets.PPTOPIC }}
           if: ${{ success() }}
           run: python Notify-Using-SeverChan-Or-PushPlus.py success
-        - name: 'Re-run workflow if any of the steps failed'
+        - name: 'Re-run workflow if failed and GPATOKEN set'
           env:
             GPATOKEN: ${{ secrets.GPATOKEN }}
           if: ${{ failure() && (env.GPATOKEN != '') }}
