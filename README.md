@@ -15,6 +15,7 @@
 
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/HollowMan6/LZU-Auto-COVID-Health-Report.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/HollowMan6/LZU-Auto-COVID-Health-Report/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/HollowMan6/LZU-Auto-COVID-Health-Report.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/HollowMan6/LZU-Auto-COVID-Health-Report/context:python)
+[![](https://images.microbadger.com/badges/image/hollowman6/lzu-auto-covid-health-report.svg)](https://microbadger.com/images/hollowman6/lzu-auto-covid-health-report)
 
 (English version is down below)
 
@@ -27,8 +28,6 @@
 [工作流](.github/workflows/autoreport.yml)
 
 ## 使用方法
-
-*注:* 如要在自己的Linux服务器上使用crontab执行定时任务来进行自动打卡，请clone本仓库并仿照[工作流配置文件](.github/workflows/autoreport.yml)中的执行步骤进行改编，这里不再提供相关配置方法。
 
 因为大陆网络环境导致图片无法显示的可以前往Gitee查看(下述操作步骤仍然要在Github平台上完成哦!)：https://gitee.com/hollowman6/LZU-Auto-COVID-Health-Report#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95
 
@@ -87,7 +86,35 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 
 如果需要转换回普通的Sever酱请将`OPENID` Actions secret删除即可。
 
+## Docker
+
+Docker Hub: https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report
+
+如果你需要通过Docker运行，只需要将上述Actions Secret变量名和值分别设置为环境变量(另外增加一个DELAYS为打卡等待时间，值同[使用方法](#使用方法)步骤6中要求)，然后执行下述命令即可：
+```bash
+docker run -it \
+    -e CARDID=$CARDID \
+    -e PASSWORD=$PASSWORD \
+    -e DELAYS=$DELAYS \
+    -e SERVERCHANSCKEY=$SERVERCHANSCKEY \
+    -e OPENID=$OPENID \
+    -e PPTOKEN=$PPTOKEN \
+    -e PPTOPIC=$PPTOPIC \
+    -e DELAYS=$DELAYS \
+    hollowman6/lzu-auto-covid-health-report
+```
+
+**创建**
+
+```bash
+docker build -t hollowman6/lzu-auto-covid-health-report .
+```
+
+该Docker镜像也可以在云服务器中结合Kubernetes的CronJob运行等，可能性无限多。
+
 ## Q&A
+
+*注:* 如要在自己的Linux服务器上使用crontab执行定时任务来进行自动打卡，推荐使用[Docker](#docker)。你也可以clone本仓库，安装好相关Python依赖后改编[entrypoint.sh](entrypoint.sh)文件中python程序的路径，将上述Actions Secret变量名和值分别设置为系统环境变量(另外增加一个DELAYS为打卡等待时间，值同[使用方法](#使用方法)步骤6中要求)，即可运行。
 
 1. 怎么查看自己有没有打卡成功？
 
@@ -124,8 +151,6 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 [Workflow](.github/workflows/autoreport.yml)
 
 ## Usage
-
-*PS:* If you want to use crontab on your own Linux server to execute the auto Health Report, please clone this repository and make your own shell script imitating steps in the [workflow configure files here](.github/workflows/autoreport.yml), I won't offer any guides for it.
 
 (It is strongly recommended that you first report your own situation by yourself before using this software so that the system's data can be initialized. This software will always use the `at university`, `your location`, `whether at abroad`, `abroad location` you kept in the system, and report the healthiest status.)
 
@@ -182,7 +207,36 @@ If you want to use [ServerChan Testing Subscription Version](https://sct.ftqq.co
 
 If you need to switch back to normal SeverChan, please delete the `OPENID` actions secret.
 
+## Docker
+
+Docker Hub: https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report
+
+If you need to run through docker, just set the above Actions Secrets name and value as environment variables (In addition, add a DELAYS as the waiting time, and the value is the same requirement as that in step 6 of [usage](#usage)), and then execute the following command:
+
+```bash
+docker run -it \
+    -e CARDID=$CARDID \
+    -e PASSWORD=$PASSWORD \
+    -e DELAYS=$DELAYS \
+    -e SERVERCHANSCKEY=$SERVERCHANSCKEY \
+    -e OPENID=$OPENID \
+    -e PPTOKEN=$PPTOKEN \
+    -e PPTOPIC=$PPTOPIC \
+    -e DELAYS=$DELAYS \
+    hollowman6/lzu-auto-covid-health-report
+```
+
+**Build**
+
+```bash
+docker build -t hollowman6/lzu-auto-covid-health-report .
+```
+
+The docker image here can also be runned in combination with Kubernetes' CronJob in the Cloud Clusters etc. THere're unlimited possibilities.
+
 ## Q&A
+
+*PS:* If you want to use crontab on your own Linux server to execute the auto Health Report, I recommend using [docker](#docker), otherwise please clone this repository and after installing relevant Python dependencies, adapt the path of the python program in [entrypoint.sh](entrypoint.sh). Set the Actions Aecrets name and value mentioned above as the environment variable respectively (In addition, add a DELAYS as the waiting time, and the value is the same requirement as that in step 6 of [usage](#usage)) to run.
 
 1. How to check whether you have reported your health successfully?
 
