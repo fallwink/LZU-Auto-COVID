@@ -12,7 +12,7 @@ if [ -f "/envar" ]; then
 fi
 
 # Main Program Execution
-if [ -n $DELAYS ]
+if [ ! -z $DELAYS ]
 then
     echo "---Wait for $DELAYS---"
     sleep $DELAYS
