@@ -3,7 +3,7 @@ name: 'LZU Auto COVID Health Report'
 description: 'LZU Auto COVID Health Report using Github Action.(兰大疫情期间自动定时健康打卡)'
 
 inputs:
-  CARDID:  # id of input
+  CARDID:
     description: 'Your Student Card ID(兰大校园卡号)'
     required: true
   PASSWORD:

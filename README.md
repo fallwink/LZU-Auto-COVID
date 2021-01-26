@@ -86,6 +86,40 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 
 如果需要转换回普通的Sever酱请将`OPENID` Actions secret删除即可。
 
+## 自行配置工作流
+
+你可以自行创建一个仓库并自行配置工作流进行使用，[示例工作流文件](.github/workflows/autoreport-docker.yml)
+
+### 输入
+
+#### 必须
+
+* CARDID: 兰大校园卡号
+* PASSWORD: 兰大邮箱卡号
+
+#### 可选
+
+* DELAYS: 设置打卡时间延迟
+* SERVERCHANSCKEY: Server酱 SCKEY
+* OPENID: Server酱测试号版 微信公众号用户OpenID
+* PPTOKEN: PushPlus Token
+* PPTOPIC: PushPlus 群组编码
+
+### 示例
+
+```yaml
+- name: Auto COVID Health Report
+  uses: HollowMan6/LZU-Auto-COVID-Health-Report@master
+  with:
+    CARDID: ${{ secrets.CARDID }}
+    PASSWORD: ${{ secrets.PASSWORD }}
+    DELAYS: ${{ github.event.inputs.delays }}
+    SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
+    OPENID: ${{ secrets.OPENID }}
+    PPTOKEN: ${{ secrets.PPTOKEN }}
+    PPTOPIC: ${{ secrets.PPTOPIC }}
+```
+
 ## Docker
 
 Docker Hub: https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report
@@ -206,6 +240,40 @@ Details：
 If you want to use [ServerChan Testing Subscription Version](https://sct.ftqq.com/), please create/modify the Actions secret with the Name `SERVERCHANSCKEY` and the value [your sendkey value](https://sct.ftqq.com/sendkey). In addition, create a Actions secret with Name as `OPENID`, if the value is `0`, it is only send to yourself. Otherwise, set the value to be the specified user's Wechat openid who subscribed the Testing Subscription account, then it will send it to the designated user and yourself at the same time.
 
 If you need to switch back to normal SeverChan, please delete the `OPENID` actions secret.
+
+## Self-Configure Workflow
+
+You can create your own repository and configure your own workflow to use, [Example Workflow YAML File](.github/workflows/autoreport-docker.yml)
+
+### Input
+
+#### Required
+
+* CARDID: Your Student Card ID
+* PASSWORD: Your Student Email Login Password
+
+#### Optional
+
+* DELAYS: Delay time for running
+* SERVERCHANSCKEY: ServerChan SCKEY
+* OPENID: ServerChan Testing Subscription Version Testing Subscription account User OpenID
+* PPTOKEN: PushPlus Token
+* PPTOPIC: PushPlus Topic
+
+### Example
+
+```yaml
+- name: Auto COVID Health Report
+  uses: HollowMan6/LZU-Auto-COVID-Health-Report@master
+  with:
+    CARDID: ${{ secrets.CARDID }}
+    PASSWORD: ${{ secrets.PASSWORD }}
+    DELAYS: ${{ github.event.inputs.delays }}
+    SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
+    OPENID: ${{ secrets.OPENID }}
+    PPTOKEN: ${{ secrets.PPTOKEN }}
+    PPTOPIC: ${{ secrets.PPTOPIC }}
+```
 
 ## Docker
 
