@@ -11,7 +11,7 @@
 
 [![Open Source Love](https://img.shields.io/badge/-%E2%9D%A4%20Open%20Source-Green?style=flat-square&logo=Github&logoColor=white&link=https://hollowman6.github.io/fund.html)](https://hollowman6.github.io/fund.html)
 [![GPL Licence](https://img.shields.io/badge/license-GPL-blue)](https://opensource.org/licenses/GPL-3.0/)
-[![Repo-Size](https://img.shields.io/github/repo-size/HollowMan6/LZU-Auto-COVID-Health-Report.svg)](../../archive/master.zip)
+[![Repo-Size](https://img.shields.io/github/repo-size/HollowMan6/LZU-Auto-COVID-Health-Report.svg)](../../archive/main.zip)
 
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/HollowMan6/LZU-Auto-COVID-Health-Report.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/HollowMan6/LZU-Auto-COVID-Health-Report/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/HollowMan6/LZU-Auto-COVID-Health-Report.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/HollowMan6/LZU-Auto-COVID-Health-Report/context:python)
@@ -60,7 +60,7 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 
 ### PushPlus(推荐)
 
-首先[登录PushPlus](https://pushplus.hxtrip.com/login)，然后在pushplus网站中找到您的token，仿照[使用方法](#使用方法)步骤1，创建一个Name为`PPTOKEN`，value为您的token值的TokenActions secret，就可以进行一对一推送自动打卡结果相关信息。
+首先[登录PushPlus](https://pushplus.hxtrip.com/login)，然后在pushplus网站中找到您的token，仿照[使用方法](#使用方法)步骤1，创建一个Name为`PPTOKEN`，value为您的token值的Actions secret，就可以进行一对一推送自动打卡结果相关信息。
 
 如果需要对多个账号推送自动打卡结果相关信息，即一对多推送，还需要另外新建一个群组，记下群组编码，然后创建一个Name为`PPTOPIC`，value为您的群组编码的Actions secret。
 
@@ -109,7 +109,7 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 
 ```yaml
 - name: Auto COVID Health Report
-  uses: HollowMan6/LZU-Auto-COVID-Health-Report@master
+  uses: HollowMan6/LZU-Auto-COVID-Health-Report@main
   with:
     CARDID: ${{ secrets.CARDID }}
     PASSWORD: ${{ secrets.PASSWORD }}
@@ -264,7 +264,7 @@ You can create your own repository and configure your own workflow to use, [Exam
 
 ```yaml
 - name: Auto COVID Health Report
-  uses: HollowMan6/LZU-Auto-COVID-Health-Report@master
+  uses: HollowMan6/LZU-Auto-COVID-Health-Report@main
   with:
     CARDID: ${{ secrets.CARDID }}
     PASSWORD: ${{ secrets.PASSWORD }}
