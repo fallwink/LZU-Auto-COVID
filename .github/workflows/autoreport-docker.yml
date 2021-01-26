@@ -1,0 +1,34 @@
+name: 'GitHub Actions LZU Auto COVID Health Report Docker'
+    
+on:
+  workflow_dispatch:  # Allow manual triggers
+    inputs:
+      delays:
+        description: 'Delayed time for running (Optional)'
+        required: false
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: Auto COVID Health Report
+          uses: ./ # Uses an action in the root directory
+          with:
+            CARDID: ${{ secrets.CARDID }}
+            PASSWORD: ${{ secrets.PASSWORD }}
+            DELAYS: ${{ github.event.inputs.delays }}
+            SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
+            OPENID: ${{ secrets.OPENID }}
+            PPTOKEN: ${{ secrets.PPTOKEN }}
+            PPTOPIC: ${{ secrets.PPTOPIC }}
+        - name: 'Re-run workflow if failed and GPATOKEN set'
+          env:
+            GPATOKEN: ${{ secrets.GPATOKEN }}
+          if: ${{ failure() && (env.GPATOKEN != '') }}
+          uses: benc-uk/workflow-dispatch@v1
+          with:
+            workflow: 'GitHub Actions LZU Auto COVID Health Report Docker'
+            token: ${{ secrets.GPATOKEN }}
+            inputs: '{ "delays": "30m" }'
