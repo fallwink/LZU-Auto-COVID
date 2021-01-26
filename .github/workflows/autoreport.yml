@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # Allow manual triggers
     inputs:
       delays:
-        description: 'Set delayed time for running'
+        description: 'Delayed time for running (Optional)'
         required: false
   schedule:
     - cron: '0 23 * 1,2,7,8 *' # Schedule on CST 7 everyday during Jan. Feb. Jul. Aug.
@@ -51,7 +51,9 @@ jobs:
           if: ${{ success() }}
           run: python Notify-Using-SeverChan-Or-PushPlus.py success
         - name: 'Re-run workflow if any of the steps failed'
-          if: ${{ failure() && (secrets.GPATOKEN != "") }}
+          env:
+            GPATOKEN: ${{ secrets.GPATOKEN }}
+          if: ${{ failure() && (env.GPATOKEN != "") }}
           uses: benc-uk/workflow-dispatch@v1
           with:
             workflow: 'GitHub Actions LZU Auto COVID Health Report'
