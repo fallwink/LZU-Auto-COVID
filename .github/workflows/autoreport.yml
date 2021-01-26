@@ -1,13 +1,11 @@
 name: 'GitHub Actions LZU Auto COVID Health Report'
-
-inputs:
-  delays:
-    description: 'Set delayed time for running'
-    required: false
-    default: '0'
     
 on:
   workflow_dispatch:  # Allow manual triggers
+    inputs:
+      delays:
+        description: 'Set delayed time for running'
+        required: false
   schedule:
     - cron: '0 23 * 1,2,7,8 *' # Schedule on CST 7 everyday during Jan. Feb. Jul. Aug.
 
@@ -16,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Time wait for the specified input
-          if: ${{ github.event.inputs.delays != '0' }} 
+          if: ${{ github.event.inputs.delays != '' }} 
           uses: jakejarvis/wait-action@master
           with:
             time: ${{ github.event.inputs.delays }}
@@ -49,13 +47,13 @@ jobs:
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
             OPENID: ${{ secrets.OPENID }}
             PPTOKEN: ${{ secrets.PPTOKEN }}
-            PPTOPIC: ${{ secrets.PPTOPIC }}
+            PPTOPIC: ${{ secrets.PPTOPIC
           if: ${{ success() }}
           run: python Notify-Using-SeverChan-Or-PushPlus.py success
         - name: 'Re-run workflow if any of the steps failed'
-          if: ${{ failure() && secrets.PAT }}
+          if: ${{ failure() }} && ${{ secrets.GPATOKEN }}
           uses: benc-uk/workflow-dispatch@v1
           with:
             workflow: 'GitHub Actions LZU Auto COVID Health Report'
-            token: ${{ secrets.PAT }}
+            token: ${{ secrets.GPATOKEN }}
             inputs: '{ "delays": "30m" }'
