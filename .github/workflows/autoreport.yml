@@ -47,11 +47,11 @@ jobs:
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
             OPENID: ${{ secrets.OPENID }}
             PPTOKEN: ${{ secrets.PPTOKEN }}
-            PPTOPIC: ${{ secrets.PPTOPIC
+            PPTOPIC: ${{ secrets.PPTOPIC }}
           if: ${{ success() }}
           run: python Notify-Using-SeverChan-Or-PushPlus.py success
         - name: 'Re-run workflow if any of the steps failed'
-          if: ${{ failure() }} && ${{ secrets.GPATOKEN }}
+          if: ${{ failure() && (secrets.GPATOKEN != "") }}
           uses: benc-uk/workflow-dispatch@v1
           with:
             workflow: 'GitHub Actions LZU Auto COVID Health Report'
