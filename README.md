@@ -134,7 +134,6 @@ docker run -it \
     -e OPENID=$OPENID \
     -e PPTOKEN=$PPTOKEN \
     -e PPTOPIC=$PPTOPIC \
-    -e DELAYS=$DELAYS \
     hollowman6/lzu-auto-covid-health-report
 ```
 
@@ -290,7 +289,6 @@ docker run -it \
     -e OPENID=$OPENID \
     -e PPTOKEN=$PPTOKEN \
     -e PPTOPIC=$PPTOPIC \
-    -e DELAYS=$DELAYS \
     hollowman6/lzu-auto-covid-health-report
 ```
 
