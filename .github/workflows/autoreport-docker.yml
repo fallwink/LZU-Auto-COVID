@@ -23,12 +23,4 @@ jobs:
             OPENID: ${{ secrets.OPENID }}
             PPTOKEN: ${{ secrets.PPTOKEN }}
             PPTOPIC: ${{ secrets.PPTOPIC }}
-        - name: 'Re-run workflow if failed and GPATOKEN set'
-          env:
-            GPATOKEN: ${{ secrets.GPATOKEN }}
-          if: ${{ failure() && (env.GPATOKEN != '') }}
-          uses: benc-uk/workflow-dispatch@v1
-          with:
-            workflow: 'GitHub Actions LZU Auto COVID Health Report Docker'
-            token: ${{ secrets.GPATOKEN }}
-            inputs: '{ "delays": "30m" }'
+

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Setup Environmental Variables
 env -0 | while IFS='=' read -r -d '' n v; do
