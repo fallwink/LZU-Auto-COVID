@@ -27,6 +27,6 @@ jobs:
           if: ${{ failure() && (env.GPATOKEN != '') }}
           uses: benc-uk/workflow-dispatch@v1
           with:
-            workflow: 'GitHub Actions LZU Auto COVID Health Report'
+            workflow: 'Docker Version - GitHub Actions LZU Auto COVID Health Report'
             token: ${{ secrets.GPATOKEN }}
             inputs: '{ "delays": "30m" }'
