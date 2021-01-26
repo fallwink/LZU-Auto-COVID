@@ -7,7 +7,9 @@ env -0 | while IFS='=' read -r -d '' n v; do
         echo "export ${n#INPUT_}=$v" >> /envar
     fi
 done
-source /envar
+if [ -f "/envar" ]; then
+    source /envar
+fi
 
 # Main Program Execution
 if [ -n $DELAYS ]
@@ -16,12 +18,12 @@ then
     sleep $DELAYS
 fi
 echo "---Auto COVID Health Report---"
-if python /LZU-Auto-COVID-Health-Report.py >> /information.txt && cat /information.txt;
+if python /LZU-Auto-COVID-Health-Report.py >> information.txt && cat information.txt;
 then
     echo "---Notify Success Using ServerChan or PushPlus---"
     python /Notify-Using-SeverChan-Or-PushPlus.py success
 else
     echo "---Error logging and Notifying Using ServerChan or PushPlus---"
-    python /Notify-Using-SeverChan-Or-PushPlus.py failure && cat /information.txt
+    python /Notify-Using-SeverChan-Or-PushPlus.py failure && cat information.txt
     exit 1
 fi
