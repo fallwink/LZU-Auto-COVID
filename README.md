@@ -50,10 +50,12 @@
 5. 将来某一天疫情过去了，不需要再打卡，你可以按下图操作关闭：
 ![](img/cancel.png)
 
-6. **新**：增加可选的遇到打卡失败的情况，自动重启工作流，并等待一段时间后再次自动打卡。你需要创建一个Personal Access Token, [获取教程](https://docs.github.com/cn/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token)(第7步令牌的作用域或权限你只需要选中workflow这一栏即可)。然后创建一个Name为`GPATOKEN`，value为你的令牌值的Actions Secret。
+6. **新**：增加可选的遇到打卡失败的情况，自动重启工作流，并等待一段时间后再次自动打卡。如果你需要这个功能，则请创建一个Personal Access Token, [获取教程](https://docs.github.com/cn/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token)(第7步令牌的作用域权限你只需要选中workflow这一栏即可)。然后创建一个Name为`GPATOKEN`，value为你的令牌值的Actions Secret。
 
 默认再次打卡等待时间为30分钟，如果你有需要可以将[这里](
-https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L61)的`30m`替换为你想要的数值，这里的时间遵循Linux sleep 函数对应时间语法：一个数字后接 `s` 对应秒, `m` 对应时间等。
+https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L61)的`30m`替换为你想要的数值，这里的时间遵循Linux sleep 函数对应时间语法：一个数字后接 `s` 对应秒, `m` 对应分钟等。
+
+如果是因为本仓库程序本身因为失效而导致的报错，你可以取消正在运行中的工作流从而终止这一循环。
 
 ## 可选：微信推送打卡结果
 
@@ -102,7 +104,7 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 在假期不需要一日三次上报体温，这个功能是为未来返校的时候做的。我的程序会自动判断当前是否在校，如果不在校是不会有体温数据的（都是0.0），另外每次post数据都是要有这一项的。
 
 另外设置的Github Actions是每日三次运行程序，如果你不需要，可以将[这里](
-https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L12)
+https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L10)
 更改为`    - cron: '0 23 * * *' # Schedule on CST 7 everyday`，
 即每日只在北京时间早上7点运行。
 
@@ -142,6 +144,13 @@ To auto report with Github Actions workflow, you can fork this repository first,
 
 5. One day, when the COVID-19 is over, and you don't need to report your health any more. You can disable it according to the following figure:
 ![](img/cancel.png)
+
+6. **NEW**: Add the optional option to restart the workflow automatically in case of Auto Report in failure, and wait for a period of time to re-run workflow again automatically. If you need this, please create a Personal Access Token, [Here's Guides to create](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token)(In step 7 scopes or permissions, you only need to select the `workflow` row). Then create an Actions Secret with the name of `GPATOKEN` and the value with your token.
+
+The default waiting time is 30 minutes. You can replace `30m` [here](
+https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L61) with the time you want. The time here  follows the Linux sleep syntax for time units: a number followed by `s` for seconds, `m` for minutes, etc.
+
+If the error is caused by the repository program itself, you can cancel the running workflow to terminate the loop.
 
 ## Optional: WeChat push results
 
@@ -191,7 +200,7 @@ When returning to school, if the university still wants to report three times a 
 You don't need to report your temperature three times a day during the holidays. This function is for the future when you go back to school. My program will automatically determine whether you are currently in school or not. If you are not in school, there will be no valid temperature data (all 0.0). In addition, these items are required for every post data.
 
 And also, GitHub actions is set to run the program three times a day. If you don't need it, you can replace [here](
-https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L12)
+https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L10)
 with `    - cron: '0 23 * * *' # Schedule on CST 7 everyday`，
 That is, only runs at 7 a.m. Beijing time every day.
 
