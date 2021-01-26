@@ -53,7 +53,7 @@ jobs:
         - name: 'Re-run workflow if any of the steps failed'
           env:
             GPATOKEN: ${{ secrets.GPATOKEN }}
-          if: ${{ failure() && (env.GPATOKEN != "") }}
+          if: ${{ failure() && (env.GPATOKEN != '') }}
           uses: benc-uk/workflow-dispatch@v1
           with:
             workflow: 'GitHub Actions LZU Auto COVID Health Report'
