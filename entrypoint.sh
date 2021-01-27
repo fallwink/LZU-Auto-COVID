@@ -14,6 +14,7 @@ fi
 # Main Program Execution
 if [ ! -z $DELAYS ]
 then
+    # Support delays after a failed pod restart in Kubernetes by creating mark `/cache/runned`
     if [ ! -d "/cache" ] || [ -f "/cache/runned" ]
     then
         echo "---Wait for $DELAYS---"
