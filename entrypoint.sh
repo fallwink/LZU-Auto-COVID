@@ -4,7 +4,7 @@
 env -0 | while IFS='=' read -r -d '' n v; do
     if [ ${n#INPUT_} != $n ]
     then
-        echo "export ${n#INPUT_}=$v" >> /envar
+        echo "export ${n#INPUT_}='$v'" >> /envar
     fi
 done
 if [ -f "/envar" ]; then
@@ -14,8 +14,14 @@ fi
 # Main Program Execution
 if [ ! -z $DELAYS ]
 then
-    echo "---Wait for $DELAYS---"
-    sleep $DELAYS
+    if [ ! -d "/cache" ] || [ -f "/cache/runned" ]
+    then
+        echo "---Wait for $DELAYS---"
+        sleep $DELAYS
+    else if [ -d "/cache" ]
+    then
+        touch "/cache/runned"
+    fi
 fi
 echo "---Auto COVID Health Report---"
 if python /LZU-Auto-COVID-Health-Report.py >> information.txt && cat information.txt;

@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: lzu-covid-report-delays
 data:
-  delays: ""
+  delays: "30m"
 
 ---
 
@@ -56,4 +56,10 @@ spec:
                   secretKeyRef:
                     name: lzu-covid-report-secret
                     key: pptopic
+            volumeMounts:
+            - mountPath: /cache
+              name: report-delays-marking
+          volumes:
+          - name: report-delays-marking
+            emptyDir: {}
           restartPolicy: OnFailure
