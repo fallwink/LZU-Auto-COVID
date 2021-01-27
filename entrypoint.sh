@@ -18,7 +18,7 @@ then
     then
         echo "---Wait for $DELAYS---"
         sleep $DELAYS
-    else if [ -d "/cache" ]
+    elif [ -d "/cache" ]
     then
         touch "/cache/runned"
     fi
