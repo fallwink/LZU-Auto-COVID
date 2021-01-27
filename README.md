@@ -27,6 +27,8 @@
 
 [工作流](.github/workflows/autoreport.yml)
 
+支持[Fork本仓库直接使用工作流(推荐)](#使用方法)，[自行创建仓库使用工作流](#自行配置工作流)，[CronTab运行](#qa)，[Docker运行](#docker)，[Kubernetes运行](#kubernetes)等。
+
 ## 使用方法
 
 因为大陆网络环境导致图片无法显示的可以前往Gitee查看(下述操作步骤仍然要在Github平台上完成哦!)：https://gitee.com/hollowman6/LZU-Auto-COVID-Health-Report#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95
@@ -56,9 +58,9 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 
 如果是因为本仓库程序本身因为失效而导致的报错，你可以取消正在运行中的工作流从而终止这一循环。
 
-## 可选：微信推送打卡结果
+### 可选：微信推送打卡结果
 
-### PushPlus(推荐)
+#### PushPlus(推荐)
 
 首先[登录PushPlus](https://pushplus.hxtrip.com/login)，然后在pushplus网站中找到您的token，仿照[使用方法](#使用方法)步骤1，创建一个Name为`PPTOKEN`，value为您的token值的Actions secret，就可以进行一对一推送自动打卡结果相关信息。
 
@@ -66,7 +68,7 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 
 ![](https://pushplus.hxtrip.com/doc/img/c1.png)
 
-### Server酱
+#### Server酱
 
 如使用[Server酱](http://sc.ftqq.com/)来实现，它的配置方法请参考其说明文档。
 
@@ -80,11 +82,11 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 点开详情：
 ![](img/ServerChanMessage.jpg)
 
-### Server酱测试号版
+#### Server酱测试号版
 
 如果要使用[Server酱测试号版](https://sct.ftqq.com/)，请创建一个/修改Name为`SERVERCHANSCKEY`，value为[你的SendKey值](https://sct.ftqq.com/sendkey)的Actions secret。另外创建一个Name为`OPENID`的Actions secret，如果value值为`0`则是通过公众号仅发给自己。否则将value值设定为关注你测试公众号的那个用户的微信号openid，这时将发给自己的同时还会发送给那个指定用户。
 
-如果需要转换回普通的Sever酱请将`OPENID` Actions secret删除即可。
+如果需要转换回普通的Server酱请将`OPENID` Actions secret删除即可。
 
 ## 自行配置工作流
 
@@ -145,6 +147,14 @@ docker build -t hollowman6/lzu-auto-covid-health-report .
 
 该Docker镜像也可以在云服务器中结合Kubernetes的CronJob运行等，可能性无限多。
 
+## Kubernetes
+
+参考配置文件见[K8s](K8s), 只要运行[create.sh](K8s/create.sh)即可创建相关Actions Secret、ConfigMap和CronJob。
+
+你可以[更改这里来设定DELAYS变量](K8s/LZU-Auto-COVID-Health-Report.yml#L6)
+
+还可以[更改这里来设定Cron表达式](K8s/LZU-Auto-COVID-Health-Report.yml#L15)
+
 ## Q&A
 
 *注:* 如要在自己的Linux服务器上使用crontab执行定时任务来进行自动打卡，推荐使用[Docker](#docker)。你也可以clone本仓库，安装好相关Python依赖后改编[entrypoint.sh](entrypoint.sh)文件中python程序的路径，将上述Actions Secret变量名和值分别设置为系统环境变量(另外增加一个DELAYS为打卡等待时间，值同[使用方法](#使用方法)步骤6中要求)，即可运行。
@@ -155,7 +165,7 @@ docker build -t hollowman6/lzu-auto-covid-health-report .
 
 如果你指的是Github Actions里面请直接查看运行记录。workflow运行无报错，则打卡成功。失败Github会站内消息提示workflow运行失败。
 
-当然另外你还可以配置使用[sever酱微信推送](#可选微信推送打卡结果)。
+当然另外你还可以配置使用[server酱微信推送](#可选微信推送打卡结果)。
 
 2. 打卡应用里面没有你给的那个体温选项
 
@@ -182,6 +192,8 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 [Auto Report Script](LZU-Auto-COVID-Health-Report.py)
 
 [Workflow](.github/workflows/autoreport.yml)
+
+Support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab](#qa)，[run with Docker](#docker)，[run with Kubernetes](#kubernetes) etc.
 
 ## Usage
 
@@ -210,9 +222,9 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 
 If the error is caused by the repository program itself, you can cancel the running workflow to terminate the loop.
 
-## Optional: WeChat push results
+### Optional: WeChat push results
 
-### PushPlus(Recommended)
+#### PushPlus(Recommended)
 
 First [log into pushplus](https://pushplus.hxtrip.com/login), and then find your token in pushplus website, follow [Usage](#Usage) step 1, create a actions secret with the name of `PPTOKEN` and the value of your token value, and then one-to-one push the related information of automatic reporting results.
 
@@ -220,7 +232,7 @@ If you need to push the related information of automatic reporting results to mu
 
 ![](https://pushplus.hxtrip.com/doc/img/c1.png)
 
-### ServerChan
+#### ServerChan
 
 We Use [Server Chan](http://sc.ftqq.com/) to realize its functionality. For its configuration method, please refer to its documentation (In Chinese).
 
@@ -234,11 +246,11 @@ Pushing Effect：
 Details：
 ![](img/ServerChanMessage.jpg)
 
-### ServerChan Testing Subscription Version
+#### ServerChan Testing Subscription Version
 
 If you want to use [ServerChan Testing Subscription Version](https://sct.ftqq.com/), please create/modify the Actions secret with the Name `SERVERCHANSCKEY` and the value [your sendkey value](https://sct.ftqq.com/sendkey). In addition, create a Actions secret with Name as `OPENID`, if the value is `0`, it is only send to yourself. Otherwise, set the value to be the specified user's Wechat openid who subscribed the Testing Subscription account, then it will send it to the designated user and yourself at the same time.
 
-If you need to switch back to normal SeverChan, please delete the `OPENID` actions secret.
+If you need to switch back to normal ServerChan, please delete the `OPENID` actions secret.
 
 ## Self-Configure Workflow
 
@@ -300,6 +312,14 @@ docker build -t hollowman6/lzu-auto-covid-health-report .
 
 The docker image here can also be runned in combination with Kubernetes' CronJob in the Cloud Clusters etc. THere're unlimited possibilities.
 
+## Kubernetes
+
+You can refer to the configuration file [K8s](K8s).Also create the relevant Secrets ConfigMap and CronJob by running [create.sh](K8s/create.sh)
+
+You can also [change here to set `DELAYS` Variable](K8s/LZU-Auto-COVID-Health-Report.yml#L6)
+
+Also [change here to set Cron expression](K8s/LZU-Auto-COVID-Health-Report.yml#L15)
+
 ## Q&A
 
 *PS:* If you want to use crontab on your own Linux server to execute the auto Health Report, I recommend using [docker](#docker), otherwise please clone this repository and after installing relevant Python dependencies, adapt the path of the python program in [entrypoint.sh](entrypoint.sh). Set the Actions Aecrets name and value mentioned above as the environment variable respectively (In addition, add a DELAYS as the waiting time, and the value is the same requirement as that in step 6 of [usage](#usage)) to run.
@@ -310,8 +330,7 @@ If you are referring to the health reporting system in the Lanzhou University AP
 
 If you are referring to GitHub actions, please check the running record directly. If there is no error in workflow, the reporting is successful. If it fails, GitHub will send a message to prompt workflow to fail.
 
-
-Of course, you can also configure to use [SeverChan Wechat push](#optional-wechat-push-results).
+Of course, you can also configure to use [ServerChan Wechat push](#optional-wechat-push-results).
 
 2. There is no temperature option you gave in reporting system
 
