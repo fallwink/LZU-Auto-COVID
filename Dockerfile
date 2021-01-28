@@ -18,10 +18,19 @@ RUN apt-get update \
     && apt-get install -y \
       libxml2 \
       libxslt1-dev \
-      gcc
+      gcc \
+      zlib1g-dev
 
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r /requirements.txt
 RUN chmod +x /entrypoint.sh
+
+RUN apt-get –purge remove -y \
+      libxml2 \
+      libxslt1-dev \
+      gcc \
+      zlib1g-dev \
+    && apt-get autoremove -y \
+    && apt-get clean -y
 
 ENTRYPOINT ["/entrypoint.sh"]
