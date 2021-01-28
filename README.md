@@ -19,6 +19,8 @@
 
 (English version is down below)
 
+源Github项目地址：https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report
+
 ### 好用记得收藏(右上角**加星★Star**)哦!
 
 [Python库依赖](../../network/dependencies)
@@ -28,6 +30,8 @@
 [工作流](.github/workflows/autoreport.yml)
 
 支持[Fork本仓库直接使用工作流(推荐)](#使用方法)，[自行创建仓库使用工作流](#自行配置工作流)，[CronTab运行](#qa)，[Docker运行](#docker)，[Kubernetes运行](#kubernetes)等。
+
+[Docker镜像](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report)支持在`amd64`、`arm64`、`arm v7`、`linux/arm/v6`、`ppc64le`、`s390x`、`386`多架构运行。
 
 ## 使用方法
 
@@ -124,7 +128,7 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 
 ## Docker
 
-Docker Hub: https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report
+Docker Hub 仓库: https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report
 
 如果你需要通过Docker运行，只需要将上述Actions Secret变量名和值分别设置为环境变量(另外增加一个DELAYS为打卡等待时间，值同[使用方法](#使用方法)步骤6中要求)，然后执行下述命令即可：
 ```bash
@@ -185,6 +189,8 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 ***对于使用本代码所造成的一切不良后果，本人将不负任何责任！***
 # LZU Auto COVID Health Report using Github Action
 
+Source Github Repository Link: https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report
+
 ### Please **★Star** if you think it's great!
 
 [Python library dependency](../../network/dependencies)
@@ -194,6 +200,8 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 [Workflow](.github/workflows/autoreport.yml)
 
 Support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab](#qa)，[run with Docker](#docker)，[run with Kubernetes](#kubernetes) etc.
+
+[Docker Image](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report) support running on multiple architectures such as `amd64`, `arm64`, `arm v7`, `linux/arm/v6`, `ppc64le`, `s390x`, `386`.
 
 ## Usage
 
@@ -288,7 +296,7 @@ You can create your own repository and configure your own workflow to use, [Exam
 
 ## Docker
 
-Docker Hub: https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report
+Docker Hub Repository: https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report
 
 If you need to run through docker, just set the above Actions Secrets name and value as environment variables (In addition, add a DELAYS as the waiting time, and the value is the same requirement as that in step 6 of [usage](#usage)), and then execute the following command:
 
