@@ -16,8 +16,8 @@ ENV TZ Asia/Shanghai
 
 RUN apt-get update \
     && apt-get install -y \
-      libxml2 \
-      libxslt-devel
+      libxml2-dev \
+      libxslt1-dev
 
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r /requirements.txt
