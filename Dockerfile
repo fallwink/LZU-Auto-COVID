@@ -25,7 +25,7 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r /requirements.txt
 RUN chmod +x /entrypoint.sh
 
-RUN apt-get –purge remove -y \
+RUN apt-get --purge remove -y \
       libxml2 \
       libxslt1-dev \
       gcc \
