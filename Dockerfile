@@ -24,7 +24,6 @@ RUN apt-get update \
     && pip install --no-cache-dir -r /requirements.txt \
     && chmod +x /entrypoint.sh \
     && apt-get --purge remove -y \
-      libxml2 \
       gcc \
       zlib1g-dev \
     && apt-get autoremove -y \
