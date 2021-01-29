@@ -28,6 +28,7 @@ RUN apt-get update \
       libxslt1-dev \
       gcc \
       zlib1g-dev \
+      manpages \
     && apt-get autoremove -y \
     && apt-get install -y \
        libxslt1.1 \
