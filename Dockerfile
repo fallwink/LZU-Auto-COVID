@@ -30,7 +30,7 @@ RUN apt-get update \
       zlib1g-dev \
     && apt-get autoremove -y \
     && apt-get install -y \
-       libxslt1 \
+       libxslt1.1 \
     && apt-get clean
 
 ENTRYPOINT ["/entrypoint.sh"]
