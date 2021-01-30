@@ -16,7 +16,7 @@ ENV TZ Asia/Shanghai
 
 RUN pip install --no-cache-dir --upgrade pip
 
-RUN if [ "aarch64" = "`arch`" ] || [ "i386" = "`arch`" ] || [ "x86_64" = "`arch`" ]; then \
+RUN if [ "x86_64" = "`arch`" ] || [ "aarch64" = "`arch`" ] || [ "i386" = "`arch`" ]; then \
     pip install --no-cache-dir -r /requirements.txt; else \
     apt-get update \
     && apt-get install -y \
