@@ -1,0 +1,22 @@
+apiVersion: v1
+entries:
+  lzu-auto-covid-health-report:
+  - apiVersion: v2
+    appVersion: 1.0.9
+    created: "2021-02-01T18:46:57.3459001+08:00"
+    description: A chart for deploying LZU Auto COVID Health Report. (兰大疫情期间自动定时健康打卡)
+    digest: 8a9fb84dbce4e14762830ad0761e80836478ec94a99b3dc9fa6c3542641a336c
+    home: https://hollowman.ml/
+    keywords:
+    - lzu
+    maintainers:
+    - email: hollowman@hollowman.ml
+      name: Hollow Man
+    name: lzu-auto-covid-health-report
+    sources:
+    - https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report
+    type: application
+    urls:
+    - https://hollowman.ml/LZU-Auto-COVID-Health-Report/helmChart/lzu-auto-covid-health-report-1.0.9.tgz
+    version: 1.0.9
+generated: "2021-02-01T18:46:57.3449638+08:00"
