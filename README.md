@@ -159,6 +159,14 @@ docker build -t hollowman6/lzu-auto-covid-health-report .
 
 还可以[更改这里来设定Cron表达式](K8s/LZU-Auto-COVID-Health-Report.yml#L15)
 
+## Helm
+
+参考配置文件见[K8s](K8s), 只要运行[create.sh](K8s/create.sh)即可创建相关Actions Secret、ConfigMap和CronJob。
+
+你可以[更改这里来设定DELAYS变量](K8s/LZU-Auto-COVID-Health-Report.yml#L6)
+
+还可以[更改这里来设定Cron表达式](K8s/LZU-Auto-COVID-Health-Report.yml#L15)
+
 ## Q&A
 
 *注:* 如要在自己的Linux服务器上使用crontab执行定时任务来进行自动打卡，推荐使用[Docker](#docker)。你也可以clone本仓库，安装好相关Python依赖后改编[entrypoint.sh](entrypoint.sh)文件中python程序的路径，将上述Actions Secret变量名和值分别设置为系统环境变量(另外增加一个DELAYS为打卡等待时间，值同[使用方法](#使用方法)步骤6中要求)，即可运行。
