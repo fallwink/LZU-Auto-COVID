@@ -5,10 +5,16 @@ version: 1.0.9
 type: application
 appVersion: "1.0.9"
 keywords:
-  - lzu
+  - lzu  
+  - covid-report
 home: "https://hollowman.ml/"
 sources:
   - "https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report"
 maintainers:
   - name: Hollow Man
     email: hollowman@hollowman.ml
+annotations:
+  artifacthub.io/images: |
+    - name: lzu-auto-covid-health-report
+      image: hollowman6/lzu-auto-covid-health-report:1.0.9
+  artifacthub.io/license: GPLv3
