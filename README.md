@@ -170,7 +170,7 @@ Artifact Hub: https://artifacthub.io/packages/helm/lzu-auto-covid-health-report/
 
 ```bash
 helm repo add LZU-Auto-COVID-Health-Report http://hollowman.ml/LZU-Auto-COVID-Health-Report
-helm install LZU-Auto-COVID-Health-Report/lzu-auto-covid-health-report lzu-auto-covid-health-report --set cardID='`[你的校园卡号]`' --set password='`[你的密码]`' --set '`[...]`'
+helm install LZU-Auto-COVID-Health-Report/lzu-auto-covid-health-report lzu-auto-covid-health-report --set cardID='[你的校园卡号]' --set password='[你的密码]' --set '[...]'
 ```
 
 ### 从仓库安装
@@ -179,7 +179,7 @@ helm install LZU-Auto-COVID-Health-Report/lzu-auto-covid-health-report lzu-auto-
 
 ```bash
 cd helmChart/lzu-auto-covid-health-report
-helm install lzu-auto-covid-health-report . --set cardID='`[你的校园卡号]`' --set password='`[你的密码]`' --set '`[...]`'
+helm install lzu-auto-covid-health-report . --set cardID='[你的校园卡号]' --set password='[你的密码]' --set '[...]'
 ```
 
 ### 卸载
@@ -228,7 +228,7 @@ Source Github Repository Link: https://github.com/HollowMan6/LZU-Auto-COVID-Heal
 
 [Workflow](.github/workflows/autoreport.yml)
 
-Support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab](#qa)，[run with Docker](#docker)，[run with Kubernetes](#kubernetes), [Use Helm Package Manager to run in Kubernetes](#helm) etc.
+Support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab](#qa)，[run with Docker](#docker)，[run with Kubernetes directly](#kubernetes), [Use Helm Package Manager to run in Kubernetes](#helm) etc.
 
 [Docker Image](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report) support running on multiple architectures such as `amd64`, `arm64`, `arm32v7`, `arm32v6`, `ppc64le`, `s390x`, `i386` including Mainframe, PC and Demoboard like Raspberry Pi.
 
@@ -367,7 +367,7 @@ Example command:
 
 ```bash
 helm repo add LZU-Auto-COVID-Health-Report http://hollowman.ml/LZU-Auto-COVID-Health-Report
-helm install LZU-Auto-COVID-Health-Report/lzu-auto-covid-health-report lzu-auto-covid-health-report --set cardID='`[Your CardID]`' --set password='`[Your Password]`' --set '`[...]`'
+helm install LZU-Auto-COVID-Health-Report/lzu-auto-covid-health-report lzu-auto-covid-health-report --set cardID='[Your CardID]' --set password='[Your Password]' --set '[...]'
 ```
 
 ### From Repository
@@ -376,7 +376,7 @@ Example command:
 
 ```bash
 cd helmChart/lzu-auto-covid-health-report
-helm install lzu-auto-covid-health-report . --set cardID='`[你的校园卡号]`' --set password='`[你的密码]`' --set '`[...]`'
+helm install lzu-auto-covid-health-report . --set cardID='[Your CardID]' --set password='[Your Password]' --set '`[...]`'
 ```
 
 ### Uninstall
