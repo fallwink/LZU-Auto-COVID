@@ -8,6 +8,7 @@ keywords:
   - lzu  
   - covid-report
 home: "https://hollowman.ml/"
+icon: https://avatars.githubusercontent.com/u/67548465?s=200&v=4
 sources:
   - "https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report"
 maintainers:
