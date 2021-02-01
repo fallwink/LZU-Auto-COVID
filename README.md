@@ -170,7 +170,7 @@ Artifact Hub: https://artifacthub.io/packages/helm/lzu-auto-covid-health-report/
 
 ```bash
 helm repo add LZU-Auto-COVID-Health-Report http://hollowman.ml/LZU-Auto-COVID-Health-Report
-helm install LZU-Auto-COVID-Health-Report/lzu-auto-covid-health-report lzu-auto-covid-health-report --set cardID='[你的校园卡号]' --set password='[你的密码]' --set '[...]'
+helm install lzu-auto-covid-health-report LZU-Auto-COVID-Health-Report/lzu-auto-covid-health-report --set cardID='[你的校园卡号]' --set password='[你的密码]' --set '[...]'
 ```
 
 ### 从仓库安装
@@ -367,7 +367,7 @@ Example command:
 
 ```bash
 helm repo add LZU-Auto-COVID-Health-Report http://hollowman.ml/LZU-Auto-COVID-Health-Report
-helm install LZU-Auto-COVID-Health-Report/lzu-auto-covid-health-report lzu-auto-covid-health-report --set cardID='[Your CardID]' --set password='[Your Password]' --set '[...]'
+helm install lzu-auto-covid-health-report LZU-Auto-COVID-Health-Report/lzu-auto-covid-health-report --set cardID='[Your CardID]' --set password='[Your Password]' --set '[...]'
 ```
 
 ### From Repository
