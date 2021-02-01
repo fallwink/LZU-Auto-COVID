@@ -1,18 +1,18 @@
 # 兰州大学疫情期间自动定时健康打卡工作流
 
-[![last-commit](https://img.shields.io/github/last-commit/HollowMan6/LZU-Auto-COVID-Health-Report)](../../graphs/commit-activity)
+[![last-commit](https://img.shields.io/github/last-commit/HollowMan6/LZU-Auto-COVID-Health-Report)](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/graphs/commit-activity)
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/lzu-auto-covid-health-report)](https://artifacthub.io/packages/search?repo=lzu-auto-covid-health-report)
-![Python package](../../workflows/Python%20package/badge.svg)
-![GitHub Actions LZU Auto COVID Health Report](../../workflows/GitHub%20Actions%20LZU%20Auto%20COVID%20Health%20Report/badge.svg)
+![Python package](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/workflows/Python%20package/badge.svg)
+![GitHub Actions LZU Auto COVID Health Report](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/workflows/GitHub%20Actions%20LZU%20Auto%20COVID%20Health%20Report/badge.svg)
 
 [![Followers](https://img.shields.io/github/followers/HollowMan6?style=social)](https://github.com/HollowMan6?tab=followers)
-[![watchers](https://img.shields.io/github/watchers/HollowMan6/LZU-Auto-COVID-Health-Report?style=social)](../../watchers)
-[![stars](https://img.shields.io/github/stars/HollowMan6/LZU-Auto-COVID-Health-Report?style=social)](../../stargazers)
-[![forks](https://img.shields.io/github/forks/HollowMan6/LZU-Auto-COVID-Health-Report?style=social)](../../network/members)
+[![watchers](https://img.shields.io/github/watchers/HollowMan6/LZU-Auto-COVID-Health-Report?style=social)](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/watchers)
+[![stars](https://img.shields.io/github/stars/HollowMan6/LZU-Auto-COVID-Health-Report?style=social)](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/stargazers)
+[![forks](https://img.shields.io/github/forks/HollowMan6/LZU-Auto-COVID-Health-Report?style=social)](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/network/members)
 
 [![Open Source Love](https://img.shields.io/badge/-%E2%9D%A4%20Open%20Source-Green?style=flat-square&logo=Github&logoColor=white&link=https://hollowman6.github.io/fund.html)](https://hollowman6.github.io/fund.html)
 [![GPL Licence](https://img.shields.io/badge/license-GPL-blue)](https://opensource.org/licenses/GPL-3.0/)
-[![Repo-Size](https://img.shields.io/github/repo-size/HollowMan6/LZU-Auto-COVID-Health-Report.svg)](../../archive/main.zip)
+[![Repo-Size](https://img.shields.io/github/repo-size/HollowMan6/LZU-Auto-COVID-Health-Report.svg)](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/archive/main.zip)
 
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/HollowMan6/LZU-Auto-COVID-Health-Report.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/HollowMan6/LZU-Auto-COVID-Health-Report/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/HollowMan6/LZU-Auto-COVID-Health-Report.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/HollowMan6/LZU-Auto-COVID-Health-Report/context:python)
@@ -24,7 +24,7 @@
 
 ### 好用记得收藏(右上角**加星★Star**)哦!
 
-[Python库依赖](../../network/dependencies)
+[Python库依赖](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/network/dependencies)
 
 [自动打卡脚本](LZU-Auto-COVID-Health-Report.py)
 
@@ -164,28 +164,42 @@ docker build -t hollowman6/lzu-auto-covid-health-report .
 
 Artifact Hub: https://artifacthub.io/packages/helm/lzu-auto-covid-health-report/lzu-auto-covid-health-report
 
-### [在线安装脚本(推荐使用)](helmChart/install-online.sh)
+你可以[参考这里](helmChart/lzu-auto-covid-health-report/values.yaml)来自定义一些values值。
+### V3
+#### [在线安装脚本(推荐使用)](helmChart/install-online.sh)
 
-参考脚本：
+脚本会提示你输入相关Secrets，并且会自动创建一个名为`lzu-auto-covid-health-report`的Kubernetes namespace，并将Helm Charts安装在其中。
+
+参考命令：
 
 ```bash
+kubectl create ns lzu-auto-covid-health-report
 helm repo add LZU-Auto-COVID-Health-Report http://hollowman.ml/LZU-Auto-COVID-Health-Report
-helm install lzu-auto-covid-health-report LZU-Auto-COVID-Health-Report/lzu-auto-covid-health-report --set cardID='[你的校园卡号]' --set password='[你的密码]' --set '[...]'
+helm install lzu-auto-covid-health-report LZU-Auto-COVID-Health-Report/lzu-auto-covid-health-report --namespace lzu-auto-covid-health-report --set cardID='[你的校园卡号]' --set password='[你的密码]' --set '[...]'
 ```
 
-### 从仓库安装
+#### 从仓库安装
 
-参考脚本：
+参考命令：
 
 ```bash
+kubectl create ns lzu-auto-covid-health-report
 cd helmChart/lzu-auto-covid-health-report
-helm install lzu-auto-covid-health-report . --set cardID='[你的校园卡号]' --set password='[你的密码]' --set '[...]'
+helm install lzu-auto-covid-health-report . --namespace wechat-timed-message lzu-auto-covid-health-report --set cardID='[你的校园卡号]' --set password='[你的密码]' --set '[...]'
 ```
 
-### 卸载
+#### 卸载
+
+删除helm chart release:
 
 ```bash
-helm uninstall lzu-auto-covid-health-report
+helm uninstall lzu-auto-covid-health-report --namespace lzu-auto-covid-health-report
+```
+
+删除相关Kubernetes namespace:
+
+```bash
+kubectl delete ns lzu-auto-covid-health-report
 ```
 
 ## Q&A
@@ -222,7 +236,7 @@ Source Github Repository Link: https://github.com/HollowMan6/LZU-Auto-COVID-Heal
 
 ### Please **★Star** if you think it's great!
 
-[Python library dependency](../../network/dependencies)
+[Python library dependency](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/network/dependencies)
 
 [Auto Report Script](LZU-Auto-COVID-Health-Report.py)
 
@@ -361,28 +375,41 @@ Also [change here to set Cron expression](K8s/LZU-Auto-COVID-Health-Report.yml#L
 
 Artifact Hub: https://artifacthub.io/packages/helm/lzu-auto-covid-health-report/lzu-auto-covid-health-report
 
-### [Online Install Script(Recommend)](helmChart/install-online.sh)
+### V3
+#### [Online Install Script(Recommend)](helmChart/install-online.sh)
+
+The script will prompt users to enter the Secrets, and sutomatically created a Kubernetes namespace called `lzu-auto-covid-health-report`, and install Helm Charts into it.
 
 Example command:
 
 ```bash
+kubectl create ns lzu-auto-covid-health-report
 helm repo add LZU-Auto-COVID-Health-Report http://hollowman.ml/LZU-Auto-COVID-Health-Report
-helm install lzu-auto-covid-health-report LZU-Auto-COVID-Health-Report/lzu-auto-covid-health-report --set cardID='[Your CardID]' --set password='[Your Password]' --set '[...]'
+helm install lzu-auto-covid-health-report LZU-Auto-COVID-Health-Report/lzu-auto-covid-health-report --namespace lzu-auto-covid-health-report --set cardID='[Your Password]' --set '[...]'
 ```
 
-### From Repository
+#### From Repository
 
 Example command:
 
 ```bash
+kubectl create ns lzu-auto-covid-health-report
 cd helmChart/lzu-auto-covid-health-report
-helm install lzu-auto-covid-health-report . --set cardID='[Your CardID]' --set password='[Your Password]' --set '`[...]`'
+helm install lzu-auto-covid-health-report . --namespace wechat-timed-message lzu-auto-covid-health-report --set cardID='[Your CardID]' --set password='[Your Password]' --set '`[...]`'
 ```
 
-### Uninstall
+#### Uninstall
+
+Delete helm chart release:
 
 ```bash
-helm uninstall lzu-auto-covid-health-report
+helm uninstall lzu-auto-covid-health-report --namespace lzu-auto-covid-health-report
+```
+
+Delete related Kubernetes namespace:
+
+```bash
+kubectl delete ns lzu-auto-covid-health-report
 ```
 
 ## Q&A
