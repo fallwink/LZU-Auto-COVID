@@ -18,4 +18,4 @@ annotations:
   artifacthub.io/images: |
     - name: lzu-auto-covid-health-report
       image: hollowman6/lzu-auto-covid-health-report:1.0.10
-  artifacthub.io/license: GPL-3.0-or-later
+  artifacthub.io/license: GPL-3.0
