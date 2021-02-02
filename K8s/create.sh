@@ -3,7 +3,7 @@
 # Setup Secrets
 echo "---Enter your Actions Secrets, empty if it doesn't exists---"
 secrets=("cardid" "password" "serverchansckey" "openid" "pptoken" "pptopic")
-command="kubectl create secret generic lzu-auto-covid-health-report-secret"
+command="kubectl create secret generic lzu-auto-covid-health-report-secrets"
 for secret in ${secrets[*]}
 do
     read -p "-"$secret": " content
@@ -15,4 +15,4 @@ $command
 kubectl create -f LZU-Auto-COVID-Health-Report.yml
 
 # Check Details
-kubectl get secret/lzu-auto-covid-health-report-secret configmap/lzu-auto-covid-health-report-configmap cronjob/lzu-auto-covid-health-report
+kubectl get secret/lzu-auto-covid-health-report-secrets configmap/lzu-auto-covid-health-report-configmap cronjob/lzu-auto-covid-health-report

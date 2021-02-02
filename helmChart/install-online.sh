@@ -11,6 +11,6 @@ command="helm install lzu-auto-covid-health-report LZU-Auto-COVID-Health-Report/
 for secret in ${secrets[*]}
 do
     read -p "-"$secret": " content
-    command=$command" --set "$secret"='"$content"'"
+    command=$command" --set "$secret"="$content
 done
 $command
