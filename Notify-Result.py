@@ -79,7 +79,7 @@ if pptoken:
         else:
             errorNotify += "PushPlus推送错误: " + res.text + "\n"
 else:
-    print("未设置PPTOKEN！")
+    print("未设置PPTOKEN，尝试推送到Telegram...")
 
 if tgbottoken:
     if tgchatid:
