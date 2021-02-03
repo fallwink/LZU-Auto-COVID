@@ -94,36 +94,37 @@ if tgbottoken:
     if tgchatids:
         index = 1
         for tgchatid in tgchatids.replace(' ', '').split(','):
-            try:
-                with open("information.txt") as infofile:
-                    info = urllib.parse.quote_plus(
-                        "\n\n" + infofile.read().replace('\n', '\n\n').replace(
-                            "***************************\n", "------------------------------------------------------------").replace(
-                            '-', '\\-').replace('.', '\\.').replace('{', '\\{').replace('}', '\\}').replace('!', '\\!'))
-            except Exception as e:
-                print(e)
-            finally:
+            if tgchatid:
                 try:
-                    if not info:
-                        info = "工作流或者打卡程序存在问题，请查看运行记录并提交issue!"
-                        status = "failure"
-                    message = "%E5%A4%B1%E8%B4%A5%E2%9C%96"
-                    if status == "success":
-                        message = "%E6%88%90%E5%8A%9F%E2%9C%94"
-                    host = "https://api.telegram.org/bot"
-                    user = ""
-                    res = requests.get(host + tgbottoken + "/sendMessage?chat_id=" + tgchatid + "&text=*%20_%20__" + message +
-                                       "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1__%20_%20*" + info
-                                       + "&parse_mode=MarkdownV2")
-                    result = json.loads(res.text)
-                    if result['ok']:
-                        print("成功通过Telegram将结果通知给用户" + index + "!")
-                    else:
-                        errorNotify += "Telegram用户" + index + "推送错误: " + res.text
+                    with open("information.txt") as infofile:
+                        info = urllib.parse.quote_plus(
+                            "\n\n" + infofile.read().replace('\n', '\n\n').replace(
+                                "***************************\n", "------------------------------------------------------------").replace(
+                                '-', '\\-').replace('.', '\\.').replace('{', '\\{').replace('}', '\\}').replace('!', '\\!'))
                 except Exception as e:
                     print(e)
-                    errorNotify += "Telegram用户" + index + "推送错误!\n"
-                index += 1
+                finally:
+                    try:
+                        if not info:
+                            info = "工作流或者打卡程序存在问题，请查看运行记录并提交issue!"
+                            status = "failure"
+                        message = "%E5%A4%B1%E8%B4%A5%E2%9C%96"
+                        if status == "success":
+                            message = "%E6%88%90%E5%8A%9F%E2%9C%94"
+                        host = "https://api.telegram.org/bot"
+                        user = ""
+                        res = requests.get(host + tgbottoken + "/sendMessage?chat_id=" + tgchatid + "&text=*%20_%20__" + message +
+                                        "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1__%20_%20*" + info
+                                        + "&parse_mode=MarkdownV2")
+                        result = json.loads(res.text)
+                        if result['ok']:
+                            print("成功通过Telegram将结果通知给用户" + index + "!")
+                        else:
+                            errorNotify += "Telegram用户" + index + "推送错误: " + res.text
+                    except Exception as e:
+                        print(e)
+                        errorNotify += "Telegram用户" + index + "推送错误!\n"
+            index += 1
     else:
         print("未设置TGCHATID，无法推送到Telegram!")
 else:
