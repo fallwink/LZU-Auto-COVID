@@ -86,8 +86,7 @@ if tgbottoken:
         try:
             with open("information.txt") as infofile:
                 info = urllib.parse.quote_plus(
-                    infofile.read().replace('***************************\n', "", 1).replace(
-                        "***************************\n", "&lt;hr&gt;").replace('\n', '&lt;br&gt;'))
+                    "\n\n" + infofile.read().replace('\n', '\n\n'))
         except Exception as e:
             print(e)
         finally:
@@ -99,9 +98,9 @@ if tgbottoken:
                 message = "%E6%88%90%E5%8A%9F%E2%9C%94"
             host = "https://api.telegram.org/bot"
             user = ""
-            res = requests.get(host + tgbottoken + "/sendMessage?chat_id=" + tgchatid + "&text=%26lt%3Bh1%26gt%3B" + message +
-                            "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1%26lt%3B%2Fh1%26gt%3B" + info
-                            + "&parse_mode=HTML")
+            res = requests.get(host + tgbottoken + "/sendMessage?chat_id=" + tgchatid + "&text=***" + message +
+                            "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1***" + info
+                            + "&parse_mode=MarkdownV2")
             result = json.loads(res.text)
             if result['ok']:
                 print("成功通过Telegram将结果通知给相关用户!")
