@@ -11,6 +11,8 @@ serverChanSCKey: ""
 openID: ""
 ppToken: ""
 ppTopic: ""
+tgBotToken: ""
+tgChatID: ""
 failureDelayTime: "30m"
 failedJobsHistoryLimit: 1
 successfulJobsHistoryLimit: 3

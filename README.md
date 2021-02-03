@@ -30,7 +30,7 @@
 
 [工作流](.github/workflows/autoreport.yml)
 
-支持[Fork本仓库直接使用工作流(推荐)](#使用方法)，[自行创建仓库使用工作流](#自行配置工作流)，[CronTab运行](#qa)，[Docker运行](#docker)，[Kubernetes直接运行](#kubernetes)，[使用Helm包管理在Kubernetes运行](#helm)等。
+全自动打卡，支持打卡结果推送到社交软件，支持[Fork本仓库直接使用工作流(推荐)](#使用方法)，[自行创建仓库使用工作流](#自行配置工作流)，[CronTab运行](#qa)，[Docker运行](#docker)，[Kubernetes直接运行](#kubernetes)，[使用Helm包管理在Kubernetes运行](#helm)等。
 
 [Docker镜像](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report)支持在`amd64`、`arm64`、`arm32v7`、`arm32v6`、`ppc64le`、`s390x`、`i386`多架构(包括大型机、普通PC机以及树莓派等开发板)运行。
 
@@ -93,6 +93,22 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 
 如果需要转换回普通的Server酱请将`OPENID` Actions secret删除即可。
 
+### 可选：Telegram推送打卡结果
+
+1. [在Telegram中添加`BotFather`这个账号](https://t.me/botfather)，然后向其依次发送`/start` `/newbot`，按照提示设定机器人名字后，即可创建一个属于你自己的全新的机器人。记下该机器人的token(类似于`110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw`):
+  
+![](img/Telegram.jpg)
+
+然后创建一个Name为`TGBOTTOKEN`，value为你的token值的Actions secret。
+
+2. 搜索你刚刚创建的机器人的名字，并给它发送`/start`或者任意一条消息。
+
+***特别注意：需要先与机器人之间创建会话，机器人才能下发消息，否则机器人无法主动发送消息，切记！***
+
+3. [在Telegram中搜索`userinfobot`这个账号](https://t.me/userinfobot)，并给它发送`/start`或者任意一条消息，它会返回你的账号的id。然后创建一个Name为`TGCHATID`，value为你的id值的Actions secret。
+
+4. 随后可以测试工作流，一切正常的话你就可以在Telegram上看到自动打卡结果相关信息了。
+
 ## 自行配置工作流
 
 你可以自行创建一个仓库并自行配置工作流进行使用，[示例工作流文件](.github/workflows/autoreport-docker.yml)
@@ -111,6 +127,8 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 * OPENID: Server酱测试号版 微信公众号用户OpenID
 * PPTOKEN: PushPlus Token
 * PPTOPIC: PushPlus 群组编码
+* TGBOTTOKEN: Telegraph Bot Token
+* TGCHATID: Telegram User ID
 
 ### 示例
 
@@ -125,6 +143,8 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
     OPENID: ${{ secrets.OPENID }}
     PPTOKEN: ${{ secrets.PPTOKEN }}
     PPTOPIC: ${{ secrets.PPTOPIC }}
+    TGBOTTOKEN: ${{ secrets.TGBOTTOKEN }}
+    TGCHATID: ${{ secrets.TGCHATID }}   
 ```
 
 ## Docker
@@ -141,6 +161,8 @@ docker run -it \
     -e OPENID=$OPENID \
     -e PPTOKEN=$PPTOKEN \
     -e PPTOPIC=$PPTOPIC \
+    -e TGBOTTOKEN=$TGBOTTOKEN \
+    -e TGCHATID=$TGCHATID \
     hollowman6/lzu-auto-covid-health-report
 ```
 
@@ -242,7 +264,7 @@ Source Github Repository Link: https://github.com/HollowMan6/LZU-Auto-COVID-Heal
 
 [Workflow](.github/workflows/autoreport.yml)
 
-Support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab](#qa)，[run with Docker](#docker)，[run with Kubernetes directly](#kubernetes), [Use Helm Package Manager to run in Kubernetes](#helm) etc.
+Fully automatic reporting, support pushing results to chat APPs, support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab](#qa)，[run with Docker](#docker)，[run with Kubernetes directly](#kubernetes), [Use Helm Package Manager to run in Kubernetes](#helm) etc.
 
 [Docker Image](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report) support running on multiple architectures such as `amd64`, `arm64`, `arm32v7`, `arm32v6`, `ppc64le`, `s390x`, `i386` including Mainframe, PC and Demoboard like Raspberry Pi.
 
@@ -303,6 +325,22 @@ If you want to use [ServerChan Testing Subscription Version](https://sct.ftqq.co
 
 If you need to switch back to normal ServerChan, please delete the `OPENID` actions secret.
 
+### Optional: Telegram push results
+
+1. [Add the `BotFather` account in Telegram](https://t.me/botfather), and then send `/start` `/newbot` in turn. After setting the name of the robot according to the prompts, you can create a brand new robot of your own. Note the token of the robot. (Similar to `110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw`):
+
+![](img/Telegram.jpg)
+
+Then create an Actions Secret with the name `TGBOTTOKEN` and the value of your token.
+
+2. Search the name of the robot you just created, and send `/start` or any message.
+
+***ATTENTION: you need to chat with the robot first to initialize otherwise the robot won't send any messages to you.***
+
+3. [Add the `userinfobot` account in Telegram](https://t.me/userinfobot), and then send `/start` or any message, and it will return the ID of your account. Then create an actions secret with the name `TGCHATID` and the value of your account ID.
+
+4. Then you can test the workflow. If everything is normal, you can see the relevant information of the automatic reporting result on the telegram.
+
 ## Self-Configure Workflow
 
 You can create your own repository and configure your own workflow to use, [Example Workflow YAML File](.github/workflows/autoreport-docker.yml)
@@ -321,6 +359,8 @@ You can create your own repository and configure your own workflow to use, [Exam
 * OPENID: ServerChan Testing Subscription Version Testing Subscription account User OpenID
 * PPTOKEN: PushPlus Token
 * PPTOPIC: PushPlus Topic
+* TGBOTTOKEN: Telegraph Bot Token
+* TGCHATID: Telegram User ID
 
 ### Example
 
@@ -335,6 +375,8 @@ You can create your own repository and configure your own workflow to use, [Exam
     OPENID: ${{ secrets.OPENID }}
     PPTOKEN: ${{ secrets.PPTOKEN }}
     PPTOPIC: ${{ secrets.PPTOPIC }}
+    TGBOTTOKEN: ${{ secrets.TGBOTTOKEN }}
+    TGCHATID: ${{ secrets.TGCHATID }}
 ```
 
 ## Docker
@@ -352,6 +394,8 @@ docker run -it \
     -e OPENID=$OPENID \
     -e PPTOKEN=$PPTOKEN \
     -e PPTOPIC=$PPTOPIC \
+    -e TGBOTTOKEN=$TGBOTTOKEN \
+    -e TGCHATID=$TGCHATID \
     hollowman6/lzu-auto-covid-health-report
 ```
 

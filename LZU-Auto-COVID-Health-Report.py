@@ -175,8 +175,8 @@ def getDailyToken(user, password):
     response = session.post(login_url, formData,
                             headers=header, allow_redirects=False)
     if response.status_code != 302:
-        print("Wrong password or user! Please make sure you set related Action Secrets correctly.")
-        raise Exception("Wrong password or user! Please make sure you set related Action Secrets correctly.")
+        print("Wrong password or user! Please make sure you set related values correctly.")
+        raise Exception("Wrong password or user! Please make sure you set related values correctly.")
     else:
         wrongurl = response.headers['location']
         if not "/?" in wrongurl:
@@ -229,9 +229,9 @@ if __name__ == "__main__":
 
     # Delete for test
     if not os.environ['CARDID']:
-        raise Exception("未设置Actions Secrets变量CARDID，请检查！")
+        raise Exception("未设置变量CARDID，请检查！")
     if not os.environ['PASSWORD']:
-        raise Exception("未设置Actions Secrets变量PASSWORD，请检查！")
+        raise Exception("未设置变量PASSWORD，请检查！")
 
     try:
         submitCard()

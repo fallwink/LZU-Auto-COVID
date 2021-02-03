@@ -56,6 +56,16 @@ spec:
                   secretKeyRef:
                     name: lzu-auto-covid-health-report-secrets
                     key: pptopic
+              - name: TGBOTTOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: lzu-auto-covid-health-report-secrets
+                    key: tgbottoken
+              - name: TGCHATID
+                valueFrom:
+                  secretKeyRef:
+                    name: lzu-auto-covid-health-report-secrets
+                    key: tgchatid
             volumeMounts:
             - mountPath: /cache
               name: report-delays-marking

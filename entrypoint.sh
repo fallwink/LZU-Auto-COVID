@@ -27,10 +27,10 @@ fi
 echo "---Auto COVID Health Report---"
 if python /LZU-Auto-COVID-Health-Report.py >> information.txt && cat information.txt;
 then
-    echo "---Notify Success Using ServerChan or PushPlus---"
-    python /Notify-Using-SeverChan-Or-PushPlus.py success
+    echo "---Notify Success---"
+    python /Notify-Result.py success
 else
-    echo "---Error logging and Notifying Using ServerChan or PushPlus---"
-    python /Notify-Using-SeverChan-Or-PushPlus.py failure && cat information.txt
+    echo "---Error logging and Notifying---"
+    python /Notify-Result.py failure && cat information.txt
     exit 1
 fi

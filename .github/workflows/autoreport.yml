@@ -32,22 +32,26 @@ jobs:
             PASSWORD: ${{ secrets.PASSWORD }}
             TZ: Asia/Shanghai
           run: python LZU-Auto-COVID-Health-Report.py >> information.txt && cat information.txt
-        - name: 'Error logging and Notifying Using ServerChan or PushPlus'
+        - name: 'Error logging and Notifying'
           env:
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
             OPENID: ${{ secrets.OPENID }}
             PPTOKEN: ${{ secrets.PPTOKEN }}
             PPTOPIC: ${{ secrets.PPTOPIC }}
+            TGBOTTOKEN: ${{ secrets.TGBOTTOKEN }}
+            TGCHATID: ${{ secrets.TGCHATID }}
           if: ${{ failure() }}
-          run: python Notify-Using-SeverChan-Or-PushPlus.py failure && cat information.txt
-        - name: 'Notify Success Using ServerChan or PushPlus'
+          run: python Notify-Result.py failure && cat information.txt
+        - name: 'Notify Success'
           env:
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
             OPENID: ${{ secrets.OPENID }}
             PPTOKEN: ${{ secrets.PPTOKEN }}
             PPTOPIC: ${{ secrets.PPTOPIC }}
+            TGBOTTOKEN: ${{ secrets.TGBOTTOKEN }}
+            TGCHATID: ${{ secrets.TGCHATID }}
           if: ${{ success() }}
-          run: python Notify-Using-SeverChan-Or-PushPlus.py success
+          run: python Notify-Result.py success
         - name: 'Re-run workflow if failed and GPATOKEN set'
           env:
             GPATOKEN: ${{ secrets.GPATOKEN }}

@@ -24,6 +24,12 @@ inputs:
   PPTOPIC:
     description: 'PushPlus Topic(群组编码)'
     required: false
+  TGBOTTOKEN:
+    description: 'Telegraph Bot Token'
+    required: false
+  TGCHATID:
+    description: 'Telegram User ID'
+    required: false
 
 runs:
   using: 'docker'

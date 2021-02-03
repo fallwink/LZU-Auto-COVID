@@ -71,6 +71,16 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.name }}-secrets
                   key: pptopic
+            - name: TGBOTTOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.name }}-secrets
+                  key: tgbottoken
+            - name: TGCHATID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.name }}-secrets
+                  key: tgchatid
             {{- with .Values.env }}
 {{ toYaml . | indent 12 }}
             {{- end }}
@@ -141,6 +151,8 @@ stringData:
   openid: {{ .Values.openID | quote }}
   pptoken: {{ .Values.ppToken | quote }}
   pptopic: {{ .Values.ppTopic | quote }}
+  tgbottoken: {{ .Values.tgBotToken | quote }}
+  tgchatid: {{ .Values.tgChatID | quote }}
   {{- with .Values.secret }}
 {{ toYaml . | indent 2 }}
   {{- end }}
