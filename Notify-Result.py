@@ -120,7 +120,7 @@ if tgbottoken:
                         if result['ok']:
                             print("成功通过Telegram将结果通知给用户" + str(index) + "!")
                         else:
-                            errorNotify += "Telegram用户" + str(index) + "推送错误: " + res.text
+                            errorNotify += "Telegram用户" + str(index) + "推送错误: " + res.text + "\n"
                     except Exception as e:
                         print(e)
                         errorNotify += "Telegram用户" + str(index) + "推送错误!\n"
