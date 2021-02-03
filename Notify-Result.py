@@ -118,12 +118,12 @@ if tgbottoken:
                                         + "&parse_mode=MarkdownV2")
                         result = json.loads(res.text)
                         if result['ok']:
-                            print("成功通过Telegram将结果通知给用户" + index + "!")
+                            print("成功通过Telegram将结果通知给用户" + str(index) + "!")
                         else:
-                            errorNotify += "Telegram用户" + index + "推送错误: " + res.text
+                            errorNotify += "Telegram用户" + str(index) + "推送错误: " + res.text
                     except Exception as e:
                         print(e)
-                        errorNotify += "Telegram用户" + index + "推送错误!\n"
+                        errorNotify += "Telegram用户" + str(index) + "推送错误!\n"
             index += 1
     else:
         print("未设置TGCHATID，无法推送到Telegram!")
