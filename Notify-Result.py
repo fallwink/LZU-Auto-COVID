@@ -86,7 +86,7 @@ if tgbottoken:
         try:
             with open("information.txt") as infofile:
                 info = urllib.parse.quote_plus(
-                    "\n\n" + infofile.read().replace('\n', '\n\n'))
+                    "\n\n" + infofile.read().replace('\n', '\n\n').replace('-', '\\-'))
         except Exception as e:
             print(e)
         finally:
