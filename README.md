@@ -107,7 +107,7 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 
 3. [在Telegram中搜索`userinfobot`这个账号](https://t.me/userinfobot)，并给它发送`/start`或者任意一条消息，它会返回你的账号的id。然后创建一个Name为`TGCHATID`，value为你的id值的Actions secret。
 
-4. 随后可以测试工作流，一切正常的话你就可以在Telegram上看到自动打卡结果相关信息了。
+4. 随后可以测试工作流，一切正常的话你就可以在Telegram上看到自动打卡结果相关信息了。如果你还想将自己的打卡信息推送给其他账号，请在另外的账号上重复步骤2和3，并修改`TGCHATID`，多个ID间使用`,`分隔即可。
 
 ## 自行配置工作流
 
@@ -339,7 +339,7 @@ Then create an Actions Secret with the name `TGBOTTOKEN` and the value of your t
 
 3. [Add the `userinfobot` account in Telegram](https://t.me/userinfobot), and then send `/start` or any message, and it will return the ID of your account. Then create an actions secret with the name `TGCHATID` and the value of your account ID.
 
-4. Then you can test the workflow. If everything is normal, you can see the relevant information of the automatic reporting result on the telegram.
+4. Then you can test the workflow. If everything is normal, you can see the relevant information of the automatic reporting result on the telegram. If you want to push your result to another account, please repeat steps 2 and 3 on the other account, and modify `TGCHATID`. Use `,` to separate between IDs.
 
 ## Self-Configure Workflow
 
