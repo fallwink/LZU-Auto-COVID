@@ -19,7 +19,7 @@ jobs:
             -X PUT \
             -H 'authorization: token ${{ secrets.GPATOKEN }}' \
             -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/user/starred/HollowMan6/LZU-Auto-COVID-Health-Report
+            $GITHUB_API_URL/user/starred/HollowMan6/LZU-Auto-COVID-Health-Report
         - name: Auto COVID Health Report
           uses: HollowMan6/LZU-Auto-COVID-Health-Report@main
           with:
