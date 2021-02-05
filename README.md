@@ -62,7 +62,7 @@
 6. **新**：增加可选的遇到打卡失败的情况，自动重启工作流，并等待一段时间后再次自动打卡。如果你需要这个功能，则请创建一个Personal Access Token, [获取教程](https://docs.github.com/cn/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token)(第7步令牌的作用域权限你只需要选中workflow这一栏即可)。然后创建一个Name为`GPATOKEN`，value为你的令牌值的Actions Secret。
 
 默认再次打卡等待时间为30分钟，如果你有需要可以将[这里](
-https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L59)的`30m`替换为你想要的数值，这里的时间遵循Linux sleep 函数对应时间语法：一个数字后接 `s` 对应秒, `m` 对应分钟等。
+https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L63)的`30m`替换为你想要的数值，这里的时间遵循Linux sleep 函数对应时间语法：一个数字后接 `s` 对应秒, `m` 对应分钟等。
 
 如果是因为本仓库程序本身因为失效而导致的报错，你可以取消正在运行中的工作流从而终止这一循环。
 
@@ -294,7 +294,7 @@ To auto report with Github Actions workflow, you can fork this repository first,
 6. **NEW**: Add the optional option to restart the workflow automatically in case of Auto Report in failure, and wait for a period of time to re-run workflow again automatically. If you need this, please create a Personal Access Token, [Here's Guides to create](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token)(In step 7 scopes or permissions, you only need to select the `workflow` row). Then create an Actions Secret with the name of `GPATOKEN` and the value with your token.
 
 The default waiting time is 30 minutes. You can replace `30m` [here](
-https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L59) with the time you want. The time here  follows the Linux sleep syntax for time units: a number followed by `s` for seconds, `m` for minutes, etc.
+https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L63) with the time you want. The time here  follows the Linux sleep syntax for time units: a number followed by `s` for seconds, `m` for minutes, etc.
 
 If the error is caused by the repository program itself, you can cancel the running workflow to terminate the loop.
 
