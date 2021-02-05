@@ -13,7 +13,7 @@ jobs:
   bot:
     runs-on: ubuntu-latest
     steps:
-        - name: Star original repository
+        - name: Star original repository if GPATOKEN set
           run: |
             curl \
             -X PUT \
@@ -33,11 +33,11 @@ jobs:
             TGBOTTOKEN: ${{ secrets.TGBOTTOKEN }}
             TGCHATID: ${{ secrets.TGCHATID }}
         - name: 'Re-run workflow if failed and GPATOKEN set'
-          env:
-            GPATOKEN: ${{ secrets.GPATOKEN }}
-          if: ${{ failure() && (env.GPATOKEN != '') }}
-          uses: benc-uk/workflow-dispatch@v1
-          with:
-            workflow: 'Docker Version - GitHub Actions LZU Auto COVID Health Report'
-            token: ${{ secrets.GPATOKEN }}
-            inputs: '{ "delays": "30m" }'
+          if: ${{ failure() }}
+          run: |
+            curl \
+            -X POST \
+            -H 'authorization: token ${{ secrets.GPATOKEN }}' \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/actions/workflows/autoreport-docker.yml/dispatches \
+            -d '{"ref":"${{ github.ref }}", "inputs": { "delays": "30m" }}'
