@@ -1,7 +1,10 @@
 # 兰州大学疫情期间自动定时健康打卡工作流
 
+[![](https://dockeri.co/image/hollowman6/lzu-auto-covid-health-report)](https://hub.docker.com/repository/docker/hollowman6/lzu-auto-covid-health-report)
+
 [![last-commit](https://img.shields.io/github/last-commit/HollowMan6/LZU-Auto-COVID-Health-Report)](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/graphs/commit-activity)
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/lzu-auto-covid-health-report)](https://artifacthub.io/packages/search?repo=lzu-auto-covid-health-report)
+[![release-date](https://img.shields.io/github/release-date/HollowMan6/LZU-Auto-COVID-Health-Report)](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/releases)
 ![Python package](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/workflows/Python%20package/badge.svg)
 ![GitHub Actions LZU Auto COVID Health Report](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/workflows/GitHub%20Actions%20LZU%20Auto%20COVID%20Health%20Report/badge.svg)
 
@@ -30,7 +33,7 @@
 
 [工作流](.github/workflows/autoreport.yml)
 
-全自动打卡，支持打卡结果推送到社交软件，支持[Fork本仓库直接使用工作流(推荐)](#使用方法)，[自行创建仓库使用工作流](#自行配置工作流)，[CronTab运行](#qa)，[Docker运行](#docker)，[Kubernetes直接运行](#kubernetes)，[使用Helm包管理在Kubernetes运行](#helm)等。
+全自动打卡，个人信息隐私保护，支持打卡结果推送到社交软件，支持[Fork本仓库直接使用工作流(推荐)](#使用方法)，[自行创建仓库使用工作流](#自行配置工作流)，[CronTab运行](#qa)，[Docker运行](#docker)，[Kubernetes直接运行](#kubernetes)，[使用Helm包管理在Kubernetes运行](#helm)等。
 
 [Docker镜像](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report)支持在`amd64`、`arm64`、`arm32v7`、`arm32v6`、`ppc64le`、`s390x`、`i386`多架构(包括大型机、普通PC机以及树莓派等开发板)运行。
 
@@ -264,7 +267,7 @@ Source Github Repository Link: https://github.com/HollowMan6/LZU-Auto-COVID-Heal
 
 [Workflow](.github/workflows/autoreport.yml)
 
-Fully automatic reporting, support pushing results to chat APPs, support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab](#qa)，[run with Docker](#docker)，[run with Kubernetes directly](#kubernetes), [Use Helm Package Manager to run in Kubernetes](#helm) etc.
+Fully automatic reporting, privacy protection for personal information, support pushing results to chat APPs, support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab](#qa)，[run with Docker](#docker)，[run with Kubernetes directly](#kubernetes), [Use Helm Package Manager to run in Kubernetes](#helm) etc.
 
 [Docker Image](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report) support running on multiple architectures such as `amd64`, `arm64`, `arm32v7`, `arm32v6`, `ppc64le`, `s390x`, `i386` including Mainframe, PC and Demoboard like Raspberry Pi.
 
@@ -458,7 +461,7 @@ kubectl delete ns lzu-auto-covid-health-report
 
 ## Q&A
 
-*PS:* If you want to use crontab on your own Linux server to execute the auto Health Report, I recommend using [docker](#docker), otherwise please clone this repository and after installing relevant Python dependencies, adapt the path of the python program in [entrypoint.sh](entrypoint.sh). Set the Actions Aecrets name and value mentioned above as the environment variable respectively (In addition, add a DELAYS as the waiting time, and the value is the same requirement as that in step 6 of [usage](#usage)) to run.
+*PS:* If you want to use crontab on your own Linux server to execute the auto Health Report, I recommend using [docker](#docker), otherwise please clone this repository and after installing relevant Python dependencies, adapt the path of the python program in [entrypoint.sh](entrypoint.sh). Set the Actions Secrets name and value mentioned above as the environment variable respectively (In addition, add a DELAYS as the waiting time, and the value is the same requirement as that in step 6 of [usage](#usage)) to run.
 
 1. How to check whether you have reported your health successfully?
 
