@@ -48,7 +48,7 @@
 1. 首先，按下图所示点击1，2，3的次序，进入新建Actions secrets的界面。我们需要两个Actions secrets，一个的Name为`CARDID`，value为你的兰州大学校园卡号(也可接受兰大邮箱账号(不含@lzu.edu.cn后缀))；另一个的Name为`PASSWORD`，value为你的兰州大学个人工作台的账户密码（和你的兰大邮箱密码相同）。依次按上述要求创建这两个secrets即可。创建完成后你将在右下部分看到两个Actions secrets。
 ![](img/secrets.png)
 
-2. 然后，按下图所示点击1，2，3，4的次序，你可以手动触发工作流的执行来进行测试。（**注意：** 如果因为你多次重复因为账号密码错误登录失败，很有可能会导致验证码的出现，此时程序会被阻止自动登录。因而请确保你已经在[兰州大学个人工作台](http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn)处测试过你的账号密码是正确的。）另外工作流还自动会在北京时间每天的~~7点，11点，19点~~7点寒暑假时间(1月，2月，7月，8月)自动运行。（因为Github方的原因，可能会有半小时左右的延迟）
+2. 然后，按下图所示点击1，2，3，4的次序，你可以手动触发工作流的执行来进行测试。（**注意：** 如果因为你多次重复因为账号密码错误登录失败，很有可能会导致验证码的出现，此时程序会被阻止自动登录。因而请确保你已经在[兰州大学个人工作台](http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn)处测试过你的账号密码是正确的。）另外工作流还自动会在北京时间每天的~~7点，11点，19点~~7点寒暑假时间(1月，2月，7月，8月)自动运行。（因为Github方的原因，可能会有半小时左右的延迟）（如果工作流没自动在指定时间运行，可能是有上一次手动触发运行失败或被取消导致的，请触发一次正确的运行）
 ![](img/workflow.png)
 
 3. 点开任意一个运行记录，依次点开下图所示1，2，你可以看到运行记录以及错误说明。
@@ -61,7 +61,7 @@
 
 6. **新**：增加可选的遇到打卡失败的情况，自动重启工作流，并等待一段时间后再次自动打卡。如果你需要这个功能，则请创建一个Personal Access Token, [获取教程](https://docs.github.com/cn/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token)(第7步令牌的作用域权限你只需要选中workflow这一栏即可)。然后创建一个Name为`GPATOKEN`，value为你的令牌值的Actions Secret。
 
-默认再次打卡等待时间为30分钟，如果你有需要可以将[这里](
+默认再次打卡等待时间为30分钟，如果你有需要可以修改你的fork仓库对应的[这里](
 https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L71)的`30m`替换为你想要的数值，这里的时间遵循Linux sleep 函数对应时间语法：一个数字后接 `s` 对应秒, `m` 对应分钟等。
 
 如果是因为本仓库程序本身因为失效而导致的报错，你可以取消正在运行中的工作流从而终止这一循环。
@@ -245,7 +245,7 @@ kubectl delete ns lzu-auto-covid-health-report
 
 在假期不需要一日三次上报体温，这个功能是为未来返校的时候做的。我的程序会自动判断当前是否在校，如果不在校是不会有体温数据的（都是0.0），另外每次post数据都是要有这一项的。
 
-另外设置的Github Actions是每日三次运行程序，如果你不需要，可以将[这里](
+另外设置的Github Actions是每日三次运行程序，如果你不需要，可以修改你的fork仓库对应的[这里](
 https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L10)
 更改为`    - cron: '0 23 * * *' # Schedule on CST 7 everyday`，
 即每日只在北京时间早上7点运行。
@@ -280,7 +280,7 @@ To auto report with Github Actions workflow, you can fork this repository first,
 1. First, click in the order of 1, 2 and 3 as shown in the figure below to enter creating the new actions secrets interface. We need two actions secrets, one name is `CARDID`, value is your student card number of Lanzhou University(or the LZU email account user name(without `@lzu.edu.cn`)); the other is `PASSWORD`, value is the account password of your personal workbench of Lanzhou University(It's the same as your email password). Create these two secrets in turn according to the above requirements. After the creation, you will see two actions secrets as in the lower right section.
 ![](img/secrets.png)
 
-1. Then, click in the order of 1, 2, 3 and 4 as shown in the figure below. You can manually trigger the execution of workflow to test. (**Note:** if you repeatedly fail to log in because of the wrong account or password, the program may be likely to be prevented from logging in automatically by reCAPTCHA. So please make sure that you can successfully logged into [Lanzhou University personal workbench](http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn) with your account number and password and that they are correct.) In addition, the workflow will automatically run at ~~7:00, 11:00 and 19:00~~7:00 Summer/Winter Holiday Time (January, February, July, August) Beijing time every day. (Due to the mechanism realized by Github, there may exist a delay for about half an hour.)
+1. Then, click in the order of 1, 2, 3 and 4 as shown in the figure below. You can manually trigger the execution of workflow to test. (**Note:** if you repeatedly fail to log in because of the wrong account or password, the program may be likely to be prevented from logging in automatically by reCAPTCHA. So please make sure that you can successfully logged into [Lanzhou University personal workbench](http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn) with your account number and password and that they are correct.) In addition, the workflow will automatically run at ~~7:00, 11:00 and 19:00~~7:00 Summer/Winter Holiday Time (January, February, July, August) Beijing time every day. (Due to the mechanism realized by Github, there may exist a delay for about half an hour.) (If the workflow does not automatically run at the specified time, it may be caused by the failure or cancellation of the last manual triggered run, please trigger a run manually so that it can run correctly.)
 ![](img/workflow.png)
 
 3. Click any running record, and then click in the order of 1 and 2 as shown in the figure below. You can see the running record and error description.
@@ -294,7 +294,7 @@ To auto report with Github Actions workflow, you can fork this repository first,
 6. **NEW**: Add the optional option to restart the workflow automatically in case of Auto Report in failure, and wait for a period of time to re-run workflow again automatically. If you need this, please create a Personal Access Token, [Here's Guides to create](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token#creating-a-token)(In step 7 scopes or permissions, you only need to select the `workflow` row). Then create an Actions Secret with the name of `GPATOKEN` and the value with your token.
 
 The default waiting time is 30 minutes. You can replace `30m` [here](
-https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L71) with the time you want. The time here  follows the Linux sleep syntax for time units: a number followed by `s` for seconds, `m` for minutes, etc.
+https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L71) in your corresponding repository with the time you want. The time here  follows the Linux sleep syntax for time units: a number followed by `s` for seconds, `m` for minutes, etc.
 
 If the error is caused by the repository program itself, you can cancel the running workflow to terminate the loop.
 
@@ -478,7 +478,7 @@ When returning to school, if the university still wants to report three times a 
 You don't need to report your temperature three times a day during the holidays. This function is for the future when you go back to school. My program will automatically determine whether you are currently in school or not. If you are not in school, there will be no valid temperature data (all 0.0). In addition, these items are required for every post data.
 
 And also, GitHub actions is set to run the program three times a day. If you don't need it, you can replace [here](
-https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L10)
+https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L10) in your corresponding repository 
 with `    - cron: '0 23 * * *' # Schedule on CST 7 everyday`，
 That is, only runs at 7 a.m. Beijing time every day.
 
