@@ -27,6 +27,8 @@
 
 ### 好用记得收藏(右上角**加星★Star**)哦!
 
+### 重磅! 新增结合Github OAuth App编写的自动打卡工作流管理[网页前端](https://hollowman.ml/LZU-Auto-COVID-Health-Report/create.html)!!! 简单易用，直白明了，免去手动配置的恐惧，十分适合新手，强烈推荐使用!
+
 [Python库依赖](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/network/dependencies)
 
 [自动打卡脚本](LZU-Auto-COVID-Health-Report.py)
@@ -268,6 +270,8 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 Source Github Repository Link: https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report
 
 ### Please **★Star** if you think it's great!
+
+### Breaking News! INTRODUCING New Auto COVID Health Report Workflow Management [Web Front-end](https://hollowman.ml/LZU-Auto-COVID-Health-Report/create.html) build by GitHub OAuth app!!! Easy to use, straightforward, free from the fear of manual configuration, very suitable for novices, strongly recommended!
 
 [Python library dependency](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/network/dependencies)
 
