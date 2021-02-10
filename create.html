@@ -1,11 +1,28 @@
+<!--
+  Hollow Man Home Page
+
+  Copyright © 2021 Hollow Man(@HollowMan6). All rights reserved.
+
+  This document is free software; you can redistribute it and/or modify it under the terms of the GNU General
+  Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option)
+  any later version.
+-->
+
 <!doctype html>
 <html lang="zh-cn">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" name="viewport"
+        content="width=device-width,initial-scale=0.6,maximum-scale=1.5,minimum-scale=0.6,user-scalable=yes">
+    <meta name="keywords" content="Hollow Man, 蒋嵩林, 兰州大学, 兰大, 疫情, 定时, 健康打卡, 自动" />
+    <meta name="description"
+        content="兰大疫情期间自动定时健康打卡管理前端。LZU Auto COVID Health Report Using Github Actions Management Front-end." />
+    <meta name="robots" content="all" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="Author" content="Hollow Man" />
+    <meta name="color-scheme" content="light">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sodium-plus/dist/sodium-plus.min.js"></script>
@@ -166,9 +183,10 @@
         <h5 class="card-header">Actions Secrets配置</h5>
         <div class="card-body">
             <div class="form-group">
-                <div class="alert alert-danger" role="alert">
-                    <i><strong>警告: 因为Github API的限制，所以请不要频繁尝试提交该网页表单! Secrets提交并离开本页面后将无法再查看相关内容!
-                            再次提交将会覆盖上次填写的所有Secrets。</strong></i>
+                <div class="alert alert-success" role="alert">
+                    <i><strong>必看: <br />请不要使用IE! 请使用最新版Chrome、Edge或者Firefox浏览本页面!<br />因为Github
+                            API的限制，所以请不要频繁尝试提交该网页表单!<br /> Secrets提交并离开本页面后将无法再查看相关内容!<br />
+                            再次提交表单将会覆盖上次填写的所有Secrets!</strong></i>
                 </div>
                 <div class="alert alert-danger" role="alert">
                     必填项，登录兰州大学个人工作台必备
@@ -940,6 +958,24 @@
             });
         }
     </script>
+    <footer class="alert alert-secondary">
+        <hr />
+        <h5 align="center">Copyright &copy; 2018-2021 <img width="20px" src="/favicon.ico"> Hollow Man (<a
+                href="https://github.com/HollowMan6" target="_blank">@HollowMan6</a>). All rights reserved.</h5>
+        <p align="center">
+            <img src="https://img.shields.io/badge/license-GPL-green"
+                onclick="window.open('https://opensource.org/licenses/GPL-3.0/','_blank')">
+            <img src="https://img.shields.io/badge/-%E2%9D%A4%20Open%20Source-Green?style=flat-square&logo=Github&logoColor=white&link=https://hollowman.ml/fund.html"
+                onclick="window.open('/fund.html','_blank')">
+            <img src="https://img.shields.io/github/repo-size/HollowMan6/LZU-Auto-COVID-Health-Report.svg"
+                onclick="window.open('https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report','_blank')">
+        </p>
+        <p align="center">
+            <a style="font-size: 15px;" href="https://icp.gov.moe" target="_blank">萌ICP备</a>
+            <img width="20px" style="margin-top: -5px;" src="https://icp.gov.moe/images/ico64.png">
+            <a style="font-size: 15px;" href="https://icp.gov.moe/?keyword=20218666" target="_blank">20218666号</a>
+        </p>
+    </footer>
 </body>
 
 </html>
