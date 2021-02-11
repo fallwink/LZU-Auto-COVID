@@ -777,7 +777,8 @@
                     if (data.workflow_runs.length > 0) {
                         for (var i = 0; i < data.workflow_runs.length; i++) {
                             if (data.workflow_runs[i].name === "GitHub Actions LZU Auto COVID Health Report") {
-                                fetch(data.workflow_runs[i].jobs_url, {
+                                window.setTimeout(function(){
+                                    fetch(data.workflow_runs[i].jobs_url, {
                                         headers: headers,
                                     }).then(response => {
                                         return response.json();
@@ -789,6 +790,7 @@
                                     }).catch(function (error) {
                                         window.setTimeout(checkWorkflowLink, 1000);
                                     });
+                                }, 1500);
                                 break;
                             }
                         }
