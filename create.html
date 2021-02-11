@@ -186,7 +186,7 @@
             <div class="form-group">
                 <div class="alert alert-success" role="alert">
                     <i><strong>必看: <br />请不要使用IE! 请使用最新版Chrome、Edge或者Firefox浏览本页面!<br />因为Github
-                            API的限制，所以请不要频繁尝试提交该网页表单!<br /> Secrets提交并离开本页面后将无法再查看相关内容!<br />
+                            API的限制，请不要频繁尝试提交该网页表单!<br /> Secrets提交并离开本页面后将无法再查看相关内容!<br />
                             再次提交表单将会覆盖上次填写的所有Secrets!</strong></i>
                 </div>
                 <div class="alert alert-danger" role="alert">
@@ -406,12 +406,13 @@
 
         function setupLinks() {
             document.getElementById("forkRepoAddr").onclick = function () {
-                window.open("https://github.com/" + userid + "/LZU-Auto-COVID-Health-Report", "_blank")
+                window.open("https://github.com/" + userid + "/LZU-Auto-COVID-Health-Report", '',
+                    'width=900,height=680,top=80,scrollbars=yes')
             };
             document.getElementById("workflowAddr").onclick = function () {
                 window.open("https://github.com/" + userid +
                     "/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22",
-                    "_blank")
+                    '', 'width=900,height=680,top=80,scrollbars=yes')
             };
         }
 
@@ -672,8 +673,9 @@
                                 allowOutsideClick: false,
                                 title: '尚未启用Fork仓库的工作流',
                                 text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"，完成后点击下面"重试"',
-                                footer: '<a target="_blank" href="https://github.com/' + userid +
-                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22">点我启用Fork仓库的工作流</a>',
+                                footer: '<a target="_blank" href="#" onclick="window.open(\'https://github.com/' +
+                                    userid +
+                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');return false;">点我启用Fork仓库的工作流</a>',
                                 confirmButtonText: `重试`,
                                 showCancelButton: true,
                                 cancelButtonText: "取消"
@@ -716,6 +718,9 @@
 
         }
 
+        var checkInterval = null;
+        var tempWindow = null;
+
         function workflowDispatchCore() {
             fetch('https://api.github.com/repos/' + userid +
                     '/LZU-Auto-COVID-Health-Report/actions/workflows/autoreport.yml/dispatches', {
@@ -740,9 +745,10 @@
                                 icon: 'error',
                                 allowOutsideClick: false,
                                 title: '尚未启用Fork仓库的工作流',
-                                text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"',
-                                footer: '<a target="_blank" href="https://github.com/' + userid +
-                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22">点我启用Fork仓库的工作流</a>',
+                                text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"，完成后点击下面"重试"',
+                                footer: '<a target="_blank" href="#" onclick="window.open(\'https://github.com/' +
+                                    userid +
+                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');return false;">点我启用Fork仓库的工作流</a>',
                                 confirmButtonText: `重试`,
                                 showCancelButton: true,
                                 cancelButtonText: "取消"
@@ -759,11 +765,13 @@
                             showConfirmButton: false
                         }).fire({
                             icon: 'success',
-                            title: '成功触发一次工作流, 努力获取工作流运行记录中, 成功后自动为你打开...',
+                            title: '成功触发一次工作流, 努力获取工作流运行记录中, 成功后自动为你跳转...',
                             didOpen: () => {
                                 return function () {
+                                    tempWindow = window.open("https://github.com/" + userid +
+                                        "/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22",
+                                        '', 'width=900,height=680,top=80,scrollbars=yes');
                                     checkInterval = window.setInterval(checkWorkflowLink, 1000);
-                                    checkWorkflowLink();
                                 }();
                             }
                         });
@@ -773,23 +781,18 @@
                 });
         }
 
-        var checkInterval = null;
         var checkCount = 0;
 
         function openSpecifiedRun(url) {
-            var controller = new AbortController();
-            setTimeout(() => controller.abort(), 1000);
             return fetch(url, {
                     headers: headers,
-                    signal: controller.signal
+                    cache: "no-cache"
                 }).then(response => {
                     return response.json();
                 })
                 .then(data => {
                     if (data.jobs) {
-                        window.open(data.jobs[0].html_url +
-                            "?check_suite_focus=true",
-                            "_blank");
+                        tempWindow.location = data.jobs[0].html_url + "?check_suite_focus=true";
                         Swal.close();
                     } else {
                         window.setTimeout(function () {
@@ -803,13 +806,13 @@
                 });
         }
 
+        var tempParam = "queued";
+
         function checkWorkflowLink() {
-            var controller = new AbortController();
-            setTimeout(() => controller.abort(), 1000);
             return fetch('https://api.github.com/repos/' + userid +
-                    '/LZU-Auto-COVID-Health-Report/actions/runs?status=in_progress', {
+                    '/LZU-Auto-COVID-Health-Report/actions/runs?status=' + tempParam, {
                         headers: headers,
-                        signal: controller.signal
+                        cache: "no-cache"
                     }).then(response => {
                     return response.json();
                 })
@@ -821,7 +824,7 @@
                                 window.clearInterval(checkInterval);
                                 window.setTimeout(function () {
                                     openSpecifiedRun(data.workflow_runs[i].jobs_url);
-                                }, 1500);
+                                }, 1000);
                                 break;
                             }
                         }
@@ -830,13 +833,17 @@
                         window.clearInterval(checkInterval);
                         toast.fire({
                             icon: 'error',
-                            title: '获取工作流运行记录失败，5秒后为你打开全部运行记录，请手动查看...'
+                            title: '获取工作流运行记录失败...'
                         }).then((result) => {
                             checkCount = 0;
-                            document.getElementById("workflowAddr").click();
                         });
                     }
                     checkCount += 1;
+                    if (tempParam === "queued") {
+                        tempParam = "in_progress";
+                    } else {
+                        tempParam = "queued";
+                    }
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -878,9 +885,10 @@
                                 icon: 'error',
                                 allowOutsideClick: false,
                                 title: '尚未启用Fork仓库的工作流',
-                                text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"',
-                                footer: '<a target="_blank" href="https://github.com/' + userid +
-                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22">点我启用Fork仓库的工作流</a>',
+                                text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"，完成后点击下面"重试"',
+                                footer: '<a target="_blank" href="#" onclick="window.open(\'https://github.com/' +
+                                    userid +
+                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');return false;">点我启用Fork仓库的工作流</a>',
                                 confirmButtonText: `重试`,
                                 showCancelButton: true,
                                 cancelButtonText: "取消"
@@ -946,9 +954,10 @@
                                 icon: 'error',
                                 allowOutsideClick: false,
                                 title: '尚未启用Fork仓库的工作流',
-                                text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"',
-                                footer: '<a target="_blank" href="https://github.com/' + userid +
-                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22">点我启用Fork仓库的工作流</a>',
+                                text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"，完成后点击下面"重试"',
+                                footer: '<a target="_blank" href="#" onclick="window.open(\'https://github.com/' +
+                                    userid +
+                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');return false;">点我启用Fork仓库的工作流</a>',
                                 confirmButtonText: `重试`,
                                 showCancelButton: true,
                                 cancelButtonText: "取消"
