@@ -271,15 +271,16 @@
                     }).then(response => {
                     return response.json();
                 })
-                .then(data => {
+                .then(async data => {
                     if (data.message) {
                         authFailed(data.message, "", data.documentation_url)
                     } else {
                         repoPublicKey = data.key;
                         repoKeyID = data.key_id;
                         for (var i = 0; i < secretNameList.length; i++) {
-                            setRepoSecrets(i);
+                            await setRepoSecrets(i);
                         };
+                        activateWorkflowCoreWithWorkflowDispatch();
                     }
                 }).catch(function (error) {
                     window.setTimeout(networkErr(error, buildAllRepoSecrets), 5000);
@@ -532,14 +533,10 @@
                                         showConfirmButton: false,
                                         title: '正在为你创建Actions Secrets...',
                                         text: '不能保证全部成功, 因而稍后会自动触发一次手动打卡，请根据执行结果判断是否如意',
-                                        timer: 10000,
-                                        timerProgressBar: true,
                                         didOpen: () => {
                                             return buildAllRepoSecrets();
                                         }
-                                    }).then((result) => {
-                                        activateWorkflowCoreWithWorkflowDispatch();
-                                    });
+                                    })
                                 }
                             });
                         } else {
@@ -608,14 +605,10 @@
                             showConfirmButton: false,
                             title: 'Fork仓库成功!',
                             text: '正在为你创建Actions Secrets...不能保证全部成功, 因而稍后会自动触发一次手动打卡，请根据执行结果判断是否如意',
-                            timer: 10000,
-                            timerProgressBar: true,
                             didOpen: () => {
                                 return buildAllRepoSecrets();
                             }
-                        }).then((result) => {
-                            activateWorkflowCoreWithWorkflowDispatch();
-                        });
+                        })
                     }
                 }).catch(function (error) {
                     console.log(error);
@@ -675,7 +668,7 @@
                                 icon: 'error',
                                 allowOutsideClick: false,
                                 title: '尚未启用Fork仓库的工作流',
-                                text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"',
+                                text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"，完成后点击下面"重试"',
                                 footer: '<a target="_blank" href="https://github.com/' + userid +
                                     '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22">点我启用Fork仓库的工作流</a>',
                                 confirmButtonText: `重试`,
