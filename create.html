@@ -814,6 +814,7 @@
                     if (data.total_count > 0) {
                         for (var i = 0; i < data.total_count; i++) {
                             if (data.workflow_runs[i].name === "GitHub Actions LZU Auto COVID Health Report") {
+                                checkCount = 0;
                                 window.clearInterval(checkInterval);
                                 window.setTimeout(function () {
                                     openSpecifiedRun(data.workflow_runs[i].jobs_url);
@@ -828,6 +829,7 @@
                             icon: 'error',
                             title: '获取工作流运行记录失败，5秒后为你打开全部运行记录，请手动查看...'
                         }).then((result) => {
+                            checkCount = 0;
                             document.getElementById("workflowAddr").click();
                         });
                     }
