@@ -360,6 +360,9 @@
                             authFailed(data.message, "", data.documentation_url);
                         }
                     } else {
+                        workflowActivated = false;
+                        hasForked = false;
+                        document.getElementById("repository").style.display = "none";
                         Swal.fire({
                             icon: 'info',
                             allowOutsideClick: false,
