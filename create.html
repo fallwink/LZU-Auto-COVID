@@ -749,20 +749,55 @@
                             });
                         }
                     } else {
-                        toast.fire({
+                        var toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false
+                        }).fire({
                             icon: 'success',
-                            title: '成功触发一次工作流，5秒钟后自动打开工作流运行记录...',
+                            title: '成功触发一次工作流, 努力获取工作流运行记录中, 成功后自动为你打开...',
                             didOpen: () => {
-                                return function () {
-                                    window.setTimeout(function () {
-                                        document.getElementById("workflowAddr").click();
-                                    }, 5000);
-                                }();
+                                return checkWorkflowLink();
                             }
                         });
                     }
                 }).catch(function (error) {
                     networkErr(error, workflowDispatchCore);
+                });
+        }
+
+        function checkWorkflowLink() {
+            fetch('https://api.github.com/repos/' + userid +
+                    '/LZU-Auto-COVID-Health-Report/actions/runs?status=in_progress', {
+                        headers: headers,
+                    }).then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.workflow_runs) {
+                        for (var i = 0; i < data.workflow_runs.length; i++) {
+                            if (data.workflow_runs[i].name === "GitHub Actions LZU Auto COVID Health Report") {
+                                fetch(data.workflow_runs[i].jobs_url, {
+                                        headers: headers,
+                                    }).then(response => {
+                                        return response.json();
+                                    })
+                                    .then(data => {
+                                        window.open(data.jobs[0].html_url + "?check_suite_focus=true",
+                                            "_blank");
+                                        Swal.close();
+                                    }).catch(function (error) {
+                                        window.setTimeout(checkWorkflowLink, 1000);
+                                    });
+                                break;
+                            }
+                        }
+                    } else {
+                        window.setTimeout(checkWorkflowLink, 1000);
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                    window.setTimeout(checkWorkflowLink, 1000);
                 });
         }
 
