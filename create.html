@@ -71,8 +71,8 @@
         }
 
         function authFailed(error, error_description = "", error_uri = "") {
-            footerMSG = "";
-            errExplainURL = error_uri;
+            var footerMSG = "";
+            var errExplainURL = error_uri;
             if (errExplainURL) {
                 footerMSG = '<a target="_blank" href="' + errExplainURL + '">错误详细解释及解决办法</a>';
             }
@@ -173,14 +173,17 @@
     <div class="alert alert-success" role="alert">
         <i><strong>简介: </strong></i><br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写完表单相关信息并且提交后，本网页软件会将<a target="_blank"
-            href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report">源仓库</a>自动Fork到你的Github账户下并自动配置相关打卡信息到Github的Fork仓库工作流运行环境中(Actions
+            href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report">源仓库</a>自动Fork到你的Github账户下并自动配置相关打卡信息到你的Github的Fork仓库工作流运行环境中(Actions
         Secrets)，通过预定义在工作流中的定时任务和Github Actions
-        实现全自动打卡，同时支持打卡结果推送到微信和Telegram。本软件通过Github
-        OAuth以及相关API实现，不会记录你的任何信息，实现了隐私保护，请放心使用。如果检测到已经Fork过本仓库，软件还提供了一系列管理以及自定义功能。<br />
+        实现全自动打卡，同时支持打卡结果推送到微信和Telegram。本网页软件通过Github
+        OAuth以及相关API实现，不会记录你的任何信息，打卡工作流托管于你的Github的对应Fork仓库中，实现了隐私保护，请放心使用。如果检测到已经Fork过本仓库，软件还提供了一系列管理以及自定义功能操作。<br />
         <i><strong>说明: </strong></i>
         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;强烈建议你自己在官方平台打一次卡之后再使用本软件，从而初始化平台打卡系统中的数据。本软件将会一直沿用你在兰州大学个人工作台打卡系统中最新填报的<strong>是否在校</strong>、
         <strong>所在省市区</strong>、 <strong>是否出国</strong>、
-        <strong>出国地点</strong>打卡信息，并会一直上报最健康的状态。<br />
+        <strong>出国地点</strong>打卡信息，并会一直上报最健康的状态。如你的信息发生变化，请及时登录官方打卡界面进行信息更新。<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果有任何问题，欢迎通过<a target="_blank"
+            href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/issues">Issue</a>进行反馈；你也可以通过邮箱<a
+            target="_blank" href="mailto:hollowman@hollowman.ml">hollowman@hollowman.ml</a>联系我。<br />
         <i><strong>注意: </strong></i><br />1. 请不要使用IE浏览本页面! 推荐使用最新版Chrome、Edge或者Firefox。<br />2. 因为Github
         API的限制，请不要频繁尝试提交该网页表单!<br />3. Secrets提交并离开本页面后将无法再查看相关内容!<br />
         4. 再次提交表单将会覆盖上次填写的所有Secrets!<br />5. 默认自动打卡时间为北京时间1,2,7,8月每天早7点(因Github方原因，可能会有半小时左右的延迟)
@@ -239,11 +242,12 @@
                     <a href="http://sc.ftqq.com/" target="_blank"><s>Server酱(或测试号/</s>Turbo版)</a>:
                 </h5>
                 <div class="alert alert-warning" role="alert">
-                    因为微信发布公告将在4月底下线模板消息，现强烈建议Server酱使用以企业微信为主的<a href="https://sct.ftqq.com/"
+                    因为微信发布公告将在2021年4月底下线模板消息，现强烈建议Server酱使用以企业微信为主的<a href="https://sct.ftqq.com/"
                         class="text-warning stretched-link" target="_blank">Turbo版</a>。
                 </div>
                 <div class="alert alert-secondary" role="alert">
-                    使用Server酱系列配置微信推送请点开上面链接，参考其网站相关教程说明，然后按照下面相关表单提示复制相关信息并粘贴到这里。
+                    <i><strong>使用Server酱系列配置微信推送方法: </strong></i><br />
+                    请点开上面链接，参考其网站相关教程说明，然后按照下面相关表单提示复制相关信息并粘贴到相应表单中。
                 </div>
                 <label for="input">SERVERCHANSCKEY：</label>
                 <input type="text" class="form-control" id="serverchansckey"
@@ -268,7 +272,7 @@
                     3. 在Telegram中搜索<a href="https://t.me/userinfobot"
                         target="_blank">userinfobot</a>这个账号，并给它发送<strong>/start</strong>或者任意一条消息，它会返回你的账号的id；将该id填写到下方<i>TGCHATID</i>处。<br />
                     4.
-                    如果你还想将自己的打卡信息推送给其他账号，请在另外的账号上重复步骤2和3，并修改<strong>TGCHATID</strong>，多个ID间使用</strong>,</strong>半角逗号分隔即可。<br />
+                    如果你还想将自己的打卡信息推送给其他账号，请在另外的账号上重复步骤2和3，并修改<i>TGCHATID</i>，多个ID间使用</strong>,</strong>半角逗号分隔即可。<br />
                 </div>
                 <label for="input">TGBOTTOKEN：</label>
                 <input type="text" class="form-control" id="tgbottoken"
@@ -278,6 +282,14 @@
                 <input type="text" class="form-control" id="tgchatid"
                     placeholder="Telegram User ID(选用Telegram Bot推送必填)">
                 <br />
+            </div>
+            <div class="alert alert-danger" role="alert">
+                <i><strong>免责声明: </strong></i><br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于每个人的打卡程序都托管在各自Github账户的Fork仓库中，
+                使用Github Actions进行自动打卡，并且本程序遵循GPL-3.0协议，你可以自由地修改你的Fork仓库中的程序，
+                此外由于打卡程序的时效性，所以作者不能永远确保你的打卡程序的正确性，也不能确保Github平台执行定时任务的稳定性，
+                即<strong>不能确保自动打卡程序始终能按照预期方式工作</strong>。因而<strong>根据打卡结果更新Fork仓库、调整相关程序或打卡信息是用户的义务，
+                    因打卡程序不稳定或者失效而产生的一切后果与原作者无关</strong>。<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击以下按钮即代表你接受该免责声明。
             </div>
             <p align="center"><a href="#" class="btn btn-primary" onclick="startBuild();">确认上述信息填写正确，开始构建相关仓库!</a></p>
         </div>
@@ -289,7 +301,7 @@
         var secretNameList = ["cardid", "password", "pptoken", "pptopic", "serverchansckey", "openid", "tgbottoken",
             "tgchatid", "gpatoken"
         ];
-        var secretValue = ["", "", "", "", "", "", "", "", ""]
+        var secretValue = ["", "", "", "", "", "", "", "", ""];
         var workflowActivated = false;
         var repoPublicKey = "";
         var repoKeyID = "";
@@ -493,8 +505,8 @@
                                         title: '修改每日打卡时间',
                                         text: '在下方输入Cron表达式(使用UTC时区)；初始默认为1,2,7,8月每天早7点自动执行(0 23 * 1,2,7,8 *)。当前Cron表达式为: ' +
                                             workflowContent.match(regStr)[0].replace(
-                                                "- cron: '",
-                                                "").replace("'", ""),
+                                                /- cron: '/g,
+                                                "").replace(/'/g, ""),
                                         footer: '<a target="_blank" href="#" onclick="window.open(\'https://crontab.guru/\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');return false;">校验我的Cron表达式</a>',
                                         input: 'text',
                                         inputAttributes: {
@@ -553,8 +565,8 @@
                                         title: '修改打卡失败延迟',
                                         text: '在下方输入打卡失败延迟时间(遵循Linux Sleep命令时间)；初始默认为30分钟(30m)。当前配置延迟时间为: ' +
                                             workflowContent.match(regStr)[0].replace(
-                                                '"delays": "',
-                                                "").replace('"', ""),
+                                                /"delays": "/g,
+                                                "").replace(/"/g, ""),
                                         footer: '<a target="_blank" href="#" onclick="window.open(\'https://www.runoob.com/linux/linux-comm-sleep.html\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');return false;">了解Linux sleep命令</a>',
                                         input: 'text',
                                         inputAttributes: {
@@ -1215,16 +1227,16 @@
         <p align="center">
             <img src="https://img.shields.io/badge/license-GPL-green"
                 onclick="window.open('https://opensource.org/licenses/GPL-3.0/','_blank')">
-            <img src="https://img.shields.io/badge/-%E2%9D%A4%20Open%20Source-Green?style=flat-square&logo=Github&logoColor=white&link=https://hollowman.ml/fund.html"
+            <img src="https://img.shields.io/badge/-%E2%9D%A4%20Open%20Source%20%E6%8D%90%E5%8A%A9%E6%88%91-Green?style=flat-square&logo=Github&logoColor=white&link=https://hollowman.ml/fund.html"
                 onclick="window.open('/fund.html','_blank')">
             <img src="https://img.shields.io/github/repo-size/HollowMan6/LZU-Auto-COVID-Health-Report.svg"
                 onclick="window.open('https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report','_blank')">
         </p>
-        <p align="center">
+        <h6 align="center">
             <a style="font-size: 15px;" href="https://icp.gov.moe" target="_blank">萌ICP备</a>
             <img width="20px" style="margin-top: -5px;" src="https://icp.gov.moe/images/ico64.png">
             <a style="font-size: 15px;" href="https://icp.gov.moe/?keyword=20218666" target="_blank">20218666号</a>
-        </p>
+        </h6>
     </footer>
 </body>
 
