@@ -19,6 +19,7 @@
 
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/HollowMan6/LZU-Auto-COVID-Health-Report.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/HollowMan6/LZU-Auto-COVID-Health-Report/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/HollowMan6/LZU-Auto-COVID-Health-Report.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/HollowMan6/LZU-Auto-COVID-Health-Report/context:python)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/HollowMan6/LZU-Auto-COVID-Health-Report.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/HollowMan6/LZU-Auto-COVID-Health-Report/context:javascript)
 [![](https://images.microbadger.com/badges/image/hollowman6/lzu-auto-covid-health-report.svg)](https://microbadger.com/images/hollowman6/lzu-auto-covid-health-report)
 
 (English version is down below)
