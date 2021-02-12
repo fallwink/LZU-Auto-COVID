@@ -14,7 +14,7 @@ COPY requirements.txt /requirements.txt
 
 ENV TZ Asia/Shanghai
 
-RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --upgrade pip
 RUN if [ "x86_64" = "`arch`" ] || [ "aarch64" = "`arch`" ] || [ "i386" = "`arch`" ]; then \
     pip install --no-cache-dir -r /requirements.txt; else \
     apt-get update \
