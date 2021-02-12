@@ -841,6 +841,10 @@
                     }).then(response => {
                     if (response.status === 204) {
                         return null;
+                    } else if (response.status === 500) {
+                        return {
+                            message: "Not Found"
+                        };
                     } else {
                         return response.json();
                     }
@@ -914,6 +918,10 @@
                     }).then(response => {
                     if (response.status === 204) {
                         return null;
+                    } else if (response.status === 500) {
+                        return {
+                            message: "Not Found"
+                        };
                     } else {
                         return response.json();
                     }
@@ -1054,6 +1062,10 @@
                     }).then(response => {
                     if (response.status === 204) {
                         return null;
+                    } else if (response.status === 500) {
+                        return {
+                            message: "Not Found"
+                        };
                     } else {
                         return response.json();
                     }
@@ -1123,6 +1135,10 @@
                     }).then(response => {
                     if (response.status === 204) {
                         return null;
+                    } else if (response.status === 500) {
+                        return {
+                            message: "Not Found"
+                        };
                     } else {
                         return response.json();
                     }
