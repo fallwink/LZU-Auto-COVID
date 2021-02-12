@@ -165,13 +165,26 @@
         }
     </script>
     <blockquote class="blockquote text-center">
-        <p class="mb-0"><a target="_blank"
-                href="https://gitee.com/hollowman6/LZU-Auto-COVID-Health-Report#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">兰大疫情期间自动定时健康打卡</a>
-        </p>
+        <p class="mb-0">兰大疫情期间自动定时健康打卡</p>
         <footer class="blockquote-footer">LZU Auto COVID Health Report <cite title="Source Title">Using Github
                 Actions</cite></footer>
     </blockquote>
     <h3 id="welcome" class="text-center"></h3>
+    <div class="alert alert-success" role="alert">
+        <i><strong>简介: </strong></i><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写完表单相关信息并且提交后，本网页软件会将<a target="_blank"
+            href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report">源仓库</a>自动Fork到你的Github账户下并自动配置相关打卡信息到Github的Fork仓库工作流运行环境中(Actions
+        Secrets)，通过预定义在工作流中的定时任务和Github Actions
+        实现全自动打卡，同时支持打卡结果推送到微信和Telegram。本软件通过Github
+        OAuth以及相关API实现，不会记录你的任何信息，实现了隐私保护，请放心使用。如果检测到已经Fork过本仓库，软件还提供了一系列管理以及自定义功能。<br />
+        <i><strong>说明: </strong></i>
+        <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;强烈建议你自己在官方平台打一次卡之后再使用本软件，从而初始化平台打卡系统中的数据。本软件将会一直沿用你在兰州大学个人工作台打卡系统中最新填报的<strong>是否在校</strong>、
+        <strong>所在省市区</strong>、 <strong>是否出国</strong>、
+        <strong>出国地点</strong>打卡信息，并会一直上报最健康的状态。<br />
+        <i><strong>注意: </strong></i><br />1. 请不要使用IE浏览本页面! 推荐使用最新版Chrome、Edge或者Firefox。<br />2. 因为Github
+        API的限制，请不要频繁尝试提交该网页表单!<br />3. Secrets提交并离开本页面后将无法再查看相关内容!<br />
+        4. 再次提交表单将会覆盖上次填写的所有Secrets!<br />5. 默认自动打卡时间为北京时间1,2,7,8月每天早7点(因Github方原因，可能会有半小时左右的延迟)
+    </div>
     <div id="repository" class="card" style="display: none;">
         <h5 class="card-header">Fork仓库操作</h5>
         <div class="card-body" align="center">
@@ -190,16 +203,12 @@
         </div>
     </div>
     <div class="card">
-        <h5 class="card-header">Actions Secrets配置</h5>
+        <h5 class="card-header">Fork仓库工作流运行环境配置(Actions Secrets)</h5>
         <div class="card-body">
             <div class="form-group">
-                <div class="alert alert-success" role="alert">
-                    <i><strong>必看: <br />请不要使用IE! 请使用最新版Chrome、Edge或者Firefox浏览本页面!<br />因为Github
-                            API的限制，请不要频繁尝试提交该网页表单!<br /> Secrets提交并离开本页面后将无法再查看相关内容!<br />
-                            再次提交表单将会覆盖上次填写的所有Secrets!</strong></i>
-                </div>
                 <div class="alert alert-danger" role="alert">
-                    必填项，登录兰州大学个人工作台必备
+                    必填项，登录<a target="_blank"
+                        href="http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn">兰州大学个人工作台</a>必备!
                 </div>
                 <label for="input">学号：</label>
                 <input type="text" class="form-control" id="cardid" placeholder="兰大校园卡号(也可不含@lzu.edu.cn的邮箱名)">
@@ -207,41 +216,60 @@
                 <label for="input">密码：</label>
                 <input type="password" class="form-control" id="password" placeholder="兰大邮箱密码">
                 <br />
-                <label for="input">启用打卡失败延迟时间再次自动打卡：</label>
+                <label for="input">是否启用打卡失败后再次自动打卡：</label>
                 <input type="checkbox" id="delaysEnable" checked="true">
                 <div class="alert alert-primary" role="alert">
-                    选填项，用来配置打卡结果推送，三选一即可，具体参见<a
-                        href="https://gitee.com/hollowman6/LZU-Auto-COVID-Health-Report#%E5%8F%AF%E9%80%89%E5%BE%AE%E4%BF%A1%E6%8E%A8%E9%80%81%E6%89%93%E5%8D%A1%E7%BB%93%E6%9E%9C"
-                        class="text-primary stretched-link" target="_blank">源仓库README</a>
+                    选填项，用来配置打卡结果推送，三选一即可。
                 </div>
                 <h5>
                     <a href="https://pushplus.hxtrip.com/login" target="_blank">PushPlus(推荐渠道)</a>:
                 </h5>
+                <div class="alert alert-secondary" role="alert">
+                    <i><strong>使用PushPlus配置微信推送方法: </strong></i><br />
+                    点开上面链接，用微信登陆并关注公众号后，根据需要复制下图红框所指信息到表单中。
+                    <img src="https://pushplus.hxtrip.com/doc/img/c1.png" width="85%" />
+                </div>
                 <label for="input">PPTOKEN：</label>
                 <input type="text" class="form-control" id="pptoken" placeholder="PushPlus Token(选用PushPlus推送必填)">
                 <br />
                 <label for="input">PPTOPIC：</label>
-                <input type="text" class="form-control" id="pptopic" placeholder="PushPlus 群组编码(仅一对多推送需要)">
+                <input type="text" class="form-control" id="pptopic" placeholder="PushPlus Topic 群组编码(仅一对多推送需要)">
                 <br />
                 <h5>
                     <a href="http://sc.ftqq.com/" target="_blank"><s>Server酱(或测试号/</s>Turbo版)</a>:
                 </h5>
                 <div class="alert alert-warning" role="alert">
                     因为微信发布公告将在4月底下线模板消息，现强烈建议Server酱使用以企业微信为主的<a href="https://sct.ftqq.com/"
-                        class="text-warning stretched-link" target="_blank">Turbo版</a>
+                        class="text-warning stretched-link" target="_blank">Turbo版</a>。
+                </div>
+                <div class="alert alert-secondary" role="alert">
+                    使用Server酱系列配置微信推送请点开上面链接，参考其网站相关教程说明，然后按照下面相关表单提示复制相关信息并粘贴到这里。
                 </div>
                 <label for="input">SERVERCHANSCKEY：</label>
                 <input type="text" class="form-control" id="serverchansckey"
-                    placeholder="Server酱(或测试号/Turbo版) SCKEY/SendKey(选用Server酱系推送必填)">
+                    placeholder="Server酱(或测试号/Turbo版) SCKEY/SendKey(选用Server酱系列推送必填)">
                 <br />
                 <label for="input">OPENID：</label>
                 <input type="text" class="form-control" id="openid"
                     placeholder="额外微信公众号用户OpenID(Turbo版企业微信必填0; 老版不填; Server酱测试号发给自己填0，否则如实)">
                 <br />
                 <h5>
-                    <a href="https://gitee.com/hollowman6/LZU-Auto-COVID-Health-Report#%E5%8F%AF%E9%80%89telegram%E6%8E%A8%E9%80%81%E6%89%93%E5%8D%A1%E7%BB%93%E6%9E%9C"
-                        target="_blank">Telegram Bot</a>:
+                    Telegram Bot:
                 </h5>
+                <div class="alert alert-secondary" role="alert">
+                    <i><strong>使用Telegram Bot配置Telegram推送方法: </strong></i><br />
+                    1. 在Telegram中添加<a href="https://t.me/botfather"
+                        target="_blank">BotFather</a>这个账号，然后向其依次发送<strong>/start</strong>,
+                    <strong>/newbot</strong>，按照提示设定机器人名字后，即可创建一个属于你自己的全新的机器人。记下该机器人的token并填写到下方<i>TGBOTTOKEN</i>处。(内容类似于<strong>110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw</strong>)<br />
+                    <img src="https://gitee.com/hollowman6/LZU-Auto-COVID-Health-Report/raw/main/img/Telegram.jpg"
+                        width="50%" /><br />
+                    2. 搜索你刚刚创建的机器人的名字，并给它发送<strong>/start</strong>或者任意一条消息。
+                    <i><strong>特别注意：需要先与机器人之间创建会话，机器人才能下发消息，否则机器人无法主动发送消息，切记!</strong></i><br />
+                    3. 在Telegram中搜索<a href="https://t.me/userinfobot"
+                        target="_blank">userinfobot</a>这个账号，并给它发送<strong>/start</strong>或者任意一条消息，它会返回你的账号的id；将该id填写到下方<i>TGCHATID</i>处。<br />
+                    4.
+                    如果你还想将自己的打卡信息推送给其他账号，请在另外的账号上重复步骤2和3，并修改<strong>TGCHATID</strong>，多个ID间使用</strong>,</strong>半角逗号分隔即可。<br />
+                </div>
                 <label for="input">TGBOTTOKEN：</label>
                 <input type="text" class="form-control" id="tgbottoken"
                     placeholder="Telegraph Bot Token(选用Telegram Bot推送必填)">
@@ -251,7 +279,7 @@
                     placeholder="Telegram User ID(选用Telegram Bot推送必填)">
                 <br />
             </div>
-            <a href="#" class="btn btn-primary" onclick="startBuild();">确认上述信息填写正确，开始构建相关仓库!</a>
+            <p align="center"><a href="#" class="btn btn-primary" onclick="startBuild();">确认上述信息填写正确，开始构建相关仓库!</a></p>
         </div>
     </div>
     <script>
@@ -463,7 +491,7 @@
                                         icon: 'info',
                                         allowOutsideClick: false,
                                         title: '修改每日打卡时间',
-                                        text: '在下方输入Cron表达式(使用UTC时区)；初始默认为1,2,7,8月每天早8点自动执行(0 23 * 1,2,7,8 *)。当前Cron表达式为: ' +
+                                        text: '在下方输入Cron表达式(使用UTC时区)；初始默认为1,2,7,8月每天早7点自动执行(0 23 * 1,2,7,8 *)。当前Cron表达式为: ' +
                                             workflowContent.match(regStr)[0].replace(
                                                 "- cron: '",
                                                 "").replace("'", ""),
