@@ -23,7 +23,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta name="Author" content="Hollow Man" />
     <meta name="color-scheme" content="light">
-    <link id="theme-link" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark/dist/css/bootstrap-dark.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark/dist/css/toggle-bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark/dist/css/toggle-bootstrap-dark.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark/dist/css/toggle-bootstrap-print.min.css" rel="stylesheet">
     <link rel="icon" href="https://avatars.githubusercontent.com/oa/1472343?s=64&v=4" type="image/png">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <link id="theme-swal" href="" rel="stylesheet">
@@ -124,22 +127,22 @@
     </style>
 </head>
 
-<body>
+<body class="bootstrap">
     <div class="toggle toggle--daynight" id="SwitchNightMode">
         <input type="checkbox" id="toggle--daynight1" class="toggle--checkbox" onclick="toggleTheme();">
         <label class="toggle--btn" for="toggle--daynight1"><span class="toggle--feature"></span></label>
     </div>
     <script>
         function toggleTheme() {
-            var theme = document.getElementById("theme-link");
-            if (theme.getAttribute("href") == "https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css") {
-                theme.href = "https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark/dist/css/bootstrap-dark.min.css";
+            var theme = document.getElementsByTagName("body")[0];
+            if (theme.className.indexOf("bootstrap-dark") === -1) {
+                theme.className = theme.className.replace(/bootstrap/gi, "bootstrap-dark");
                 document.getElementById("toggle--daynight1").checked = true;
                 document.getElementById("theme-swal").href =
                     "https://cdn.jsdelivr.net/npm/@sweetalert2/themes/dark/dark.min.css";
                 document.querySelector("meta[name=color-scheme]").setAttribute('content', 'dark');
             } else {
-                theme.href = "https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css";
+                theme.className = theme.className.replace(/bootstrap-dark/gi, "bootstrap");
                 document.getElementById("toggle--daynight1").checked = false;
                 document.getElementById("theme-swal").href = "";
                 document.querySelector("meta[name=color-scheme]").setAttribute('content', 'light');
