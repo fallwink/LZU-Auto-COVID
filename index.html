@@ -34,7 +34,7 @@
     <style>
         body,
         html {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
         }
 
@@ -131,11 +131,13 @@
                 theme.href = "https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark/dist/css/bootstrap-dark.min.css";
                 document.getElementById("toggle--daynight1").checked = true;
                 document.getElementById("theme-swal").href =
-                    "https://cdn.jsdelivr.net/npm/@sweetalert2/themes/dark/dark.min.css"
+                    "https://cdn.jsdelivr.net/npm/@sweetalert2/themes/dark/dark.min.css";
+                document.querySelector("meta[name=color-scheme]").setAttribute('content', 'dark');
             } else {
                 theme.href = "https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css";
                 document.getElementById("toggle--daynight1").checked = false;
-                document.getElementById("theme-swal").href = ""
+                document.getElementById("theme-swal").href = "";
+                document.querySelector("meta[name=color-scheme]").setAttribute('content', 'light');
             }
         }
 
@@ -282,7 +284,7 @@
     <h3 id="welcome" class="text-center">尚未登录</h3>
     <div class="alert alert-success" role="alert">
         <i><strong>简介: </strong></i><br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写完表单相关信息并且提交后，本网页软件会将<a target="_blank"
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写完表单相关信息并且提交后，本网页软件会将<a target="_blank" class="text-success"
             href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report">源仓库</a>自动Fork到你的Github账户下并自动配置相关打卡信息到你的Github的Fork仓库工作流运行环境中(Actions
         Secrets)，通过预定义在工作流中的定时任务和Github Actions
         实现全自动打卡，同时支持打卡结果推送到微信和Telegram。本网页软件通过Github
@@ -291,9 +293,10 @@
         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;强烈建议你自己在官方平台打一次卡之后再使用本软件，从而初始化平台打卡系统中的数据。本软件将会一直沿用你在兰州大学个人工作台打卡系统中最新填报的<strong>是否在校</strong>、
         <strong>所在省市区</strong>、 <strong>是否出国</strong>、
         <strong>出国地点</strong>打卡信息，并会一直上报最健康的状态。如你的信息发生变化，请及时登录官方打卡界面进行信息更新。<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果有任何问题，欢迎通过<a target="_blank"
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果有任何问题，欢迎通过<a target="_blank" class="text-success"
             href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/issues">Issue</a>进行反馈；你也可以通过邮箱<a
-            target="_blank" href="mailto:hollowman@hollowman.ml">hollowman@hollowman.ml</a>联系我。<br />
+            class="text-success" target="_blank"
+            href="mailto:hollowman@hollowman.ml">hollowman@hollowman.ml</a>联系我。<br />
         <i><strong>注意: </strong></i><br />1. 请不要使用IE浏览本页面! 推荐使用最新版Chrome、Edge或者Firefox。<br />2. 因为Github
         API的限制，请不要频繁尝试提交该网页表单!<br />3. Secrets提交并离开本页面后将无法再查看相关内容!<br />
         4. 再次提交表单将会覆盖上次填写的所有Secrets!<br />5. 默认自动打卡时间为北京时间1,2,7,8月每天早7点(因Github方原因，可能会有半小时左右的延迟)
@@ -306,6 +309,7 @@
                 onclick="">查看你的自动打卡工作流运行历史记录</button>
             <button type="button" class="btn btn-outline-secondary" id="workflowDispatch"
                 onclick="workflowDispatch();">手动打卡一次</button>
+            <br />
             <button type="button" class="btn btn-outline-warning" id="cronJobAddr"
                 onclick="guideToEditCronJob();">修改每日打卡时间</button>
             <button type="button" class="btn btn-outline-warning" id="delaysAddr"
@@ -320,7 +324,7 @@
         <div class="card-body">
             <div id="setActionsSecret" class="form-group">
                 <div class="alert alert-danger" role="alert">
-                    必填项，登录<a target="_blank"
+                    必填项，登录<a target="_blank" class="text-danger"
                         href="http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn">兰州大学个人工作台</a>必备!
                 </div>
                 <label for="input">学号：</label>
@@ -352,7 +356,7 @@
                     <a href="http://sc.ftqq.com/" target="_blank"><s>Server酱(或测试号/</s>Turbo版)</a>:
                 </h5>
                 <div class="alert alert-warning" role="alert">
-                    因为微信发布公告将在2021年4月底下线模板消息，现强烈建议Server酱使用以企业微信为主的<a href="https://sct.ftqq.com/"
+                    因为微信发布公告将在2021年4月底下线模板消息，现强烈建议Server酱使用以企业微信为主的<a href="https://sct.ftqq.com/" class="text-warning"
                         target="_blank">Turbo版</a>。
                 </div>
                 <div class="alert alert-secondary" role="alert">
@@ -372,14 +376,14 @@
                 </h5>
                 <div class="alert alert-secondary" role="alert">
                     <i><strong>使用Telegram Bot配置Telegram推送方法: </strong></i><br />
-                    1. 在Telegram中添加<a href="https://t.me/botfather"
+                    1. 在Telegram中添加<a href="https://t.me/botfather" class="text-secondary"
                         target="_blank">BotFather</a>这个账号，然后向其依次发送<strong>/start</strong>,
                     <strong>/newbot</strong>，按照提示设定机器人名字后，即可创建一个属于你自己的全新的机器人。记下该机器人的token并填写到下方<i>TGBOTTOKEN</i>处。(内容类似于<strong>110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw</strong>)<br />
                     <img src="https://gitee.com/hollowman6/LZU-Auto-COVID-Health-Report/raw/main/img/Telegram.jpg"
                         width="50%" /><br />
                     2. 搜索你刚刚创建的机器人的名字，并给它发送<strong>/start</strong>或者任意一条消息。
                     <i><strong>特别注意：需要先与机器人之间创建会话，机器人才能下发消息，否则机器人无法主动发送消息，切记!</strong></i><br />
-                    3. 在Telegram中搜索<a href="https://t.me/userinfobot"
+                    3. 在Telegram中搜索<a href="https://t.me/userinfobot" class="text-secondary"
                         target="_blank">userinfobot</a>这个账号，并给它发送<strong>/start</strong>或者任意一条消息，它会返回你的账号的id；将该id填写到下方<i>TGCHATID</i>处。<br />
                     4.
                     如果你还想将自己的打卡信息推送给其他账号，请在另外的账号上重复步骤2和3，并修改<i>TGCHATID</i>，多个ID间使用</strong>,</strong>半角逗号分隔即可。<br />
@@ -552,10 +556,11 @@
                         authFailed(data.message, "", data.documentation_url)
                     } else {
                         userid = data.login;
-                        document.getElementById("welcome").innerHTML = "欢迎, <a target='_blank' href='" + data
+                        document.getElementById("welcome").innerHTML = "<img width='5%' src='" + data.avatar_url +
+                            "'/><br/>欢迎, <a target='_blank' href='" + data
                             .html_url +
                             "'>" + data
-                            .login + "</a>! <img width='28px' src='" + data.avatar_url + "'/>";
+                            .login + "</a>!";
                         setupLinks();
                         checkIfForked();
                     }
@@ -1512,7 +1517,8 @@
     </script>
     <footer>
         <hr />
-        <h5 align="center">Copyright &copy; 2018-2021 <img width="20px" class="footerLogo" src="/favicon.ico"> Hollow
+        <h5 align="center">Copyright &copy; 2018-2021 <img width="20px" class="footerLogo" style="margin-top: -5px"
+                src="/favicon.ico"> Hollow
             Man (<a href="https://github.com/HollowMan6" target="_blank">@HollowMan6</a>). All rights reserved.</h5>
         <p align="center">
             <img src="https://img.shields.io/badge/license-GPL-green"
