@@ -165,11 +165,15 @@
                         icon: 'info',
                         title: '稍后你可以通过刷新本页面来进行登录',
                     });
-                    inputs = document.querySelectorAll("input");
+                    var inputs = document.querySelectorAll("input");
                     for (var i = 0; i < inputs.length; i++) {
                         inputs[i].disabled = true;
                     }
-                    document.getElementById("buildRepo").style.pointerEvents = "none";
+                    var buttons = document.querySelectorAll("button");
+                    for (var i = 0; i < buttons.length; i++) {
+                        buttons[i].disabled = true;
+                    }
+                    document.getElementById("repository").style.display = "";
                 } else {
                     window.location = authPage;
                 }
@@ -303,8 +307,8 @@
                 即<strong>不能确保自动打卡程序始终能按照预期方式工作</strong>。因而<strong>根据打卡结果更新Fork仓库、调整相关程序或打卡信息是用户的义务，
                     因打卡程序不稳定或者失效而产生的一切后果与原作者无关</strong>。<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击以下按钮即代表你接受该免责声明。
             </div>
-            <p align="center"><a href="#" class="btn btn-primary" id="buildRepo"
-                    onclick="startBuild();">确认上述信息填写正确，开始构建相关仓库!</a></p>
+            <p align="center"><button type="button" class="btn btn-primary"
+                    onclick="startBuild();">确认上述信息填写正确，开始构建相关仓库!</button></p>
         </div>
     </div>
     <script>
