@@ -158,9 +158,21 @@
                 timerProgressBar: true,
                 title: '五秒后自动进行GitHub登录授权认证...点击背景可即刻认证',
                 text: '如果你是第一次使用，在跳转页面处完成授权操作后会自动跳转回来',
-                showConfirmButton: false
+                confirmButtonText: '我要浏览一下页面，先不要登录Github。',
             }).then((result) => {
-                window.location = authPage;
+                if (result.isConfirmed) {
+                    toast.fire({
+                        icon: 'info',
+                        title: '稍后你可以通过刷新本页面来进行登录',
+                    });
+                    inputs = document.querySelectorAll("input");
+                    for (var i = 0; i < inputs.length; i++) {
+                        inputs[i].disabled = true;
+                    }
+                    document.getElementById("buildRepo").style.pointerEvents = "none";
+                } else {
+                    window.location = authPage;
+                }
             });
         }
     </script>
@@ -169,7 +181,7 @@
         <footer class="blockquote-footer">LZU Auto COVID Health Report <cite title="Source Title">Using Github
                 Actions</cite></footer>
     </blockquote>
-    <h3 id="welcome" class="text-center"></h3>
+    <h3 id="welcome" class="text-center">尚未登录</h3>
     <div class="alert alert-success" role="alert">
         <i><strong>简介: </strong></i><br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写完表单相关信息并且提交后，本网页软件会将<a target="_blank"
@@ -291,7 +303,8 @@
                 即<strong>不能确保自动打卡程序始终能按照预期方式工作</strong>。因而<strong>根据打卡结果更新Fork仓库、调整相关程序或打卡信息是用户的义务，
                     因打卡程序不稳定或者失效而产生的一切后果与原作者无关</strong>。<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击以下按钮即代表你接受该免责声明。
             </div>
-            <p align="center"><a href="#" class="btn btn-primary" onclick="startBuild();">确认上述信息填写正确，开始构建相关仓库!</a></p>
+            <p align="center"><a href="#" class="btn btn-primary" id="buildRepo"
+                    onclick="startBuild();">确认上述信息填写正确，开始构建相关仓库!</a></p>
         </div>
     </div>
     <script>
