@@ -72,7 +72,9 @@
             margin: .3125em !important;
         }
 
-        a, button, input,
+        a,
+        button,
+        input,
         .swal2-styled {
             cursor: url('/img/cursor/link.cur'), pointer !important;
         }
@@ -111,6 +113,19 @@
 
         .footerLogo {
             animation: rotate 3s infinite linear;
+        }
+
+        .headpic {
+            opacity: 0.7;
+            filter: alpha(opacity=70);
+            -webkit-transition: opacity 1s, filter 1s, transform 2s;
+            transition: opacity 1s, filter 1s, transform 2s;
+        }
+
+        .headpic:hover {
+            opacity: 1;
+            filter: alpha(opacity=100);
+            transform: rotateX(360deg);
         }
 
         @keyframes rotate {
@@ -293,8 +308,8 @@
             });
         }
 
-        function togglePasswordShow(){
-            if(document.getElementById("password").type === "password"){
+        function togglePasswordShow() {
+            if (document.getElementById("password").type === "password") {
                 document.getElementById("password").type = "text";
                 document.getElementById("showHidePassword").children[0].classList.replace("fa-eye", "fa-eye-slash");
             } else {
@@ -304,55 +319,61 @@
         }
     </script>
     <blockquote class="blockquote text-center">
-        <p class="mb-0">兰大疫情期间自动定时健康打卡</p>
+        <p class="mb-0"><img src="https://avatars.githubusercontent.com/oa/1472343?s=64&v=4" height="20rem"
+                style="margin-top: -0.2rem" />兰州大学疫情期间自动定时健康打卡</p>
         <footer class="blockquote-footer">LZU Auto COVID Health Report <cite title="Source Title">Using Github
                 Actions</cite></footer>
     </blockquote>
     <hr />
-    <h3 id="welcome" class="text-center">尚未登录</h3>
+    <h3 id="welcome" class="text-center"><i class="fa fa-sign-in" aria-hidden="true"></i> 尚未登录</h3>
     <div class="alert alert-success" role="alert">
-        <i><strong>简介: </strong></i><br />
+        <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 简介: </strong></i><br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写完表单相关信息并且提交后，本网页软件会将<a target="_blank" class="text-success"
-            href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report">源仓库</a>自动Fork到你的Github账户下并自动配置相关打卡信息到你的Github的Fork仓库工作流运行环境中(Actions
+            href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report">源仓库</a>自动Fork到你的<i class="fa fa-github"
+            aria-hidden="true"></i>Github账户下并自动配置相关打卡信息到你的Github的Fork仓库工作流运行环境中(Actions
         Secrets)，通过预定义在工作流中的定时任务和Github Actions
         实现全自动打卡，同时支持打卡结果推送到微信和Telegram。本网页软件通过Github
         OAuth以及相关API实现，不会记录你的任何信息，打卡工作流托管于你的Github的对应Fork仓库中，实现了隐私保护，请放心使用。如果检测到已经Fork过本仓库，软件还提供了一系列管理以及自定义功能操作。<br />
-        <i><strong>说明: </strong></i>
+        <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 说明: </strong></i>
         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;强烈建议你自己在官方平台打一次卡之后再使用本软件，从而初始化平台打卡系统中的数据。本软件将会一直沿用你在兰州大学个人工作台打卡系统中最新填报的<strong>是否在校</strong>、
         <strong>所在省市区</strong>、 <strong>是否出国</strong>、
         <strong>出国地点</strong>打卡信息，并会一直上报最健康的状态。如你的信息发生变化，请及时登录官方打卡界面进行信息更新。<br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果有任何问题，欢迎通过<a target="_blank" class="text-success"
-            href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/issues">Issue</a>进行反馈；你也可以通过邮箱<a
-            class="text-success" target="_blank"
+            href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/issues">Issue</a>进行反馈；你也可以通过<i
+            class="fa fa-envelope-o" aria-hidden="true"></i>邮箱<a class="text-success" target="_blank"
             href="mailto:hollowman@hollowman.ml">hollowman@hollowman.ml</a>联系我。<br />
-        <i><strong>注意: </strong></i><br />1. 请不要使用IE浏览本页面! 推荐使用最新版Chrome、Edge或者Firefox。<br />2. 因为Github
+        <i><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 注意: </strong></i><br />1. 请不要使用IE浏览本页面!
+        推荐使用最新版Chrome、Edge或者Firefox。<br />2. 因为Github
         API的限制，请不要频繁尝试提交该网页表单!<br />3. Secrets提交并离开本页面后将无法再查看相关内容!<br />
         4. 再次提交表单将会覆盖上次填写的所有Secrets!<br />5. 默认自动打卡时间为北京时间1,2,7,8月每天早7点(因Github方原因，可能会有半小时左右的延迟)
     </div>
     <div id="repository" class="card" style="display: none;">
-        <h5 class="card-header">Fork仓库操作</h5>
+        <h5 class="card-header"><i class="fa fa-cogs" aria-hidden="true"></i> Fork仓库操作</h5>
         <div class="card-body" id="forkRepoAction" align="center">
-            <button type="button" class="btn btn-outline-primary" id="forkRepoAddr" onclick=""><i class="fa fa-eye" aria-hidden="true"></i> 查看你的Fork仓库</button>
-            <button type="button" class="btn btn-outline-primary" id="workflowAddr"
-                onclick=""><i class="fa fa-eye" aria-hidden="true"></i> 查看你的自动打卡工作流运行历史记录</button>
+            <button type="button" class="btn btn-outline-primary" id="forkRepoAddr" onclick=""><i class="fa fa-eye"
+                    aria-hidden="true"></i> 查看你的Fork仓库</button>
+            <button type="button" class="btn btn-outline-primary" id="workflowAddr" onclick=""><i class="fa fa-eye"
+                    aria-hidden="true"></i> 查看你的自动打卡工作流运行历史记录</button>
             <button type="button" class="btn btn-outline-secondary" id="workflowDispatch"
                 onclick="workflowDispatch();"><i class="fa fa-wrench" aria-hidden="true"></i> 手动打卡一次</button>
             <br />
-            <button type="button" class="btn btn-outline-warning" id="cronJobAddr"
-                onclick="guideToEditCronJob();"><i class="fa fa-calendar" aria-hidden="true"></i> 修改每日打卡时间</button>
-            <button type="button" class="btn btn-outline-warning" id="delaysAddr"
-                onclick="guideToEditDelays();"><i class="fa fa-history" aria-hidden="true"></i> 修改打卡失败延迟</button>
-            <button type="button" class="btn btn-outline-danger" id="workflowSwitch"
-                onclick="activateWorkflow();">启用Workflow自动打卡</button>
-            <button type="button" class="btn btn-outline-danger" onclick="deleteFork();"><i class="fa fa-trash" aria-hidden="true"></i> 删除你的Fork仓库</button>
+            <button type="button" class="btn btn-outline-warning" id="cronJobAddr" onclick="guideToEditCronJob();"><i
+                    class="fa fa-calendar" aria-hidden="true"></i> 修改每日打卡时间</button>
+            <button type="button" class="btn btn-outline-warning" id="delaysAddr" onclick="guideToEditDelays();"><i
+                    class="fa fa-history" aria-hidden="true"></i> 修改打卡失败延迟</button>
+            <button type="button" class="btn btn-outline-danger" id="workflowSwitch" onclick="activateWorkflow();"><i
+                    class='fa fa-check' aria-hidden='true'></i> 启用Workflow自动打卡</button>
+            <button type="button" class="btn btn-outline-danger" onclick="deleteFork();"><i class="fa fa-trash"
+                    aria-hidden="true"></i> 删除你的Fork仓库</button>
         </div>
     </div>
     <div class="card">
-        <h5 class="card-header">Fork仓库工作流运行环境配置(Actions Secrets)</h5>
+        <h5 class="card-header"><i class="fa fa-cog fa-spin" aria-hidden="true"></i> Fork仓库工作流运行环境配置(Actions Secrets)
+        </h5>
         <div class="card-body">
             <div id="setActionsSecret" class="form-group">
                 <div class="alert alert-danger" role="alert">
-                    必填项，登录<a target="_blank" class="text-danger"
+                    <i class="fa fa-check" aria-hidden="true"></i>必填项，登录<a target="_blank" class="text-danger"
                         href="http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn">兰州大学个人工作台</a>必备!
                 </div>
                 <label for="input"><i class="fa fa-id-card" aria-hidden="true"></i> 学号：</label>
@@ -362,84 +383,94 @@
                 <div class="input-group">
                     <input type="password" class="form-control" id="password" placeholder="兰大邮箱密码">
                     <div class="input-group-addon">
-                        <button class="btn btn-outline-secondary" style="height: 100%" id="showHidePassword" onclick="togglePasswordShow();"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                        <button class="btn btn-outline-secondary" style="height: 100%" id="showHidePassword"
+                            onclick="togglePasswordShow();"><i class="fa fa-eye" aria-hidden="true"></i></button>
                     </div>
                 </div>
                 <br />
-                <label for="input"><i class="fa fa-clock-o" aria-hidden="true"></i> 是否启用打卡失败后再次自动打卡：</label>
+                <label for="input"><i class="fa fa-clock-o" aria-hidden="true"></i> 启用打卡失败后再次自动打卡：</label>
                 <input type="checkbox" id="delaysEnable" checked="true">
                 <div class="alert alert-primary" role="alert">
-                    选填项，用来配置打卡结果推送，三选一即可。
+                    <i class="fa fa-check-square-o" aria-hidden="true"></i>选填项，用来配置<i class="fa fa-paper-plane-o"
+                        aria-hidden="true"></i>打卡结果推送，三选一即可。
                 </div>
                 <h5>
-                    <a href="https://pushplus.hxtrip.com/login" target="_blank">PushPlus(推荐渠道)</a>:
+                    <a href="https://pushplus.hxtrip.com/login" target="_blank"><i class="fa fa-wechat"
+                            aria-hidden="true"></i> PushPlus(推荐渠道)</a>:
                 </h5>
                 <div class="alert alert-secondary" role="alert">
-                    <i><strong>使用PushPlus配置微信推送方法: </strong></i><br />
+                    <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 使用PushPlus配置微信推送方法:
+                        </strong></i><br />
                     点开上面链接，用微信登陆并关注公众号后，根据需要复制下图红框所指信息到表单中。
                     <img src="https://pushplus.hxtrip.com/doc/img/c1.png" width="85%" />
                 </div>
-                <label for="input">PPTOKEN：</label>
+                <label for="input"><i class="fa fa-user-secret" aria-hidden="true"></i> PPTOKEN：</label>
                 <input type="text" class="form-control" id="pptoken" placeholder="PushPlus Token(选用PushPlus推送必填)">
                 <br />
-                <label for="input">PPTOPIC：</label>
+                <label for="input"><i class="fa fa-user-secret" aria-hidden="true"></i> PPTOPIC：</label>
                 <input type="text" class="form-control" id="pptopic" placeholder="PushPlus Topic 群组编码(仅一对多推送需要)">
                 <br />
                 <h5>
-                    <a href="http://sc.ftqq.com/" target="_blank"><s>Server酱(或测试号/</s>Turbo版)</a>:
+                    <a href="http://sc.ftqq.com/" target="_blank"><s><i class="fa fa-wechat" aria-hidden="true"></i>
+                            Server酱(或测试号/</s>Turbo版)</a>:
                 </h5>
                 <div class="alert alert-warning" role="alert">
-                    因为微信发布公告将在2021年4月底下线模板消息，现强烈建议Server酱使用以企业微信为主的<a href="https://sct.ftqq.com/" class="text-warning"
-                        target="_blank">Turbo版</a>。
+                    <i class="fa fa-exclamation-triangle"
+                        aria-hidden="true"></i>因为微信发布公告将在2021年4月底下线模板消息，现强烈建议Server酱使用以企业微信为主的<a
+                        href="https://sct.ftqq.com/" class="text-warning" target="_blank">Turbo版</a>。
                 </div>
                 <div class="alert alert-secondary" role="alert">
-                    <i><strong>使用Server酱系列配置微信推送方法: </strong></i><br />
+                    <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 使用Server酱系列配置微信推送方法:
+                        </strong></i><br />
                     请点开上面链接，参考其网站相关教程说明，然后按照下面相关表单提示复制相关信息并粘贴到相应表单中。
                 </div>
-                <label for="input">SERVERCHANSCKEY：</label>
+                <label for="input"><i class="fa fa-user-secret" aria-hidden="true"></i> SERVERCHANSCKEY：</label>
                 <input type="text" class="form-control" id="serverchansckey"
                     placeholder="Server酱(或测试号/Turbo版) SCKEY/SendKey(选用Server酱系列推送必填)">
                 <br />
-                <label for="input">OPENID：</label>
+                <label for="input"><i class="fa fa-user-secret" aria-hidden="true"></i> OPENID：</label>
                 <input type="text" class="form-control" id="openid"
                     placeholder="额外微信公众号用户OpenID(Turbo版企业微信必填0; 老版不填; Server酱测试号发给自己填0，否则如实)">
                 <br />
                 <h5>
-                    Telegram Bot:
+                    <i class="fa fa-telegram" aria-hidden="true"></i> Telegram Bot:
                 </h5>
                 <div class="alert alert-secondary" role="alert">
-                    <i><strong>使用Telegram Bot配置Telegram推送方法: </strong></i><br />
+                    <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 使用Telegram Bot配置Telegram推送方法:
+                        </strong></i><br />
                     1. 在Telegram中添加<a href="https://t.me/botfather" class="text-secondary"
                         target="_blank">BotFather</a>这个账号，然后向其依次发送<strong>/start</strong>,
                     <strong>/newbot</strong>，按照提示设定机器人名字后，即可创建一个属于你自己的全新的机器人。记下该机器人的token并填写到下方<i>TGBOTTOKEN</i>处。(内容类似于<strong>110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw</strong>)<br />
                     <img src="https://gitee.com/hollowman6/LZU-Auto-COVID-Health-Report/raw/main/img/Telegram.jpg"
                         width="50%" /><br />
-                    2. 搜索你刚刚创建的机器人的名字，并给它发送<strong>/start</strong>或者任意一条消息。
-                    <i><strong>特别注意：需要先与机器人之间创建会话，机器人才能下发消息，否则机器人无法主动发送消息，切记!</strong></i><br />
+                    2. 搜索你刚刚创建的机器人的名字，并给它发送<strong>/start</strong>或者任意一条消息。<br />
+                    <i><strong><i class="fa fa-exclamation-triangle"
+                                aria-hidden="true"></i>特别注意：需要先与机器人之间创建会话，机器人才能下发消息，否则机器人无法主动发送消息，切记!</strong></i><br />
                     3. 在Telegram中搜索<a href="https://t.me/userinfobot" class="text-secondary"
                         target="_blank">userinfobot</a>这个账号，并给它发送<strong>/start</strong>或者任意一条消息，它会返回你的账号的id；将该id填写到下方<i>TGCHATID</i>处。<br />
                     4.
                     如果你还想将自己的打卡信息推送给其他账号，请在另外的账号上重复步骤2和3，并修改<i>TGCHATID</i>，多个ID间使用</strong>,</strong>半角逗号分隔即可。<br />
                 </div>
-                <label for="input">TGBOTTOKEN：</label>
+                <label for="input"><i class="fa fa-user-secret" aria-hidden="true"></i> TGBOTTOKEN：</label>
                 <input type="text" class="form-control" id="tgbottoken"
                     placeholder="Telegraph Bot Token(选用Telegram Bot推送必填)">
                 <br />
-                <label for="input">TGCHATID：</label>
+                <label for="input"><i class="fa fa-user-secret" aria-hidden="true"></i> TGCHATID：</label>
                 <input type="text" class="form-control" id="tgchatid"
                     placeholder="Telegram User ID(选用Telegram Bot推送必填)">
                 <br />
             </div>
             <div class="alert alert-danger" role="alert">
-                <i><strong>免责声明: </strong></i><br />
+                <i><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>免责声明: </strong></i><br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于每个人的打卡程序都托管在各自Github账户的Fork仓库中，
                 使用Github Actions进行自动打卡，并且本程序遵循GPL-3.0协议，你可以自由地修改你的Fork仓库中的程序，
                 此外由于打卡程序的时效性，所以作者不能永远确保你的打卡程序的正确性，也不能确保Github平台执行定时任务的稳定性，
                 即<strong>不能确保自动打卡程序始终能按照预期方式工作</strong>。因而<strong>根据打卡结果更新Fork仓库、调整相关程序或打卡信息是用户的义务，
-                    因打卡程序不稳定或者失效而产生的一切后果与原作者无关</strong>。<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击以下按钮即代表你接受该免责声明。
+                    因打卡程序不稳定或者失效而产生的一切后果与原作者无关</strong>。<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击以下按钮即代表你<i
+                    class="fa fa-check" aria-hidden="true"></i>接受该免责声明。
             </div>
-            <p align="center"><button type="button" class="btn btn-primary" id="buildRepo"
-                    onclick="startBuild();"><i class="fa fa-check" aria-hidden="true"></i> 确认上述信息填写正确，开始构建相关仓库!</button></p>
+            <p align="center"><button type="button" class="btn btn-primary" id="buildRepo" onclick="startBuild();"><i
+                        class="fa fa-check" aria-hidden="true"></i> 确认上述信息填写正确，开始构建相关仓库!</button></p>
         </div>
     </div>
     <script>
@@ -590,7 +621,8 @@
                     } else {
                         userid = data.login;
                         document.getElementById("welcome").innerHTML = "<img width='5%' src='" + data.avatar_url +
-                            "'/><br/>欢迎, <a target='_blank' href='" + data
+                            "'/><br/><i class='fa fa-user' aria-hidden='true'></i> 欢迎, <a target='_blank' href='" +
+                            data
                             .html_url +
                             "'>" + data
                             .login + "</a>!";
@@ -687,8 +719,8 @@
                         }
                     } else {
                         workflowActivated = true;
-                        document.getElementById("workflowSwitch").innerText =
-                            "禁用Workflow自动打卡";
+                        document.getElementById("workflowSwitch").innerHTML =
+                            "<i class='fa fa-ban' aria-hidden='true'></i> 禁用Workflow自动打卡";
                         document.getElementById("workflowSwitch").onclick =
                             disableWorkflow;
                         guideToEditCronJobCore();
@@ -817,8 +849,8 @@
                         }
                     } else {
                         workflowActivated = true;
-                        document.getElementById("workflowSwitch").innerText =
-                            "禁用Workflow自动打卡";
+                        document.getElementById("workflowSwitch").innerHTML =
+                            "<i class='fa fa-ban' aria-hidden='true'></i> 禁用Workflow自动打卡";
                         document.getElementById("workflowSwitch").onclick =
                             disableWorkflow;
                         guideToEditDelaysCore();
@@ -1071,7 +1103,8 @@
                     } else {
                         hasForked = true;
                         workflowActivated = false;
-                        document.getElementById("workflowSwitch").innerText = "启用Workflow自动打卡";
+                        document.getElementById("workflowSwitch").innerHTML =
+                            "<i class='fa fa-check' aria-hidden='true'> 启用Workflow自动打卡";
                         document.getElementById("workflowSwitch").onclick = activateWorkflow;
                         document.getElementById("repository").style.display = "";
                         Swal.fire({
@@ -1107,11 +1140,13 @@
                         if (data.state) {
                             if (data.state === "active") {
                                 workflowActivated = true;
-                                document.getElementById("workflowSwitch").innerText = "禁用Workflow自动打卡";
+                                document.getElementById("workflowSwitch").innerHTML =
+                                    "<i class='fa fa-ban' aria-hidden='true'></i> 禁用Workflow自动打卡";
                                 document.getElementById("workflowSwitch").onclick = disableWorkflow;
                             } else {
                                 workflowActivated = false;
-                                document.getElementById("workflowSwitch").innerText = "启用Workflow自动打卡";
+                                document.getElementById("workflowSwitch").innerHTML =
+                                    "<i class='fa fa-check' aria-hidden='true'> 启用Workflow自动打卡";
                                 document.getElementById("workflowSwitch").onclick = activateWorkflow;
                             }
                         }
@@ -1162,8 +1197,8 @@
                         }
                     } else {
                         workflowActivated = true;
-                        document.getElementById("workflowSwitch").innerText =
-                            "禁用Workflow自动打卡";
+                        document.getElementById("workflowSwitch").innerHTML =
+                            "<i class='fa fa-ban' aria-hidden='true'></i> 禁用Workflow自动打卡";
                         document.getElementById("workflowSwitch").onclick =
                             disableWorkflow;
                         workflowDispatchCore();
@@ -1411,8 +1446,8 @@
                             didOpen: () => {
                                 return function () {
                                     workflowActivated = false;
-                                    document.getElementById("workflowSwitch").innerText =
-                                        "启用Workflow自动打卡";
+                                    document.getElementById("workflowSwitch").innerHTML =
+                                        "<i class='fa fa-check' aria-hidden='true'> 启用Workflow自动打卡";
                                     document.getElementById("workflowSwitch").onclick =
                                         activateWorkflow;
                                 }();
@@ -1484,8 +1519,8 @@
                             didOpen: () => {
                                 return function () {
                                     workflowActivated = true;
-                                    document.getElementById("workflowSwitch").innerText =
-                                        "禁用Workflow自动打卡";
+                                    document.getElementById("workflowSwitch").innerHTML =
+                                        "<i class='fa fa-ban' aria-hidden='true'></i> 禁用Workflow自动打卡";
                                     document.getElementById("workflowSwitch").onclick =
                                         disableWorkflow;
                                 }();
@@ -1550,6 +1585,9 @@
     </script>
     <footer>
         <hr />
+        <p align="center">
+            <img class="headpic" src="/img/logo.gif" width="30%" onclick="window.open('/','_blank')">
+        </p>
         <h5 align="center">Copyright &copy; 2018-2021 <img width="20px" class="footerLogo" style="margin-top: -5px"
                 src="/favicon.ico"> Hollow
             Man (<a href="https://github.com/HollowMan6" target="_blank">@HollowMan6</a>). All rights reserved.</h5>
