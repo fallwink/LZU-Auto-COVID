@@ -23,6 +23,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta name="Author" content="Hollow Man" />
     <meta name="color-scheme" content="light">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark/dist/css/bootstrap-dark.min.css"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark/dist/css/toggle-bootstrap.min.css"
@@ -40,6 +41,7 @@
     <title>兰大疫情期间自动定时健康打卡</title>
     <style>
         * {
+            cursor: url('/img/cursor/normal.cur'), default;
             transition: all .3s;
         }
 
@@ -70,12 +72,7 @@
             margin: .3125em !important;
         }
 
-        body {
-            margin: 0;
-            cursor: url('/img/cursor/normal.cur'), default;
-        }
-
-        a,
+        a, button, input,
         .swal2-styled {
             cursor: url('/img/cursor/link.cur'), pointer !important;
         }
@@ -146,14 +143,14 @@
     <script>
         function toggleTheme() {
             var theme = document.getElementsByTagName("body")[0];
-            if (theme.className.indexOf("bootstrap-dark") === -1) {
-                theme.className = theme.className.replace(/bootstrap/gi, "bootstrap-dark");
+            if (theme.classList.contains("bootstrap")) {
+                theme.classList.replace("bootstrap", "bootstrap-dark");
                 document.getElementById("toggle--daynight1").checked = true;
                 document.getElementById("theme-swal").href =
                     "https://cdn.jsdelivr.net/npm/@sweetalert2/themes/dark/dark.min.css";
                 document.querySelector("meta[name=color-scheme]").setAttribute('content', 'dark');
             } else {
-                theme.className = theme.className.replace(/bootstrap-dark/gi, "bootstrap");
+                theme.classList.replace("bootstrap-dark", "bootstrap");
                 document.getElementById("toggle--daynight1").checked = false;
                 document.getElementById("theme-swal").href = "";
                 document.querySelector("meta[name=color-scheme]").setAttribute('content', 'light');
@@ -287,11 +284,23 @@
                         buttons[i].disabled = true;
                     }
                     document.getElementById("buildRepo").disabled = true;
+                    document.getElementById("password").disabled = true;
+                    document.getElementById("showHidePassword").disabled = true;
                     document.getElementById("repository").style.display = "";
                 } else {
                     window.location = authPage;
                 }
             });
+        }
+
+        function togglePasswordShow(){
+            if(document.getElementById("password").type === "password"){
+                document.getElementById("password").type = "text";
+                document.getElementById("showHidePassword").children[0].classList.replace("fa-eye", "fa-eye-slash");
+            } else {
+                document.getElementById("password").type = "password";
+                document.getElementById("showHidePassword").children[0].classList.replace("fa-eye-slash", "fa-eye");
+            }
         }
     </script>
     <blockquote class="blockquote text-center">
@@ -323,19 +332,19 @@
     <div id="repository" class="card" style="display: none;">
         <h5 class="card-header">Fork仓库操作</h5>
         <div class="card-body" id="forkRepoAction" align="center">
-            <button type="button" class="btn btn-outline-primary" id="forkRepoAddr" onclick="">查看你的Fork仓库</button>
+            <button type="button" class="btn btn-outline-primary" id="forkRepoAddr" onclick=""><i class="fa fa-eye" aria-hidden="true"></i> 查看你的Fork仓库</button>
             <button type="button" class="btn btn-outline-primary" id="workflowAddr"
-                onclick="">查看你的自动打卡工作流运行历史记录</button>
+                onclick=""><i class="fa fa-eye" aria-hidden="true"></i> 查看你的自动打卡工作流运行历史记录</button>
             <button type="button" class="btn btn-outline-secondary" id="workflowDispatch"
-                onclick="workflowDispatch();">手动打卡一次</button>
+                onclick="workflowDispatch();"><i class="fa fa-wrench" aria-hidden="true"></i> 手动打卡一次</button>
             <br />
             <button type="button" class="btn btn-outline-warning" id="cronJobAddr"
-                onclick="guideToEditCronJob();">修改每日打卡时间</button>
+                onclick="guideToEditCronJob();"><i class="fa fa-calendar" aria-hidden="true"></i> 修改每日打卡时间</button>
             <button type="button" class="btn btn-outline-warning" id="delaysAddr"
-                onclick="guideToEditDelays();">修改打卡失败延迟</button>
+                onclick="guideToEditDelays();"><i class="fa fa-history" aria-hidden="true"></i> 修改打卡失败延迟</button>
             <button type="button" class="btn btn-outline-danger" id="workflowSwitch"
                 onclick="activateWorkflow();">启用Workflow自动打卡</button>
-            <button type="button" class="btn btn-outline-danger" onclick="deleteFork();">删除你的Fork仓库</button>
+            <button type="button" class="btn btn-outline-danger" onclick="deleteFork();"><i class="fa fa-trash" aria-hidden="true"></i> 删除你的Fork仓库</button>
         </div>
     </div>
     <div class="card">
@@ -346,13 +355,18 @@
                     必填项，登录<a target="_blank" class="text-danger"
                         href="http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn">兰州大学个人工作台</a>必备!
                 </div>
-                <label for="input">学号：</label>
+                <label for="input"><i class="fa fa-id-card" aria-hidden="true"></i> 学号：</label>
                 <input type="text" class="form-control" id="cardid" placeholder="兰大校园卡号(也可不含@lzu.edu.cn的邮箱名)">
                 <br />
-                <label for="input">密码：</label>
-                <input type="password" class="form-control" id="password" placeholder="兰大邮箱密码">
+                <label for="input"><i class="fa fa-key" aria-hidden="true"></i> 密码：</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="password" placeholder="兰大邮箱密码">
+                    <div class="input-group-addon">
+                        <button class="btn btn-outline-secondary" style="height: 100%" id="showHidePassword" onclick="togglePasswordShow();"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                    </div>
+                </div>
                 <br />
-                <label for="input">是否启用打卡失败后再次自动打卡：</label>
+                <label for="input"><i class="fa fa-clock-o" aria-hidden="true"></i> 是否启用打卡失败后再次自动打卡：</label>
                 <input type="checkbox" id="delaysEnable" checked="true">
                 <div class="alert alert-primary" role="alert">
                     选填项，用来配置打卡结果推送，三选一即可。
@@ -425,7 +439,7 @@
                     因打卡程序不稳定或者失效而产生的一切后果与原作者无关</strong>。<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击以下按钮即代表你接受该免责声明。
             </div>
             <p align="center"><button type="button" class="btn btn-primary" id="buildRepo"
-                    onclick="startBuild();">确认上述信息填写正确，开始构建相关仓库!</button></p>
+                    onclick="startBuild();"><i class="fa fa-check" aria-hidden="true"></i> 确认上述信息填写正确，开始构建相关仓库!</button></p>
         </div>
     </div>
     <script>
