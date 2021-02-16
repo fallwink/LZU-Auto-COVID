@@ -159,12 +159,14 @@
         function toggleTheme() {
             var theme = document.getElementsByTagName("body")[0];
             if (theme.classList.contains("bootstrap")) {
+                sessionStorage.setItem("night", true);
                 theme.classList.replace("bootstrap", "bootstrap-dark");
                 document.getElementById("toggle--daynight1").checked = true;
                 document.getElementById("theme-swal").href =
                     "https://cdn.jsdelivr.net/npm/@sweetalert2/themes/dark/dark.min.css";
                 document.querySelector("meta[name=color-scheme]").setAttribute('content', 'dark');
             } else {
+                sessionStorage.setItem("night", false);
                 theme.classList.replace("bootstrap-dark", "bootstrap");
                 document.getElementById("toggle--daynight1").checked = false;
                 document.getElementById("theme-swal").href = "";
@@ -173,7 +175,9 @@
         }
 
         var prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-        if (prefersDarkScheme.matches) {
+        if (sessionStorage.getItem("night") === "true") {
+            toggleTheme();
+        } else if (prefersDarkScheme.matches && !sessionStorage.getItem("night")) {
             toggleTheme();
         }
 
@@ -325,7 +329,8 @@
                 Actions</cite></footer>
     </blockquote>
     <hr />
-    <h3 id="welcome" class="text-center"><i class="fa fa-sign-in" aria-hidden="true"></i> 尚未登录</h3>
+    <h3 id="welcome" class="text-center"><a onclick="window.location.reload();"><i class="fa fa-sign-in"
+                aria-hidden="true"></i> 尚未登录</a></h3>
     <div class="alert alert-success" role="alert">
         <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 简介: </strong></i><br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写完表单相关信息并且提交后，本网页软件会将<a target="_blank" class="text-success"
