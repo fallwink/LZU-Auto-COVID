@@ -240,6 +240,10 @@ helm uninstall lzu-auto-covid-health-report --namespace lzu-auto-covid-health-re
 kubectl delete ns lzu-auto-covid-health-report
 ```
 
+## Heroku
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://dashboard.heroku.com/new?template=https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report) 
+
 ## Q&A
 
 *注:* 如要在自己的Linux服务器上使用crontab执行定时任务来进行自动打卡，推荐使用[Docker](#docker)。你也可以clone本仓库，安装好相关Python依赖后改编[entrypoint.sh](entrypoint.sh)文件中python程序的路径，将上述Actions Secret变量名和值分别设置为系统环境变量(另外增加一个DELAYS为打卡等待时间，值同[使用方法](#使用方法)步骤6中要求)，即可运行。
