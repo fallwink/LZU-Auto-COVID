@@ -14,32 +14,32 @@
         "PPTOKEN": {
             "description": "PushPlus Token(选用PushPlus推送必填*)",
             "value": "",
-            "required": "false"
+            "required": false
         },
         "PPTOPIC": {
             "description": "PushPlus Topic 群组编码(仅一对多推送需要)",
             "value": "",
-            "required": "false"
+            "required": false
         },
         "SERVERCHANSCKEY": {
             "description": "Server酱(或测试号/Turbo版) SCKEY/SendKey(选用Server酱系列推送必填)",
             "value": "",
-            "required": "false"
+            "required": false
         },
         "OPENID": {
             "description": "额外微信公众号用户OpenID(Turbo版测试号仅发给自己填0, 否则填写该用户OpenID, 其他通道必填0; 老版不填)",
             "value": "0",
-            "required": "false"
+            "required": false
         },
         "TGBOTTOKEN": {
             "description": "Telegraph Bot Token(选用Telegram Bot推送必填*)",
             "value": "",
-            "required": "false"
+            "required": false
         },
         "TGCHATID": {
             "description": "Telegram User ID(选用Telegram Bot推送必填*)",
             "value": "",
-            "required": "false"
+            "required": false
         },
         "TZ": {
             "description": "自动打卡任务执行时区(默认为GMT +8)",
@@ -52,7 +52,7 @@
         "DELAYS": {
             "description": "打卡失败延迟时间，遵循Linux Sleep命令时间表达式(默认为30分钟，不启用则不填)",
             "value": "30m",
-            "required": "false"
+            "required": false
         }
     },
     "website": "https://hollowman.ml/LZU-Auto-COVID-Health-Report/",
