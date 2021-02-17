@@ -103,9 +103,11 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 
 如果需要转换回普通的Server酱请将`OPENID` Actions secret删除即可。
 
+### 可选：企业微信/钉钉/飞书等推送打卡结果
+
 #### Server酱Turbo版
 
-按照[Server酱Turbo版](https://sct.ftqq.com/)教程在他们平台上企业微信配置成功之后，同Server酱测试号版处描述操作之后，然后只需要将`OPENID` value值置为`0`即可正常使用企业微信推送消息啦。
+按照[Server酱Turbo版](https://sct.ftqq.com/)教程在他们平台上配置成功之后，同Server酱测试号版处描述操作之后，然后只需要将`OPENID` value值置为`0`即可正常使用企业微信推送消息啦。
 
 ### 可选：Telegram推送打卡结果
 
@@ -345,9 +347,11 @@ If you want to use [ServerChan Testing Subscription Version](https://sct.ftqq.co
 
 If you need to switch back to normal ServerChan, please delete the `OPENID` actions secret.
 
+### Optional: Enterprise Wechat / Dingtalk / Feishu push results
+
 ### ServerChan Turbo Version
 
-According to [ServerChan Turbo Version](https://sct.ftqq.com/) tutorial, configuring Enterprise Wechat message pushing on their platform, then after doing the same actions as the tutorial describes in the ServerChan Testing Subscription Version part, you just need to set the `openid` value to `0` so that this way can be functional.
+According to [ServerChan Turbo Version](https://sct.ftqq.com/) tutorial, configuring message pushing on their platform, then after doing the same actions as the tutorial describes in the ServerChan Testing Subscription Version part, you just need to set the `openid` value to `0` so that this way can be functional.
 
 ### Optional: Telegram push results
 

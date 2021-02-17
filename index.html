@@ -246,7 +246,7 @@
         }
 
         if (getUrlParam("error")) {
-            authFailed(getUrlParam("error"), getUrlParam("error_description"), getUrlParam("error_uri"))
+            authFailed(getUrlParam("error"), getUrlParam("error_description"), getUrlParam("error_uri"));
         } else if (getUrlParam("code")) {
             var codeAPI = 'https://lzu-auto-covid-health-report.herokuapp.com/authenticate/' + getUrlParam("code");
             Swal.fire({
@@ -335,9 +335,9 @@
         <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 简介: </strong></i><br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写完表单相关信息并且提交后，本网页软件会将<a target="_blank" class="text-success"
             href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report">源仓库</a>自动Fork到你的<i class="fa fa-github"
-            aria-hidden="true"></i>Github账户下并自动配置相关打卡信息到你的Github的Fork仓库工作流运行环境中(Actions
+            aria-hidden="true"></i> Github账户下并自动配置相关打卡信息到你的Github的Fork仓库工作流运行环境中(Actions
         Secrets)，通过预定义在工作流中的定时任务和Github Actions
-        实现全自动打卡，同时支持打卡结果推送到微信和Telegram。本网页软件通过Github
+        实现全自动打卡，同时支持打卡结果推送到微信、Telegram等社交软件。本网页软件通过Github
         OAuth以及相关API实现，不会记录你的任何信息，打卡工作流托管于你的Github的对应Fork仓库中，实现了隐私保护，请放心使用。如果检测到已经Fork过本仓库，软件还提供了一系列管理以及自定义功能操作。<br />
         <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 说明: </strong></i>
         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;强烈建议你自己在官方平台打一次卡之后再使用本软件，从而初始化平台打卡系统中的数据。本软件将会一直沿用你在兰州大学个人工作台打卡系统中最新填报的<strong>是否在校</strong>、
@@ -345,7 +345,7 @@
         <strong>出国地点</strong>打卡信息，并会一直上报最健康的状态。如你的信息发生变化，请及时登录官方打卡界面进行信息更新。<br />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果有任何问题，欢迎通过<a target="_blank" class="text-success"
             href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/issues">Issue</a>进行反馈；你也可以通过<i
-            class="fa fa-envelope-o" aria-hidden="true"></i>邮箱<a class="text-success" target="_blank"
+            class="fa fa-envelope-o" aria-hidden="true"></i> 邮箱<a class="text-success" target="_blank"
             href="mailto:hollowman@hollowman.ml">hollowman@hollowman.ml</a>联系我。<br />
         <i><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 注意: </strong></i><br />1. 请不要使用IE浏览本页面!
         推荐使用最新版Chrome、Edge或者Firefox。<br />2. 因为Github
@@ -378,7 +378,7 @@
         <div class="card-body">
             <div id="setActionsSecret" class="form-group">
                 <div class="alert alert-danger" role="alert">
-                    <i class="fa fa-check" aria-hidden="true"></i>必填项，登录<a target="_blank" class="text-danger"
+                    <i class="fa fa-check" aria-hidden="true"></i> 必填项，登录<a target="_blank" class="text-danger"
                         href="http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn">兰州大学个人工作台</a>必备!
                 </div>
                 <label for="input"><i class="fa fa-id-card" aria-hidden="true"></i> 学号：</label>
@@ -396,8 +396,8 @@
                 <label for="input"><i class="fa fa-clock-o" aria-hidden="true"></i> 启用打卡失败后再次自动打卡：</label>
                 <input type="checkbox" id="delaysEnable" checked="true">
                 <div class="alert alert-primary" role="alert">
-                    <i class="fa fa-check-square-o" aria-hidden="true"></i>选填项，用来配置<i class="fa fa-paper-plane-o"
-                        aria-hidden="true"></i>打卡结果推送，三选一即可。
+                    <i class="fa fa-check-square-o" aria-hidden="true"></i> 选填项，用来配置<i class="fa fa-paper-plane-o"
+                        aria-hidden="true"></i> 打卡结果推送，三选一即可。
                 </div>
                 <h5>
                     <a href="https://pushplus.hxtrip.com/login" target="_blank"><i class="fa fa-wechat"
@@ -416,16 +416,16 @@
                 <input type="text" class="form-control" id="pptopic" placeholder="PushPlus Topic 群组编码(仅一对多推送需要)">
                 <br />
                 <h5>
-                    <a href="http://sc.ftqq.com/" target="_blank"><s><i class="fa fa-wechat" aria-hidden="true"></i>
+                    <a href="http://sc.ftqq.com/" target="_blank"><s>
                             Server酱(或测试号/</s>Turbo版)</a>:
                 </h5>
                 <div class="alert alert-warning" role="alert">
                     <i class="fa fa-exclamation-triangle"
-                        aria-hidden="true"></i>因为微信发布公告将在2021年4月底下线模板消息，现强烈建议Server酱使用以企业微信为主的<a
-                        href="https://sct.ftqq.com/" class="text-warning" target="_blank">Turbo版</a>。
+                        aria-hidden="true"></i> 因为微信公告将在2021年4月底下线模板消息，现强烈建议Server酱使用支持多通道的<a
+                        href="https://sct.ftqq.com/" class="text-warning" target="_blank">Turbo版(除测试号)</a>。
                 </div>
                 <div class="alert alert-secondary" role="alert">
-                    <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 使用Server酱系列配置微信推送方法:
+                    <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 使用Server酱系列配置微信/钉钉/飞书等推送方法:
                         </strong></i><br />
                     请点开上面链接，参考其网站相关教程说明，然后按照下面相关表单提示复制相关信息并粘贴到相应表单中。
                 </div>
@@ -435,7 +435,7 @@
                 <br />
                 <label for="input"><i class="fa fa-user-secret" aria-hidden="true"></i> OPENID：</label>
                 <input type="text" class="form-control" id="openid"
-                    placeholder="额外微信公众号用户OpenID(Turbo版企业微信必填0; 老版不填; Server酱测试号发给自己填0，否则如实)">
+                    placeholder="额外微信公众号用户OpenID(Turbo版测试号仅发给自己填0, 否则填写该用户OpenID, 其他通道必填0; 老版不填)">
                 <br />
                 <h5>
                     <i class="fa fa-telegram" aria-hidden="true"></i> Telegram Bot:
@@ -450,7 +450,7 @@
                         width="50%" /><br />
                     2. 搜索你刚刚创建的机器人的名字，并给它发送<strong>/start</strong>或者任意一条消息。<br />
                     <i><strong><i class="fa fa-exclamation-triangle"
-                                aria-hidden="true"></i>特别注意：需要先与机器人之间创建会话，机器人才能下发消息，否则机器人无法主动发送消息，切记!</strong></i><br />
+                                aria-hidden="true"></i> 特别注意：需要先与机器人之间创建会话，机器人才能下发消息，否则机器人无法主动发送消息，切记!</strong></i><br />
                     3. 在Telegram中搜索<a href="https://t.me/userinfobot" class="text-secondary"
                         target="_blank">userinfobot</a>这个账号，并给它发送<strong>/start</strong>或者任意一条消息，它会返回你的账号的id；将该id填写到下方<i>TGCHATID</i>处。<br />
                     4.
@@ -466,13 +466,13 @@
                 <br />
             </div>
             <div class="alert alert-danger" role="alert">
-                <i><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>免责声明: </strong></i><br />
+                <i><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 免责声明: </strong></i><br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于每个人的打卡程序都托管在各自Github账户的Fork仓库中，
                 使用Github Actions进行自动打卡，并且本程序遵循GPL-3.0协议，你可以自由地修改你的Fork仓库中的程序，
                 此外由于打卡程序的时效性，所以作者不能永远确保你的打卡程序的正确性，也不能确保Github平台执行定时任务的稳定性，
                 即<strong>不能确保自动打卡程序始终能按照预期方式工作</strong>。因而<strong>根据打卡结果更新Fork仓库、调整相关程序或打卡信息是用户的义务，
                     因打卡程序不稳定或者失效而产生的一切后果与原作者无关</strong>。<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击以下按钮即代表你<i
-                    class="fa fa-check" aria-hidden="true"></i>接受该免责声明。
+                    class="fa fa-check" aria-hidden="true"></i> 接受该免责声明。
             </div>
             <p align="center"><button type="button" class="btn btn-primary" id="buildRepo" onclick="startBuild();"><i
                         class="fa fa-check" aria-hidden="true"></i> 确认上述信息填写正确，开始构建相关仓库!</button></p>
@@ -506,7 +506,7 @@
                 })
                 .then(async data => {
                     if (data.message) {
-                        authFailed(data.message, "", data.documentation_url)
+                        authFailed(data.message, "", data.documentation_url);
                     } else {
                         repoPublicKey = data.key;
                         repoKeyID = data.key_id;
@@ -544,7 +544,7 @@
                     .then(data => {
                         if (data) {
                             if (data.message) {
-                                authFailed(data.message, "", data.documentation_url)
+                                authFailed(data.message, "", data.documentation_url);
                             }
                         }
                     }).catch(function (error) {
@@ -565,7 +565,7 @@
                     .then(data => {
                         if (data) {
                             if (data.message) {
-                                authFailed(data.message, "", data.documentation_url)
+                                authFailed(data.message, "", data.documentation_url);
                             }
                         }
                     }).catch(function (error) {
@@ -622,7 +622,7 @@
                 })
                 .then(data => {
                     if (data.message) {
-                        authFailed(data.message, "", data.documentation_url)
+                        authFailed(data.message, "", data.documentation_url);
                     } else {
                         userid = data.login;
                         document.getElementById("welcome").innerHTML = "<img width='5%' src='" + data.avatar_url +
@@ -785,7 +785,7 @@
                                         }
                                     });
                                 } else {
-                                    authFailed(data.message, "", data.documentation_url)
+                                    authFailed(data.message, "", data.documentation_url);
                                 }
                             }).catch(function (error) {
                                 networkErr(error, guideToEditCronJob);
@@ -915,7 +915,7 @@
                                         }
                                     });
                                 } else {
-                                    authFailed(data.message, "", data.documentation_url)
+                                    authFailed(data.message, "", data.documentation_url);
                                 }
                             }).catch(function (error) {
                                 console.log(error);
@@ -956,7 +956,7 @@
                             }
                         });
                     } else {
-                        authFailed(data.message, "", data.documentation_url)
+                        authFailed(data.message, "", data.documentation_url);
                     }
                 }).catch(function (error) {
                     networkErr(error, buildAllRepoSecrets)
@@ -1104,7 +1104,7 @@
                 })
                 .then(data => {
                     if (data.message) {
-                        authFailed(data.message, "", data.documentation_url)
+                        authFailed(data.message, "", data.documentation_url);
                     } else {
                         hasForked = true;
                         workflowActivated = false;
@@ -1270,7 +1270,7 @@
                             .then(data => {
                                 if (data) {
                                     if (data.message != "Not Found") {
-                                        authFailed(data.message, "", data.documentation_url)
+                                        authFailed(data.message, "", data.documentation_url);
                                     } else {
                                         Swal.fire({
                                             icon: 'error',
@@ -1425,7 +1425,7 @@
                 .then(data => {
                     if (data) {
                         if (data.message != "Not Found") {
-                            authFailed(data.message, "", data.documentation_url)
+                            authFailed(data.message, "", data.documentation_url);
                         } else {
                             Swal.fire({
                                 icon: 'error',
