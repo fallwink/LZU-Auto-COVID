@@ -20,7 +20,7 @@ def job_function():
     os.system("rm information.txt")
     if failure and delays:
         os.system("echo 'Sleep for " + delays +
-                  " and the health report will start again!")
+                  " and the health report will start again!'")
         os.system("sleep " + delays)
         job_function()
 

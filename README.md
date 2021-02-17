@@ -242,7 +242,10 @@ kubectl delete ns lzu-auto-covid-health-report
 
 ## Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://dashboard.heroku.com/new?template=https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report) 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://dashboard.heroku.com/new?template=https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report)
+
+点击以上按钮部署成功后，请确保Overview中Dyno formation栏目中的clock为ON状态，如果不是请按开启：
+![](img/heroku.png)
 
 ## Q&A
 
@@ -493,6 +496,9 @@ kubectl delete ns lzu-auto-covid-health-report
 ## Heroku
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://dashboard.heroku.com/new?template=https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report) 
+
+After sccessfully deployed the app, please make sure that the clock is ON at Dyno formation part in the Overview Section. If it's not, turn it on:
+![](img/heroku.png)
 
 ## Q&A
 
