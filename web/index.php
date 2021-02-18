@@ -35,7 +35,7 @@
             }
         }
         if (isset($_GET['report'])) {
-            system("cd .. && python jobs.py");
+            system("python jobs.py");
             echo "alert('已手动触发打卡一次, 可能最多需要等待5分钟才会显示在日志中!');";
             echo "window.location = window.location.protocol + '//' + window.location.hostname + window.location.pathname";
             if ($refreshing) {
