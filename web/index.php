@@ -59,7 +59,7 @@
     if (is_file(__DIR__ . '/../vendor/autoload.php')) {
         require_once __DIR__ . '/../vendor/autoload.php';
     }
-    $file_path = '../information.txt';
+    $file_path = '../logs.txt';
     if (file_exists($file_path)) {
         $fp = fopen($file_path, "r");
         $str = fread($fp, filesize($file_path));
