@@ -35,7 +35,7 @@
             }
         }
         if (isset($_GET['report'])) {
-            system("python jobs.py");
+            system("cd /../ && python jobs.py");
             echo "alert('已手动触发打卡一次, 可能最多需要等待5分钟才会显示在日志中!');";
             echo "window.location = window.location.protocol + '//' + window.location.hostname + window.location.pathname";
             if ($refreshing) {
@@ -59,7 +59,7 @@
     if (is_file(__DIR__ . '/../vendor/autoload.php')) {
         require_once __DIR__ . '/../vendor/autoload.php';
     }
-    $file_path = '../logs.txt';
+    $file_path = '/../logs.txt';
     if (file_exists($file_path)) {
         $fp = fopen($file_path, "r");
         $str = fread($fp, filesize($file_path));
