@@ -2,6 +2,13 @@
     "name": "LZU-Auto-COVID-Health-Report-Heroku",
     "description": "LZU Auto COVID Health Report Using Heroku. (兰大疫情期间自动定时健康打卡)",
     "keywords": ["lanzhou university", "auto", "covid", "health report"],
+    "buildpacks": [{
+            "url": "heroku/php"
+        },
+        {
+            "url": "heroku/python"
+        }
+    ],
     "env": {
         "CARDID": {
             "description": "(*必填)兰大校园卡号(也可不含@lzu.edu.cn的邮箱名)",
