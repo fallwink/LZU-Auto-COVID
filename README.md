@@ -247,7 +247,7 @@ kubectl delete ns lzu-auto-covid-health-report
 点击以上按钮部署成功后，请确保Overview中Dyno formation栏目中的clock为ON状态，如果不是请开启：
 ![](img/Heroku.png)
 
-完成后你可以访问应用Web界面进行日志查看和手动打卡。
+完成后你可以访问应用Web界面手动进行打卡来进行测试，并可以查看手动打卡的日志。
 
 ## Q&A
 
@@ -502,7 +502,7 @@ kubectl delete ns lzu-auto-covid-health-report
 After sccessfully deployed the app, please make sure that the clock is ON at Dyno formation part in the Overview Section. If it's not, turn it on:
 ![](img/Heroku.png)
 
-After that, you can visit the application web interface to view logs or report manually.
+After that, you can visit the application web interface, report manually to test and view manual report logs.
 
 ## Q&A
 

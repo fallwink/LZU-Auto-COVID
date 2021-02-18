@@ -1,5 +1,5 @@
 <!--
-  LZU Auto COVID Health Report Using Github Actions Management Front-end
+  LZU COVID Health Report Dispatch Manually Front-end
 
   Copyright © 2021 Hollow Man(@HollowMan6). All rights reserved.
 
@@ -14,15 +14,15 @@
 <head>
     <meta charset="UTF-8">
     <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=0.6,maximum-scale=1.5,minimum-scale=0.6,user-scalable=yes">
-    <meta name="keywords" content="Hollow Man, 蒋嵩林, 兰州大学, 兰大, 疫情, 定时, 健康打卡, 自动" />
-    <meta name="description" content="兰大疫情期间自动定时健康打卡管理前端。LZU Auto COVID Health Report Using Github Actions Management Front-end." />
+    <meta name="keywords" content="兰州大学, 兰大, 疫情, 健康打卡, 自动" />
+    <meta name="description" content="兰州大学疫情健康打卡手动触发前端。LZU COVID Health Report Dispatch Manually Front-end." />
     <meta name="robots" content="all" />
     <meta name="renderer" content="webkit" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta name="Author" content="Hollow Man" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css/out/water.css">
     <link rel="icon" href="https://avatars.githubusercontent.com/oa/1472343?s=64&v=4" type="image/png">
-    <title>兰大疫情期间自动定时健康打卡</title>
+    <title>兰州大学疫情健康打卡手动触发</title>
     <script>
         <?php
         $refreshing = false;
@@ -47,13 +47,13 @@
 </head>
 
 <body>
-    <h1 align="center">兰州大学疫情期间自动定时健康打卡</h1>
-    <h3 align="center">LZU Auto COVID Health Report</h3>
+    <h1 align="center">兰州大学疫情健康打卡手动触发</h1>
+    <h3 align="center">LZU COVID Health Report Dispatch Manually</h3>
     <p align="center">
         <button onclick="window.location = window.location.protocol + '//' + window.location.hostname + window.location.pathname + '?report=1'">手动打卡一次</button>
         <button onclick="window.location.reload();">刷新</button>
     </p>
-    <h2>日志记录</h2>
+    <h2>手动打卡日志记录</h2>
     <pre><code>
     <?php
     if (is_file(__DIR__ . '/../vendor/autoload.php')) {
