@@ -156,6 +156,36 @@
         <label class="toggle--btn" for="toggle--daynight1"><span class="toggle--feature"></span></label>
     </div>
     <script>
+        function createNotify(title, options) {
+            var PERMISSON_GRANTED = "granted";
+            var PERMISSON_DENIED = "denied";
+            var PERMISSON_DEFAULT = "default";
+
+            options.requireInteraction = true;
+            options.vibrate = [200, 100, 200];
+            options.icon = "https://avatars.githubusercontent.com/oa/1472343?s=64&v=4";
+
+            if (Notification.permission === PERMISSON_GRANTED) {
+                notify(title, options);
+            } else {
+                Notification.requestPermission(function (res) {
+                    if (res === PERMISSON_GRANTED) {
+                        notify(title, options);
+                    }
+                });
+            }
+
+            function notify($title, $options) {
+                var notification = new Notification($title, $options);
+                notification.onclick = function (event) {
+                    if (event.target.data) {
+                        window.open(event.target.data);
+                    }
+                    window.focus();
+                };
+            }
+        }
+
         function toggleTheme() {
             var theme = document.getElementsByTagName("body")[0];
             if (theme.classList.contains("bootstrap")) {
@@ -420,9 +450,9 @@
                             Server酱(或测试号/</s>Turbo版)</a>:
                 </h5>
                 <div class="alert alert-warning" role="alert">
-                    <i class="fa fa-exclamation-triangle"
-                        aria-hidden="true"></i> 因为微信公告将在2021年4月底下线模板消息，现强烈建议Server酱使用支持多通道的<a
-                        href="https://sct.ftqq.com/" class="text-warning" target="_blank">Turbo版(除测试号)</a>。
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    因为微信公告将在2021年4月底下线模板消息，现强烈建议Server酱使用支持多通道的<a href="https://sct.ftqq.com/" class="text-warning"
+                        target="_blank">Turbo版(除测试号)</a>。
                 </div>
                 <div class="alert alert-secondary" role="alert">
                     <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 使用Server酱系列配置微信/钉钉/飞书等推送方法:
@@ -449,8 +479,8 @@
                     <img src="https://gitee.com/hollowman6/LZU-Auto-COVID-Health-Report/raw/main/img/Telegram.jpg"
                         width="50%" /><br />
                     2. 搜索你刚刚创建的机器人的名字，并给它发送<strong>/start</strong>或者任意一条消息。<br />
-                    <i><strong><i class="fa fa-exclamation-triangle"
-                                aria-hidden="true"></i> 特别注意：需要先与机器人之间创建会话，机器人才能下发消息，否则机器人无法主动发送消息，切记!</strong></i><br />
+                    <i><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                            特别注意：需要先与机器人之间创建会话，机器人才能下发消息，否则机器人无法主动发送消息，切记!</strong></i><br />
                     3. 在Telegram中搜索<a href="https://t.me/userinfobot" class="text-secondary"
                         target="_blank">userinfobot</a>这个账号，并给它发送<strong>/start</strong>或者任意一条消息，它会返回你的账号的id；将该id填写到下方<i>TGCHATID</i>处。<br />
                     4.
@@ -642,12 +672,18 @@
         function setupLinks() {
             document.getElementById("forkRepoAddr").onclick = function () {
                 window.open("https://github.com/" + userid + "/LZU-Auto-COVID-Health-Report", '',
-                    'width=900,height=680,top=80,scrollbars=yes')
+                    'width=900,height=680,top=80,scrollbars=yes');
+                createNotify("已打开页面", {
+                    body: "已经为你打卡Fork仓库页面，点击本通知返回!"
+                });
             };
             document.getElementById("workflowAddr").onclick = function () {
                 window.open("https://github.com/" + userid +
                     "/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22",
                     '', 'width=900,height=680,top=80,scrollbars=yes')
+                createNotify("已打开页面", {
+                    body: "已经为你打卡工作流运行历史页面，点击本通知返回!"
+                });
             };
         }
 
@@ -1306,6 +1342,9 @@
                                                     '',
                                                     'width=900,height=680,top=80,scrollbars=yes'
                                                 );
+                                                createNotify("已打开页面", {
+                                                    body: "已经为你打卡工作流运行页面，请稍等，正在获取触发的打卡，会为你自动跳转。点击本通知返回!"
+                                                });
                                                 checkInterval = window
                                                     .setInterval(
                                                         checkWorkflowLink,
