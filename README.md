@@ -36,7 +36,11 @@
 
 [工作流](.github/workflows/autoreport.yml)
 
-全自动打卡，个人信息隐私保护，支持打卡结果推送到社交软件，支持[Fork本仓库直接使用工作流(推荐)](#使用方法)，[自行创建仓库使用工作流](#自行配置工作流)，[CronTab/Python后台定时调度运行](#qa)，[Docker运行](#docker)，[Kubernetes直接运行](#kubernetes)，[使用Helm包管理在Kubernetes运行](#helm)，[Heroku部署运行](#heroku)等。
+全自动打卡，个人信息隐私保护，支持打卡结果推送到社交软件。**新增**支持将打卡消息以通知的形式推送到浏览器，从而实现直接推送到安卓/Linux/Windows/Mac等通知栏处。(只需要在网页前端`Fork仓库操作`处点击`启用浏览器订阅打卡消息`，并且按浏览器提示打开通知权限就好啦!)。
+
+![](img/Notification.png)
+
+支持[Fork本仓库直接使用工作流(推荐)](#使用方法)，[自行创建仓库使用工作流](#自行配置工作流)，[CronTab/Python后台定时调度运行](#qa)，[Docker运行](#docker)，[Kubernetes直接运行](#kubernetes)，[使用Helm包管理在Kubernetes运行](#helm)，[Heroku部署运行](#heroku)等。
 
 [Docker镜像](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report)支持在`amd64`、`arm64`、`arm32v7`、`arm32v6`、`ppc64le`、`s390x`、`i386`多架构(包括大型机、普通PC机以及树莓派等开发板)运行。
 
@@ -293,7 +297,11 @@ Source Github Repository Link: https://github.com/HollowMan6/LZU-Auto-COVID-Heal
 
 [Workflow](.github/workflows/autoreport.yml)
 
-Fully automatic reporting, privacy protection for personal information, support pushing results to chat APPs, support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab / Python schedule](#qa)，[run with Docker](#docker)，[run with Kubernetes directly](#kubernetes), [Use Helm Package Manager to run in Kubernetes](#helm), [use Heroku to deploy](#heroku) etc.
+Fully automatic reporting, privacy protection for personal information, support pushing results to chat APPs. **Newly Added** support to push the report to the browser in the form of notification, so to directly push the notification to the notification bar of Android / Linux / Windows / Mac. (just click 启用浏览器订阅打卡消息 in the Fork仓库操作 part of the web page, and then open the notification permission according to the browser prompt).
+
+![](img/Notification.png)
+
+support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab / Python schedule](#qa)，[run with Docker](#docker)，[run with Kubernetes directly](#kubernetes), [Use Helm Package Manager to run in Kubernetes](#helm), [use Heroku to deploy](#heroku) etc.
 
 [Docker Image](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report) support running on multiple architectures such as `amd64`, `arm64`, `arm32v7`, `arm32v6`, `ppc64le`, `s390x`, `i386` including Mainframe, PC and Demoboard like Raspberry Pi.
 
