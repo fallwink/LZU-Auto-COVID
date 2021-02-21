@@ -157,32 +157,38 @@
     </div>
     <script>
         function createNotify(title, options) {
-            var PERMISSON_GRANTED = "granted";
-            var PERMISSON_DENIED = "denied";
-            var PERMISSON_DEFAULT = "default";
-
             options.requireInteraction = true;
             options.vibrate = [200, 100, 200];
             options.icon = "https://avatars.githubusercontent.com/oa/1472343?s=64&v=4";
 
-            if (Notification.permission === PERMISSON_GRANTED) {
+            if (!window.Notification || !Notification.requestPermission) {
+                return false;
+            } else if (Notification.permission === "granted") {
                 notify(title, options);
             } else {
                 Notification.requestPermission(function (res) {
-                    if (res === PERMISSON_GRANTED) {
+                    if (res === "granted") {
                         notify(title, options);
                     }
                 });
             }
 
             function notify($title, $options) {
-                var notification = new Notification($title, $options);
-                notification.onclick = function (event) {
-                    if (event.target.data) {
-                        window.open(event.target.data);
+                try {
+                    var notification = new Notification($title, $options);
+                    notification.onclick = function (event) {
+                        if (event.target.data) {
+                            window.open(event.target.data);
+                        }
+                        window.focus();
+                    };
+                } catch (e) {
+                    if (e.name == 'TypeError') {
+                        navigator.serviceWorker.ready.then(function (registration) {
+                            registration.showNotification($title, $options);
+                        });
                     }
-                    window.focus();
-                };
+                }
             }
         }
 
@@ -385,6 +391,8 @@
     <div id="repository" class="card" style="display: none;">
         <h5 class="card-header"><i class="fa fa-cogs" aria-hidden="true"></i> Fork仓库操作</h5>
         <div class="card-body" id="forkRepoAction" align="center">
+            <button type="button" class="btn btn-outline-secondary" id="NotifPushBtn">启用浏览器订阅打卡消息</button>
+            <br />
             <button type="button" class="btn btn-outline-primary" id="forkRepoAddr" onclick=""><i class="fa fa-eye"
                     aria-hidden="true"></i> 查看你的Fork仓库</button>
             <button type="button" class="btn btn-outline-primary" id="workflowAddr" onclick=""><i class="fa fa-eye"
@@ -513,12 +521,140 @@
         var hasForked = false;
         var headers = new Headers();
         var secretNameList = ["cardid", "password", "pptoken", "pptopic", "serverchansckey", "openid", "tgbottoken",
-            "tgchatid", "gpatoken"
+            "tgchatid", "gpatoken", "subsinfo"
         ];
-        var secretValue = ["", "", "", "", "", "", "", "", ""];
+        var secretValue = ["", "", "", "", "", "", "", "", "", ""];
         var workflowActivated = false;
         var repoPublicKey = "";
         var repoKeyID = "";
+
+        var applicationServerPublicKey =
+            'BOHSZycLLiXBjp0djrpD6vbzVX4g7D1QcW4cb1UonDcDYu6ewOXJ4qcz-e3J3d2VpjHgm0tHnZRjoGTv7SRJl7M';
+        var pushButton = document.getElementById('NotifPushBtn');
+        var isSubscribed = false;
+        var swRegistration = null;
+
+        function urlB64ToUint8Array(base64String) {
+            const padding = '='.repeat((4 - base64String.length % 4) % 4);
+            const base64 = (base64String + padding)
+                .replace(/\-/g, '+')
+                .replace(/_/g, '/');
+
+            const rawData = window.atob(base64);
+            const outputArray = new Uint8Array(rawData.length);
+
+            for (let i = 0; i < rawData.length; ++i) {
+                outputArray[i] = rawData.charCodeAt(i);
+            }
+            return outputArray;
+        }
+
+        function updatePushBtn() {
+            if (Notification.permission === 'denied') {
+                pushButton.textContent = '本网站消息权限被禁用';
+                pushButton.disabled = true;
+                updateSubscriptionOnServer(null);
+                return;
+            }
+
+            if (isSubscribed) {
+                pushButton.textContent = '关闭浏览器订阅打卡消息';
+            } else {
+                pushButton.textContent = '启用浏览器订阅打卡消息';
+            }
+
+            pushButton.disabled = false;
+        }
+
+        function subscribeUser() {
+            const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+            swRegistration.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: applicationServerKey
+                })
+                .then(function (subscription) {
+                    updateSubscriptionOnServer(subscription);
+                    isSubscribed = true;
+                    updatePushBtn();
+                })
+                .catch(function (err) {
+                    console.log('订阅用户失败: ', err);
+                    updatePushBtn();
+                });
+        }
+
+
+        async function updateSubscriptionOnServer(subscription) {
+            await fetch('https://api.github.com/repos/' + userid +
+                    '/LZU-Auto-COVID-Health-Report/actions/secrets/public-key', {
+                        headers: headers
+                    }).then(response => {
+                    return response.json();
+                })
+                .then(async data => {
+                    if (data.message) {
+                        authFailed(data.message, "", data.documentation_url);
+                    } else {
+                        repoPublicKey = data.key;
+                        repoKeyID = data.key_id;
+                        if (subscription) {
+                            secretValue[secretValue.length - 1] = JSON.stringify(subscription);
+                        } else {
+                            secretValue[secretValue.length - 1] = "";
+                        }
+                        await setRepoSecrets(secretValue.length - 1);
+                    }
+                }).catch(function (error) {
+                    networkErr(error, buildAllRepoSecrets);
+                });
+        }
+
+        function unsubscribeUser() {
+            swRegistration.pushManager.getSubscription()
+                .then(function (subscription) {
+                    if (subscription) {
+                        return subscription.unsubscribe();
+                    }
+                })
+                .catch(function (error) {
+                    console.log('取消订阅失败: ', error);
+                })
+                .then(function () {
+                    updateSubscriptionOnServer(null);
+                    isSubscribed = false;
+                    updatePushBtn();
+                });
+        }
+
+        function initializePushButton() {
+            pushButton.addEventListener('click', function () {
+                pushButton.disabled = true;
+                if (isSubscribed) {
+                    unsubscribeUser();
+                } else {
+                    subscribeUser();
+                }
+            });
+
+            swRegistration.pushManager.getSubscription()
+                .then(function (subscription) {
+                    isSubscribed = !(subscription === null);
+                    updateSubscriptionOnServer(subscription);
+                    updatePushBtn();
+                });
+        }
+
+        if ('serviceWorker' in navigator && 'PushManager' in window) {
+            navigator.serviceWorker.register('/js/sw.js')
+                .then(function (swReg) {
+                    swRegistration = swReg;
+                })
+                .catch(function (error) {
+                    console.error('Service Worker错误:', error);
+                });
+        } else {
+            pushButton.textContent = '不支持浏览器推送消息';
+        }
 
         async function encryptString(clearText) {
             if (!window.sodium) window.sodium = await SodiumPlus.auto();
@@ -1114,6 +1250,7 @@
                         hasForked = true;
                         document.getElementById("repository").style.display = "";
                         getWorkflowState();
+                        initializePushButton();
                     } else if (data.message != "Not Found") {
                         window.setTimeout(checkIfForked, 5000);
                         return;
@@ -1148,6 +1285,7 @@
                             "<i class='fa fa-check' aria-hidden='true'> 启用Workflow自动打卡";
                         document.getElementById("workflowSwitch").onclick = activateWorkflow;
                         document.getElementById("repository").style.display = "";
+                        initializePushButton();
                         Swal.fire({
                             icon: 'info',
                             allowOutsideClick: false,

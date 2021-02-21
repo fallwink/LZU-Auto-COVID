@@ -69,3 +69,19 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             $workflow_url/dispatches \
             -d '{"ref":"${{ github.ref }}", "inputs": { "delays": "30m" }}'
+        - name: 'Web Push Notification if Success'
+          if: ${{ success() }}
+          env:
+            SUBSINFO: ${{ secrets.SUBSINFO }}
+          run: |
+            job_url=`curl $GITHUB_API_URL/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs | grep html_url | cut -d \" -f 4` \
+            && pip install pywebpush \
+            && python webpush.py 成功 ${job_url}?check_suite_focus=true
+        - name: 'Web Push Notification if Failed'
+          if: ${{ failure() }}
+          env:
+            SUBSINFO: ${{ secrets.SUBSINFO }}
+          run: |
+            job_url=`curl $GITHUB_API_URL/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs | grep html_url | cut -d \" -f 4` \
+            && pip install pywebpush \
+            && python webpush.py 失败 ${job_url}?check_suite_focus=true
