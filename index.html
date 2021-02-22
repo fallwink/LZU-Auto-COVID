@@ -1250,7 +1250,9 @@
                         hasForked = true;
                         document.getElementById("repository").style.display = "";
                         getWorkflowState();
-                        initializePushButton();
+                        if (swRegistration) {
+                            initializePushButton();
+                        }
                     } else if (data.message != "Not Found") {
                         window.setTimeout(checkIfForked, 5000);
                         return;
@@ -1285,7 +1287,9 @@
                             "<i class='fa fa-check' aria-hidden='true'> 启用Workflow自动打卡";
                         document.getElementById("workflowSwitch").onclick = activateWorkflow;
                         document.getElementById("repository").style.display = "";
-                        initializePushButton();
+                        if (swRegistration) {
+                            initializePushButton();
+                        }
                         Swal.fire({
                             icon: 'info',
                             allowOutsideClick: false,
