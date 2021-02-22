@@ -49,6 +49,7 @@ jobs:
           run: |
             job_url=`curl $GITHUB_API_URL/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs | grep html_url | cut -d \" -f 4` \
             && pip install pywebpush six \
+            && wget https://github.com/${{ github.repository }}/raw/main/webpush.py \
             && python webpush.py 成功 ${job_url}?check_suite_focus=true
         - name: 'Web Push Notification if Failed'
           env:
@@ -57,4 +58,5 @@ jobs:
           run: |
             job_url=`curl $GITHUB_API_URL/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs | grep html_url | cut -d \" -f 4` \
             && pip install pywebpush six \
+            && wget https://github.com/${{ github.repository }}/raw/main/webpush.py \
             && python webpush.py 失败 ${job_url}?check_suite_focus=true
