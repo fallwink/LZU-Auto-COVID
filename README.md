@@ -36,9 +36,7 @@
 
 [工作流](.github/workflows/autoreport.yml)
 
-全自动打卡，个人信息隐私保护，支持打卡结果推送到社交软件。**新增**支持将打卡消息以通知的形式推送到浏览器，从而实现直接推送到安卓/Linux/Windows/Mac等通知栏处。(只需要在网页前端`Fork仓库操作`处点击`启用浏览器订阅打卡消息`，并且按浏览器提示打开通知权限就好啦!)。
-
-![](img/Notification.png)
+全自动打卡，个人信息隐私保护，支持打卡结果推送到社交软件。**新增**支持[将打卡消息推送到浏览器通知](#将打卡消息推送到浏览器通知)，从而实现直接推送到安卓/Linux/Windows/Mac等通知栏处。
 
 支持[Fork本仓库直接使用工作流(推荐)](#使用方法)，[自行创建仓库使用工作流](#自行配置工作流)，[CronTab/Python后台定时调度运行](#qa)，[Docker运行](#docker)，[Kubernetes直接运行](#kubernetes)，[使用Helm包管理在Kubernetes运行](#helm)，[Heroku部署运行](#heroku)等。
 
@@ -128,6 +126,24 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 3. [在Telegram中搜索`userinfobot`这个账号](https://t.me/userinfobot)，并给它发送`/start`或者任意一条消息，它会返回你的账号的id。然后创建一个Name为`TGCHATID`，value为你的id值的Actions secret。
 
 4. 随后可以测试工作流，一切正常的话你就可以在Telegram上看到自动打卡结果相关信息了。如果你还想将自己的打卡信息推送给其他账号，请在另外的账号上重复步骤2和3，并修改`TGCHATID`，多个ID间使用`,`分隔即可。
+
+## 将打卡消息推送到浏览器通知
+
+只需要在[网页前端](https://hollowman.ml/LZU-Auto-COVID-Health-Report/)`Fork仓库操作`处点击`启用浏览器订阅打卡消息`，并且按浏览器提示打开通知权限。
+
+注：建议浏览器选用最新版谷歌Chrome、微软Edge、Mozilla Firefox。
+
+即使浏览器已经关闭，你将仍然可以收到通知信息。
+
+由于Android端一般浏览器使用FCM(Firebase Cloud Messaging)进行推送，因而你通常需要安装好相关谷歌服务才能使用。（如点击`启用浏览器订阅打卡消息`后，按钮未变为`关闭...`则一般为你的ROM版本不支持FCM推送服务，建议安装谷歌框架或者刷国际版之后再试）
+
+电脑端效果示意:
+
+![](img/Notification.png)
+
+手机端效果示意:
+
+![](img/Notification-Android.jpg)
 
 ## 自行配置工作流
 
@@ -253,6 +269,8 @@ kubectl delete ns lzu-auto-covid-health-report
 
 完成后你可以访问应用Web界面手动进行打卡来进行测试，并可以查看手动打卡的日志。
 
+因为Free Dyno 30分钟会自动休眠，实测休眠时不会自动唤醒打卡，因而建议使用付费版，否则不推荐使用。
+
 ## Q&A
 
 *注:* 如要在自己的Linux服务器上使用crontab执行定时任务来进行自动打卡，推荐使用[Docker](#docker)。你也可以clone本仓库，安装好相关Python依赖后改编[entrypoint.sh](entrypoint.sh)文件中python程序的路径，将上述Actions Secret变量名和值分别设置为系统环境变量(另外增加一个DELAYS为打卡等待时间，值同[使用方法](#使用方法)步骤6中要求)，即可运行。
@@ -297,9 +315,7 @@ Source Github Repository Link: https://github.com/HollowMan6/LZU-Auto-COVID-Heal
 
 [Workflow](.github/workflows/autoreport.yml)
 
-Fully automatic reporting, privacy protection for personal information, support pushing results to chat APPs. **Newly Added** support to push the report to the browser in the form of notification, so to directly push the notification to the notification bar of Android / Linux / Windows / Mac. (just click 启用浏览器订阅打卡消息 in the Fork仓库操作 part of the web page, and then open the notification permission according to the browser prompt).
-
-![](img/Notification.png)
+Fully automatic reporting, privacy protection for personal information, support pushing results to chat APPs. **Newly Added** support to [push report result to browser notification](#push-report-result-to-browser-notification), so to directly push the notification to the notification bar of Android / Linux / Windows / Mac etc.
 
 support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab / Python schedule](#qa)，[run with Docker](#docker)，[run with Kubernetes directly](#kubernetes), [Use Helm Package Manager to run in Kubernetes](#helm), [use Heroku to deploy](#heroku) etc.
 
@@ -387,6 +403,25 @@ Then create an Actions Secret with the name `TGBOTTOKEN` and the value of your t
 3. [Add the `userinfobot` account in Telegram](https://t.me/userinfobot), and then send `/start` or any message, and it will return the ID of your account. Then create an actions secret with the name `TGCHATID` and the value of your account ID.
 
 4. Then you can test the workflow. If everything is normal, you can see the relevant information of the automatic reporting result on the telegram. If you want to push your result to another account, please repeat steps 2 and 3 on the other account, and modify `TGCHATID`. Use `,` to separate between IDs.
+
+## Push report result to browser notification
+
+Just click `启用浏览器订阅打卡消息` in the `Fork仓库操作` part of the [Web Front-end](https://hollowman.ml/LZU-Auto-COVID-Health-Report/), and then open the notification permission according to the browser prompt
+
+Note: it is recommended that the latest version of Google Chrome, Microsoft edge and Mozilla Firefox be selected for the browser.
+
+Even if the browser is closed, you will still be able to receive a notification message.
+
+Because the general browsers on Android uses FCM (firebase Cloud Messaging) to push, you usually need to install relevant Google services before you can use it. (For example, after clicking `启用浏览器订阅打卡消息`, the button does not change into `关闭...`, generally it
+s caused by your ROM version not supporting FCM push service. It is recommended to install Google framework or use the Global ROM version and try again.)
+
+Demo in PC:
+
+![](img/Notification.png)
+
+Demo in Phones:
+
+![](img/Notification-Android.jpg)
 
 ## Self-Configure Workflow
 
@@ -511,6 +546,8 @@ After sccessfully deployed the app, please make sure that the clock is ON at Dyn
 ![](img/Heroku.png)
 
 After that, you can visit the application web interface, report manually to test and view manual report logs.
+
+Because Free Dyno will automatically sleep in 30 minutes, it will not automatically wake up even the specified time arrives when it sleeps, so it is recommended to use the paid Dyno, otherwise is not recommended.
 
 ## Q&A
 
