@@ -135,7 +135,7 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 
 即使浏览器已经关闭，你将仍然可以收到通知信息。
 
-由于Android端一般浏览器使用FCM(Firebase Cloud Messaging)进行推送，因而你通常需要安装好相关谷歌服务才能使用。（如点击`启用浏览器订阅打卡消息`后，按钮未变为`关闭...`则一般为你的ROM版本不支持FCM推送服务，建议安装谷歌框架或者刷国际版ROM之后再试）
+由于Android端一般浏览器使用FCM(Firebase Cloud Messaging)进行推送，所以请确保设备访问谷歌服务通畅，并且通常需要安装好相关谷歌服务才能使用。（如点击`启用浏览器订阅打卡消息`后，按钮未变为`关闭...`则一般为你的ROM版本不支持FCM推送服务，建议安装谷歌框架或者刷国际版ROM之后再试）
 
 华为/荣耀手机如果安装了谷歌框架后还不支持FCM推送服务可以参考[这篇文章](docs/Huawei_Honor_FCM_Fix)
 
@@ -414,8 +414,7 @@ Note: it is recommended that the latest version of Google Chrome, Microsoft edge
 
 Even if the browser is closed, you will still be able to receive a notification message.
 
-Because the general browsers on Android uses FCM (firebase Cloud Messaging) to push, you usually need to install relevant Google services before you can use it. (For example, after clicking `启用浏览器订阅打卡消息`, the button does not change into `关闭...`, generally it
-s caused by your ROM version not supporting FCM push service. It is recommended to install Google framework or use the Global ROM version and try again.)
+Because the general browsers on Android uses FCM (firebase Cloud Messaging) to push, you usually need to make sure you can visit Google Service, install relevant Google services before you can use it. (For example, after clicking `启用浏览器订阅打卡消息`, the button does not change into `关闭...`, except from network problems, generally it's caused by your ROM version not supporting FCM push service. It is recommended to install Google framework or use the Global ROM version and try again.)
 
 If your phone is Huawei or Honor phone and does not support FCM push service after installing Google framework (GMS), please refer to [this video (in Bahasa Indonesia but can just follow gesture)](https://www.youtube.com/watch?v=nLzYrxm0mMg).
 
