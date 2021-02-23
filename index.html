@@ -184,7 +184,15 @@
                     };
                 } catch (e) {
                     if (e.name == 'TypeError') {
-                        navigator.serviceWorker.ready.then(function (registration) {
+                        navigator.serviceWorker.register('js/sw.js').then(async function (registration) {
+                            await registration.pushManager.getSubscription()
+                                .then(function (subscription) {
+                                    if (!subscription) {
+                                        registration.pushManager.subscribe({
+                                            userVisibleOnly: true
+                                        }).catch(function (err) {});
+                                    }
+                                });
                             registration.showNotification($title, $options);
                         });
                     }
@@ -239,7 +247,8 @@
             var footerMSG = "";
             var errExplainURL = error_uri;
             if (errExplainURL) {
-                footerMSG = '<a target="_blank" onclick="notifyNotif(\'错误解释\');" href="' + errExplainURL + '">错误详细解释及解决办法</a>';
+                footerMSG = '<a target="_blank" onclick="notifyNotif(\'错误解释\');" href="' + errExplainURL +
+                    '">错误详细解释及解决办法</a>';
             }
             Swal.fire({
                 icon: 'error',
@@ -369,7 +378,8 @@
                 aria-hidden="true"></i> 尚未登录</a></h3>
     <div class="alert alert-success" role="alert">
         <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 简介: </strong></i><br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写完表单相关信息并且提交后，本网页软件会将<a target="_blank" onclick="notifyNotif('源仓库');" class="text-success"
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写完表单相关信息并且提交后，本网页软件会将<a target="_blank"
+            onclick="notifyNotif('源仓库');" class="text-success"
             href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report">源仓库</a>自动Fork到你的<i class="fa fa-github"
             aria-hidden="true"></i> Github账户下并自动配置相关打卡信息到你的Github的Fork仓库工作流运行环境中(Actions
         Secrets)，通过预定义在工作流中的定时任务和Github Actions
@@ -379,9 +389,11 @@
         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;强烈建议你自己在官方平台打一次卡之后再使用本软件，从而初始化平台打卡系统中的数据。本软件将会一直沿用你在兰州大学个人工作台打卡系统中最新填报的<strong>是否在校</strong>、
         <strong>所在省市区</strong>、 <strong>是否出国</strong>、
         <strong>出国地点</strong>打卡信息，并会一直上报最健康的状态。如你的信息发生变化，请及时登录官方打卡界面进行信息更新。<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果有任何问题，欢迎通过<a target="_blank" onclick="notifyNotif('源仓库Issue');" class="text-success"
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果有任何问题，欢迎通过<a target="_blank"
+            onclick="notifyNotif('源仓库Issue');" class="text-success"
             href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/issues">Issue</a>进行反馈；你也可以通过<i
-            class="fa fa-envelope-o" aria-hidden="true"></i> 邮箱<a class="text-success" onclick="notifyNotif('写邮件给作者邮箱');" target="_blank"
+            class="fa fa-envelope-o" aria-hidden="true"></i> 邮箱<a class="text-success"
+            onclick="notifyNotif('写邮件给作者邮箱');" target="_blank"
             href="mailto:hollowman@hollowman.ml">hollowman@hollowman.ml</a>联系我。<br />
         <i><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 注意: </strong></i><br />1. 请不要使用IE浏览本页面!
         推荐使用最新版Chrome、Edge或者Firefox。<br />2. 因为Github
@@ -418,7 +430,8 @@
         <div class="card-body">
             <div id="setActionsSecret" class="form-group">
                 <div class="alert alert-danger" role="alert">
-                    <i class="fa fa-check" aria-hidden="true"></i> 必填项，登录<a target="_blank" onclick="notifyNotif('兰大个人工作台');" class="text-danger"
+                    <i class="fa fa-check" aria-hidden="true"></i> 必填项，登录<a target="_blank"
+                        onclick="notifyNotif('兰大个人工作台');" class="text-danger"
                         href="http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn">兰州大学个人工作台</a>必备!
                 </div>
                 <label for="input"><i class="fa fa-id-card" aria-hidden="true"></i> 学号：</label>
@@ -440,8 +453,8 @@
                         aria-hidden="true"></i> 打卡结果推送，三选一即可。
                 </div>
                 <h5>
-                    <a href="https://pushplus.hxtrip.com/login" onclick="notifyNotif('Pushplus官网');" target="_blank"><i class="fa fa-wechat"
-                            aria-hidden="true"></i> PushPlus(推荐渠道)</a>:
+                    <a href="https://pushplus.hxtrip.com/login" onclick="notifyNotif('Pushplus官网');" target="_blank"><i
+                            class="fa fa-wechat" aria-hidden="true"></i> PushPlus(推荐渠道)</a>:
                 </h5>
                 <div class="alert alert-secondary" role="alert">
                     <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 使用PushPlus配置微信推送方法:
@@ -462,7 +475,7 @@
                 <div class="alert alert-warning" role="alert">
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                     因为微信公告将在2021年4月底下线模板消息，现强烈建议Server酱使用支持多通道的<a href="https://sct.ftqq.com/" class="text-warning"
-                    onclick="notifyNotif('Server酱 Turbo官网');" target="_blank">Turbo版(除测试号)</a>。
+                        onclick="notifyNotif('Server酱 Turbo官网');" target="_blank">Turbo版(除测试号)</a>。
                 </div>
                 <div class="alert alert-secondary" role="alert">
                     <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 使用Server酱系列配置微信/钉钉/飞书等推送方法:
@@ -484,7 +497,8 @@
                     <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 使用Telegram Bot配置Telegram推送方法:
                         </strong></i><br />
                     1. 在Telegram中添加<a href="https://t.me/botfather" class="text-secondary"
-                    onclick="notifyNotif('BotFather Telegram账号');" target="_blank">BotFather</a>这个账号，然后向其依次发送<strong>/start</strong>,
+                        onclick="notifyNotif('BotFather Telegram账号');"
+                        target="_blank">BotFather</a>这个账号，然后向其依次发送<strong>/start</strong>,
                     <strong>/newbot</strong>，按照提示设定机器人名字后，即可创建一个属于你自己的全新的机器人。记下该机器人的token并填写到下方<i>TGBOTTOKEN</i>处。(内容类似于<strong>110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw</strong>)<br />
                     <img src="https://gitee.com/hollowman6/LZU-Auto-COVID-Health-Report/raw/main/img/Telegram.jpg"
                         width="50%" /><br />
@@ -492,7 +506,8 @@
                     <i><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                             特别注意：需要先与机器人之间创建会话，机器人才能下发消息，否则机器人无法主动发送消息，切记!</strong></i><br />
                     3. 在Telegram中搜索<a href="https://t.me/userinfobot" class="text-secondary"
-                    onclick="notifyNotif('userinfobot Telegram账号');" target="_blank">userinfobot</a>这个账号，并给它发送<strong>/start</strong>或者任意一条消息，它会返回你的账号的id；将该id填写到下方<i>TGCHATID</i>处。<br />
+                        onclick="notifyNotif('userinfobot Telegram账号');"
+                        target="_blank">userinfobot</a>这个账号，并给它发送<strong>/start</strong>或者任意一条消息，它会返回你的账号的id；将该id填写到下方<i>TGCHATID</i>处。<br />
                     4.
                     如果你还想将自己的打卡信息推送给其他账号，请在另外的账号上重复步骤2和3，并修改<i>TGCHATID</i>，多个ID间使用</strong>,</strong>半角逗号分隔即可。<br />
                 </div>
@@ -828,7 +843,7 @@
 
         function notifyNotif(msg) {
             createNotify("已打开页面", {
-                body: "已经为你打开"+ msg +"页面，点击本通知返回!"
+                body: "已经为你打开" + msg + "页面，点击本通知返回!"
             });
         }
 
@@ -1785,7 +1800,8 @@
         </p>
         <h5 align="center">Copyright &copy; 2018-2021 <img width="20px" class="footerLogo" style="margin-top: -5px"
                 src="/favicon.ico"> Hollow
-            Man (<a href="https://github.com/HollowMan6" target="_blank" onclick="notifyNotif('作者Github');">@HollowMan6</a>). All rights reserved.</h5>
+            Man (<a href="https://github.com/HollowMan6" target="_blank"
+                onclick="notifyNotif('作者Github');">@HollowMan6</a>). All rights reserved.</h5>
         <p align="center">
             <img src="https://img.shields.io/badge/license-GPL-green"
                 onclick="window.open('https://opensource.org/licenses/GPL-3.0/','_blank')">
@@ -1795,9 +1811,11 @@
                 onclick="window.open('https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report','_blank')">
         </p>
         <h6 align="center">
-            <a style="font-size: 15px;" href="https://icp.gov.moe" onclick="notifyNotif('备案');" target="_blank">萌ICP备</a>
+            <a style="font-size: 15px;" href="https://icp.gov.moe" onclick="notifyNotif('备案');"
+                target="_blank">萌ICP备</a>
             <img width="20px" style="margin-top: -5px;" src="https://icp.gov.moe/images/ico64.png">
-            <a style="font-size: 15px;" href="https://icp.gov.moe/?keyword=20218666" onclick="notifyNotif('备案信息');" target="_blank">20218666号</a>
+            <a style="font-size: 15px;" href="https://icp.gov.moe/?keyword=20218666" onclick="notifyNotif('备案信息');"
+                target="_blank">20218666号</a>
         </h6>
     </footer>
 </body>
