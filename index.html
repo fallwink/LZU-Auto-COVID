@@ -239,7 +239,7 @@
             var footerMSG = "";
             var errExplainURL = error_uri;
             if (errExplainURL) {
-                footerMSG = '<a target="_blank" href="' + errExplainURL + '">错误详细解释及解决办法</a>';
+                footerMSG = '<a target="_blank" onclick="notifyNotif(\'错误解释\');" href="' + errExplainURL + '">错误详细解释及解决办法</a>';
             }
             Swal.fire({
                 icon: 'error',
@@ -369,7 +369,7 @@
                 aria-hidden="true"></i> 尚未登录</a></h3>
     <div class="alert alert-success" role="alert">
         <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 简介: </strong></i><br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写完表单相关信息并且提交后，本网页软件会将<a target="_blank" class="text-success"
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写完表单相关信息并且提交后，本网页软件会将<a target="_blank" onclick="notifyNotif('源仓库');" class="text-success"
             href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report">源仓库</a>自动Fork到你的<i class="fa fa-github"
             aria-hidden="true"></i> Github账户下并自动配置相关打卡信息到你的Github的Fork仓库工作流运行环境中(Actions
         Secrets)，通过预定义在工作流中的定时任务和Github Actions
@@ -379,9 +379,9 @@
         <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;强烈建议你自己在官方平台打一次卡之后再使用本软件，从而初始化平台打卡系统中的数据。本软件将会一直沿用你在兰州大学个人工作台打卡系统中最新填报的<strong>是否在校</strong>、
         <strong>所在省市区</strong>、 <strong>是否出国</strong>、
         <strong>出国地点</strong>打卡信息，并会一直上报最健康的状态。如你的信息发生变化，请及时登录官方打卡界面进行信息更新。<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果有任何问题，欢迎通过<a target="_blank" class="text-success"
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果有任何问题，欢迎通过<a target="_blank" onclick="notifyNotif('源仓库Issue');" class="text-success"
             href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/issues">Issue</a>进行反馈；你也可以通过<i
-            class="fa fa-envelope-o" aria-hidden="true"></i> 邮箱<a class="text-success" target="_blank"
+            class="fa fa-envelope-o" aria-hidden="true"></i> 邮箱<a class="text-success" onclick="notifyNotif('写邮件给作者邮箱');" target="_blank"
             href="mailto:hollowman@hollowman.ml">hollowman@hollowman.ml</a>联系我。<br />
         <i><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 注意: </strong></i><br />1. 请不要使用IE浏览本页面!
         推荐使用最新版Chrome、Edge或者Firefox。<br />2. 因为Github
@@ -418,7 +418,7 @@
         <div class="card-body">
             <div id="setActionsSecret" class="form-group">
                 <div class="alert alert-danger" role="alert">
-                    <i class="fa fa-check" aria-hidden="true"></i> 必填项，登录<a target="_blank" class="text-danger"
+                    <i class="fa fa-check" aria-hidden="true"></i> 必填项，登录<a target="_blank" onclick="notifyNotif('兰大个人工作台');" class="text-danger"
                         href="http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn">兰州大学个人工作台</a>必备!
                 </div>
                 <label for="input"><i class="fa fa-id-card" aria-hidden="true"></i> 学号：</label>
@@ -440,7 +440,7 @@
                         aria-hidden="true"></i> 打卡结果推送，三选一即可。
                 </div>
                 <h5>
-                    <a href="https://pushplus.hxtrip.com/login" target="_blank"><i class="fa fa-wechat"
+                    <a href="https://pushplus.hxtrip.com/login" onclick="notifyNotif('Pushplus官网');" target="_blank"><i class="fa fa-wechat"
                             aria-hidden="true"></i> PushPlus(推荐渠道)</a>:
                 </h5>
                 <div class="alert alert-secondary" role="alert">
@@ -456,13 +456,13 @@
                 <input type="text" class="form-control" id="pptopic" placeholder="PushPlus Topic 群组编码(仅一对多推送需要)">
                 <br />
                 <h5>
-                    <a href="http://sc.ftqq.com/" target="_blank"><s>
+                    <a href="http://sc.ftqq.com/" onclick="notifyNotif('老版Server酱官网');" target="_blank"><s>
                             Server酱(或测试号/</s>Turbo版)</a>:
                 </h5>
                 <div class="alert alert-warning" role="alert">
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                     因为微信公告将在2021年4月底下线模板消息，现强烈建议Server酱使用支持多通道的<a href="https://sct.ftqq.com/" class="text-warning"
-                        target="_blank">Turbo版(除测试号)</a>。
+                    onclick="notifyNotif('Server酱 Turbo官网');" target="_blank">Turbo版(除测试号)</a>。
                 </div>
                 <div class="alert alert-secondary" role="alert">
                     <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 使用Server酱系列配置微信/钉钉/飞书等推送方法:
@@ -484,7 +484,7 @@
                     <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 使用Telegram Bot配置Telegram推送方法:
                         </strong></i><br />
                     1. 在Telegram中添加<a href="https://t.me/botfather" class="text-secondary"
-                        target="_blank">BotFather</a>这个账号，然后向其依次发送<strong>/start</strong>,
+                    onclick="notifyNotif('BotFather Telegram账号');" target="_blank">BotFather</a>这个账号，然后向其依次发送<strong>/start</strong>,
                     <strong>/newbot</strong>，按照提示设定机器人名字后，即可创建一个属于你自己的全新的机器人。记下该机器人的token并填写到下方<i>TGBOTTOKEN</i>处。(内容类似于<strong>110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw</strong>)<br />
                     <img src="https://gitee.com/hollowman6/LZU-Auto-COVID-Health-Report/raw/main/img/Telegram.jpg"
                         width="50%" /><br />
@@ -492,7 +492,7 @@
                     <i><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                             特别注意：需要先与机器人之间创建会话，机器人才能下发消息，否则机器人无法主动发送消息，切记!</strong></i><br />
                     3. 在Telegram中搜索<a href="https://t.me/userinfobot" class="text-secondary"
-                        target="_blank">userinfobot</a>这个账号，并给它发送<strong>/start</strong>或者任意一条消息，它会返回你的账号的id；将该id填写到下方<i>TGCHATID</i>处。<br />
+                    onclick="notifyNotif('userinfobot Telegram账号');" target="_blank">userinfobot</a>这个账号，并给它发送<strong>/start</strong>或者任意一条消息，它会返回你的账号的id；将该id填写到下方<i>TGCHATID</i>处。<br />
                     4.
                     如果你还想将自己的打卡信息推送给其他账号，请在另外的账号上重复步骤2和3，并修改<i>TGCHATID</i>，多个ID间使用</strong>,</strong>半角逗号分隔即可。<br />
                 </div>
@@ -795,7 +795,7 @@
                     } else {
                         userid = data.login;
                         document.getElementById("welcome").innerHTML = "<img width='5%' src='" + data.avatar_url +
-                            "'/><br/><i class='fa fa-user' aria-hidden='true'></i> 欢迎, <a target='_blank' href='" +
+                            "'/><br/><i class='fa fa-user' aria-hidden='true'></i> 欢迎, <a target='_blank' onclick='notifyNotif(\'你的Github\');' href='" +
                             data
                             .html_url +
                             "'>" + data
@@ -813,7 +813,7 @@
                 window.open("https://github.com/" + userid + "/LZU-Auto-COVID-Health-Report", '',
                     'width=900,height=680,top=80,scrollbars=yes');
                 createNotify("已打开页面", {
-                    body: "已经为你打卡Fork仓库页面，点击本通知返回!"
+                    body: "已经为你打开Fork仓库页面，点击本通知返回!"
                 });
             };
             document.getElementById("workflowAddr").onclick = function () {
@@ -821,9 +821,15 @@
                     "/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22",
                     '', 'width=900,height=680,top=80,scrollbars=yes')
                 createNotify("已打开页面", {
-                    body: "已经为你打卡工作流运行历史页面，点击本通知返回!"
+                    body: "已经为你打开工作流运行历史页面，点击本通知返回!"
                 });
             };
+        }
+
+        function notifyNotif(msg) {
+            createNotify("已打开页面", {
+                body: "已经为你打开"+ msg +"页面，点击本通知返回!"
+            });
         }
 
         var workflowContent = "";
@@ -887,7 +893,7 @@
                                 text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"，完成后点击下面"重试"',
                                 footer: '<a target="_blank" href="#" onclick="window.open(\'https://github.com/' +
                                     userid +
-                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');return false;">点我启用Fork仓库的工作流</a>',
+                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');notifyNotif(\'启用Fork仓库的工作流\');return false;">点我启用Fork仓库的工作流</a>',
                                 confirmButtonText: `重试`,
                                 showCancelButton: true,
                                 cancelButtonText: "取消",
@@ -938,7 +944,7 @@
                                             workflowContent.match(regStr)[0].replace(
                                                 /- cron: '/g,
                                                 "").replace(/'/g, ""),
-                                        footer: '<a target="_blank" href="#" onclick="window.open(\'https://crontab.guru/\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');return false;">校验我的Cron表达式</a>',
+                                        footer: '<a target="_blank" href="#" onclick="window.open(\'https://crontab.guru/\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');notifyNotif(\'校验Cron表达式\');return false;">校验我的Cron表达式</a>',
                                         input: 'text',
                                         inputAttributes: {
                                             autocapitalize: 'off'
@@ -1017,7 +1023,7 @@
                                 text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"，完成后点击下面"重试"',
                                 footer: '<a target="_blank" href="#" onclick="window.open(\'https://github.com/' +
                                     userid +
-                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');return false;">点我启用Fork仓库的工作流</a>',
+                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');notifyNotif(\'启用Fork仓库的工作流\');return false;">点我启用Fork仓库的工作流</a>',
                                 confirmButtonText: `重试`,
                                 showCancelButton: true,
                                 cancelButtonText: "取消",
@@ -1068,7 +1074,7 @@
                                             workflowContent.match(regStr)[0].replace(
                                                 /"delays": "/g,
                                                 "").replace(/"/g, ""),
-                                        footer: '<a target="_blank" href="#" onclick="window.open(\'https://www.runoob.com/linux/linux-comm-sleep.html\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');return false;">了解Linux sleep命令</a>',
+                                        footer: '<a target="_blank" href="#" onclick="window.open(\'https://www.runoob.com/linux/linux-comm-sleep.html\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');notifyNotif(\'了解Linux sleep命令\');return false;">了解Linux sleep命令</a>',
                                         input: 'text',
                                         inputAttributes: {
                                             autocapitalize: 'off'
@@ -1371,7 +1377,7 @@
                                 text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"，完成后点击下面"重试"',
                                 footer: '<a target="_blank" href="#" onclick="window.open(\'https://github.com/' +
                                     userid +
-                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');return false;">点我启用Fork仓库的工作流</a>',
+                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');notifyNotif(\'启用Fork仓库的工作流\');return false;">点我启用Fork仓库的工作流</a>',
                                 confirmButtonText: `重试`,
                                 showCancelButton: true,
                                 cancelButtonText: "取消",
@@ -1460,7 +1466,7 @@
                                             text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"，完成后点击下面"重试"',
                                             footer: '<a target="_blank" href="#" onclick="window.open(\'https://github.com/' +
                                                 userid +
-                                                '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');return false;">点我启用Fork仓库的工作流</a>',
+                                                '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');notifyNotif(\'启用Fork仓库的工作流\');return false;">点我启用Fork仓库的工作流</a>',
                                             confirmButtonText: `重试`,
                                             showCancelButton: true,
                                             cancelButtonText: "取消"
@@ -1488,7 +1494,7 @@
                                                     'width=900,height=680,top=80,scrollbars=yes'
                                                 );
                                                 createNotify("已打开页面", {
-                                                    body: "已经为你打卡工作流运行页面，请稍等，正在获取触发的打卡，会为你自动跳转。点击本通知返回!"
+                                                    body: "已经为你打开工作流运行页面，请稍等，正在获取触发的打卡，会为你自动跳转。点击本通知返回!"
                                                 });
                                                 checkInterval = window
                                                     .setInterval(
@@ -1618,7 +1624,7 @@
                                 text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"，完成后点击下面"重试"',
                                 footer: '<a target="_blank" href="#" onclick="window.open(\'https://github.com/' +
                                     userid +
-                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');return false;">点我启用Fork仓库的工作流</a>',
+                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');notifyNotif(\'启用Fork仓库的工作流\');return false;">点我启用Fork仓库的工作流</a>',
                                 confirmButtonText: `重试`,
                                 showCancelButton: true,
                                 cancelButtonText: "取消",
@@ -1691,7 +1697,7 @@
                                 text: '请点击下面链接, 然后在弹出的网页中下部点击绿色按钮"I understand my workflows, go ahead and enable them"，完成后点击下面"重试"',
                                 footer: '<a target="_blank" href="#" onclick="window.open(\'https://github.com/' +
                                     userid +
-                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');return false;">点我启用Fork仓库的工作流</a>',
+                                    '/LZU-Auto-COVID-Health-Report/actions?query=workflow%3A%22GitHub+Actions+LZU+Auto+COVID+Health+Report%22\', \'\', \'width=900,height=680,top=80,scrollbars=yes\');notifyNotif(\'启用Fork仓库的工作流\');return false;">点我启用Fork仓库的工作流</a>',
                                 confirmButtonText: `重试`,
                                 showCancelButton: true,
                                 cancelButtonText: "取消",
@@ -1779,7 +1785,7 @@
         </p>
         <h5 align="center">Copyright &copy; 2018-2021 <img width="20px" class="footerLogo" style="margin-top: -5px"
                 src="/favicon.ico"> Hollow
-            Man (<a href="https://github.com/HollowMan6" target="_blank">@HollowMan6</a>). All rights reserved.</h5>
+            Man (<a href="https://github.com/HollowMan6" target="_blank" onclick="notifyNotif('作者Github');">@HollowMan6</a>). All rights reserved.</h5>
         <p align="center">
             <img src="https://img.shields.io/badge/license-GPL-green"
                 onclick="window.open('https://opensource.org/licenses/GPL-3.0/','_blank')">
@@ -1789,9 +1795,9 @@
                 onclick="window.open('https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report','_blank')">
         </p>
         <h6 align="center">
-            <a style="font-size: 15px;" href="https://icp.gov.moe" target="_blank">萌ICP备</a>
+            <a style="font-size: 15px;" href="https://icp.gov.moe" onclick="notifyNotif('备案');" target="_blank">萌ICP备</a>
             <img width="20px" style="margin-top: -5px;" src="https://icp.gov.moe/images/ico64.png">
-            <a style="font-size: 15px;" href="https://icp.gov.moe/?keyword=20218666" target="_blank">20218666号</a>
+            <a style="font-size: 15px;" href="https://icp.gov.moe/?keyword=20218666" onclick="notifyNotif('备案信息');" target="_blank">20218666号</a>
         </h6>
     </footer>
 </body>
