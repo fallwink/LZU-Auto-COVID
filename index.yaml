@@ -8,9 +8,9 @@ entries:
       artifacthub.io/license: GPL-3.0
     apiVersion: v2
     appVersion: 1.1.1
-    created: "2021-02-23T00:23:41.9472054+08:00"
+    created: "2021-02-24T00:24:26.702994+08:00"
     description: A chart for deploying LZU Auto COVID Health Report. (兰大疫情期间自动定时健康打卡)
-    digest: b48a530ac1789c2ea6c7469a9e5b79057c0091a079bd78fc1852fac4484faded
+    digest: 148d305f17a1a00bb092a8f6431e70f6c5665f8065edfe4f7ee6f7969179d16b
     home: https://hollowman.ml/
     icon: https://avatars.githubusercontent.com/u/67548465?s=200&v=4
     keywords:
@@ -33,7 +33,7 @@ entries:
       artifacthub.io/license: GPL-3.0
     apiVersion: v2
     appVersion: 1.0.10
-    created: "2021-02-23T00:23:41.9451715+08:00"
+    created: "2021-02-24T00:24:26.702994+08:00"
     description: A chart for deploying LZU Auto COVID Health Report. (兰大疫情期间自动定时健康打卡)
     digest: 6e6479233b80170e77e0c4e07ef0cf975f28c8f60d4e6b2d0ee00bcce2c788f5
     home: https://hollowman.ml/
@@ -51,4 +51,4 @@ entries:
     urls:
     - http://hollowman.ml/LZU-Auto-COVID-Health-Report/helmChart/lzu-auto-covid-health-report-1.0.10.tgz
     version: 1.0.10
-generated: "2021-02-23T00:23:41.9432277+08:00"
+generated: "2021-02-24T00:24:26.7020503+08:00"
