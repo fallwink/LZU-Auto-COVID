@@ -1176,6 +1176,7 @@
                 .then(data => {
                     if (data.commit) {
                         window.open(data.commit.html_url, '', 'width=900,height=680,top=80,scrollbars=yes');
+                        notifyNotif('修改提交的Commit详情');
                         Swal.fire({
                             icon: 'question',
                             title: '为防止因为修改的语法错误，或潜在的GitHub不按更新后的时间执行定时任务，是否需要现在手动触发一次工作流?',
