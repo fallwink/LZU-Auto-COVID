@@ -600,16 +600,16 @@
 
         function updatePushBtn() {
             if (Notification.permission === 'denied') {
-                pushButton.textContent = ' 本网站消息权限被禁用';
+                pushButton.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i> 本网站消息权限被禁用';
                 pushButton.disabled = true;
                 updateSubscriptionOnServer(null);
                 return;
             }
 
             if (isSubscribed) {
-                pushButton.textContent = ' 关闭浏览器订阅打卡消息';
+                pushButton.innerHTML = '<i class="fa fa-power-off" aria-hidden="true"></i> 关闭浏览器订阅打卡消息';
             } else {
-                pushButton.textContent = ' 启用浏览器订阅打卡消息';
+                pushButton.innerHTML='<i class="fa fa-bullhorn" aria-hidden="true"></i> 启用浏览器订阅打卡消息';
             }
 
             pushButton.disabled = false;
@@ -702,7 +702,7 @@
                     console.error('Service Worker错误:', error);
                 });
         } else {
-            pushButton.textContent = ' 不支持浏览器推送消息';
+            pushButton.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i> 不支持浏览器推送消息';
             pushButton.disabled = true;
         }
 
@@ -849,12 +849,6 @@
                             .login + "</a>!";
                         setupLinks();
                         fetch('https://api.github.com/user/starred/HollowMan6/LZU-Auto-COVID-Health-Report', {
-                            method: "PUT",
-                            headers: headers,
-                        }).catch(function (error) {
-                            console.log(error);
-                        });
-                        fetch('https://api.github.com/user/following/HollowMan6', {
                             method: "PUT",
                             headers: headers,
                         }).catch(function (error) {
