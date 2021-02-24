@@ -24,11 +24,11 @@
 
 (English version is down below)
 
-源Github项目地址：https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report
+源GitHub项目地址：https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report
 
 ### 好用记得收藏(右上角**加星★Star**)哦!
 
-### 重磅! 新增结合Github OAuth App编写的自动打卡工作流管理[网页前端](https://hollowman.ml/LZU-Auto-COVID-Health-Report/)!!! 简单易用，直白明了，免去手动配置的恐惧，十分适合新手，强烈推荐使用! 现已上架GitHub应用商店Marketplace: https://github.com/marketplace/lzu-covid-health-report
+### 重磅! 新增结合GitHub OAuth App编写的自动打卡工作流管理[网页前端](https://hollowman.ml/LZU-Auto-COVID-Health-Report/)!!! 简单易用，直白明了，免去手动配置的恐惧，十分适合新手，强烈推荐使用! 现已上架GitHub应用商店Marketplace: https://github.com/marketplace/lzu-covid-health-report
 
 [Python库依赖](https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/network/dependencies)
 
@@ -44,16 +44,16 @@
 
 ## 使用方法
 
-因为大陆网络环境导致图片无法显示的可以前往Gitee查看(下述操作步骤仍然要在Github平台上完成哦!)：https://gitee.com/hollowman6/LZU-Auto-COVID-Health-Report#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95
+因为大陆网络环境导致图片无法显示的可以前往Gitee查看(下述操作步骤仍然要在GitHub平台上完成哦!)：https://gitee.com/hollowman6/LZU-Auto-COVID-Health-Report#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95
 
 （强烈建议你首先自己打一次卡之后再使用本软件，从而初始化平台打卡系统中的数据。本软件将会一直沿用你在系统中最新填报的`是否在校`、`所在省市区`、`是否出国`、`出国地点`打卡信息，并会一直上报最健康的状态。）
 
-对于直接在Github Actions上使用工作流进行自动打卡，你可以首先fork本仓库，之后在你fork的仓库中进行相关设置。
+对于直接在GitHub Actions上使用工作流进行自动打卡，你可以首先fork本仓库，之后在你fork的仓库中进行相关设置。
 
 1. 首先，按下图所示点击1，2，3的次序，进入新建Actions secrets的界面。我们需要两个Actions secrets，一个的Name为`CARDID`，value为你的兰州大学校园卡号(也可接受兰大邮箱账号(不含@lzu.edu.cn后缀))；另一个的Name为`PASSWORD`，value为你的兰州大学个人工作台的账户密码（和你的兰大邮箱密码相同）。依次按上述要求创建这两个secrets即可。创建完成后你将在右下部分看到两个Actions secrets。
 ![](img/secrets.png)
 
-2. 然后，按下图所示点击1，2，3，4的次序，你可以手动触发工作流的执行来进行测试。（**注意：** 如果因为你多次重复因为账号密码错误登录失败，很有可能会导致验证码的出现，此时程序会被阻止自动登录。因而请确保你已经在[兰州大学个人工作台](http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn)处测试过你的账号密码是正确的。）另外工作流还自动会在北京时间每天的~~7点，11点，19点~~7点寒暑假时间(1月，2月，7月，8月)自动运行。（因为Github方的原因，可能会有半小时左右的延迟）（如果工作流没自动在指定时间运行，可能是有上一次手动触发运行失败或被取消导致的，请触发一次正确的运行）
+2. 然后，按下图所示点击1，2，3，4的次序，你可以手动触发工作流的执行来进行测试。（**注意：** 如果因为你多次重复因为账号密码错误登录失败，很有可能会导致验证码的出现，此时程序会被阻止自动登录。因而请确保你已经在[兰州大学个人工作台](http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn)处测试过你的账号密码是正确的。）另外工作流还自动会在北京时间每天的~~7点，11点，19点~~7点寒暑假时间(1月，2月，7月，8月)自动运行。（因为GitHub方的原因，可能会有半小时左右的延迟）（如果工作流没自动在指定时间运行，可能是有上一次手动触发运行失败或被取消导致的，请触发一次正确的运行）
 ![](img/workflow.png)
 
 3. 点开任意一个运行记录，依次点开下图所示1，2，你可以看到运行记录以及错误说明。
@@ -285,7 +285,7 @@ kubectl delete ns lzu-auto-covid-health-report
 
 如果你指的是兰大app里面的健康打卡系统，请把兰大app里面的健康打卡系统中“教职工是否在兰（学生是否在校）”那一栏选中状态取消并手动打一次卡。成功打卡后，打开APP会提示“当日填报完成，如变化请更新！”。
 
-如果你指的是Github Actions里面请直接查看运行记录。workflow运行无报错，则打卡成功。失败Github会站内消息提示workflow运行失败。
+如果你指的是GitHub Actions里面请直接查看运行记录。workflow运行无报错，则打卡成功。失败GitHub会站内消息提示workflow运行失败。
 
 当然另外你还可以配置使用[server酱微信推送](#可选微信推送打卡结果)。
 
@@ -295,7 +295,7 @@ kubectl delete ns lzu-auto-covid-health-report
 
 在假期不需要一日三次上报体温，这个功能是为未来返校的时候做的。我的程序会自动判断当前是否在校，如果不在校是不会有体温数据的（都是0.0），另外每次post数据都是要有这一项的。
 
-另外设置的Github Actions是每日三次运行程序，如果你不需要，可以修改你的fork仓库对应的[这里](
+另外设置的GitHub Actions是每日三次运行程序，如果你不需要，可以修改你的fork仓库对应的[这里](
 https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/workflows/autoreport.yml#L10)
 更改为`    - cron: '0 23 * * *' # Schedule on CST 7 everyday`，
 即每日只在北京时间早上7点运行。
@@ -305,9 +305,9 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 ***仅供测试使用，不可用于任何非法用途！***
 
 ***对于使用本代码所造成的一切不良后果，本人将不负任何责任！***
-# LZU Auto COVID Health Report using Github Action
+# LZU Auto COVID Health Report using GitHub Action
 
-Source Github Repository Link: https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report
+Source GitHub Repository Link: https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report
 
 ### Please **★Star** if you think it's great!
 
@@ -329,12 +329,12 @@ support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Confi
 
 (It is strongly recommended that you first report your own situation by yourself before using this software so that the system's data can be initialized. This software will always use the `at university`, `your location`, `whether at abroad`, `abroad location` you kept in the system, and report the healthiest status.)
 
-To auto report with Github Actions workflow, you can fork this repository first, and then set related settings in your forked repository.
+To auto report with GitHub Actions workflow, you can fork this repository first, and then set related settings in your forked repository.
 
 1. First, click in the order of 1, 2 and 3 as shown in the figure below to enter creating the new actions secrets interface. We need two actions secrets, one name is `CARDID`, value is your student card number of Lanzhou University(or the LZU email account user name(without `@lzu.edu.cn`)); the other is `PASSWORD`, value is the account password of your personal workbench of Lanzhou University(It's the same as your email password). Create these two secrets in turn according to the above requirements. After the creation, you will see two actions secrets as in the lower right section.
 ![](img/secrets.png)
 
-1. Then, click in the order of 1, 2, 3 and 4 as shown in the figure below. You can manually trigger the execution of workflow to test. (**Note:** if you repeatedly fail to log in because of the wrong account or password, the program may be likely to be prevented from logging in automatically by reCAPTCHA. So please make sure that you can successfully logged into [Lanzhou University personal workbench](http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn) with your account number and password and that they are correct.) In addition, the workflow will automatically run at ~~7:00, 11:00 and 19:00~~7:00 Summer/Winter Holiday Time (January, February, July, August) Beijing time every day. (Due to the mechanism realized by Github, there may exist a delay for about half an hour.) (If the workflow does not automatically run at the specified time, it may be caused by the failure or cancellation of the last manual triggered run, please trigger a run manually so that it can run correctly.)
+1. Then, click in the order of 1, 2, 3 and 4 as shown in the figure below. You can manually trigger the execution of workflow to test. (**Note:** if you repeatedly fail to log in because of the wrong account or password, the program may be likely to be prevented from logging in automatically by reCAPTCHA. So please make sure that you can successfully logged into [Lanzhou University personal workbench](http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn) with your account number and password and that they are correct.) In addition, the workflow will automatically run at ~~7:00, 11:00 and 19:00~~7:00 Summer/Winter Holiday Time (January, February, July, August) Beijing time every day. (Due to the mechanism realized by GitHub, there may exist a delay for about half an hour.) (If the workflow does not automatically run at the specified time, it may be caused by the failure or cancellation of the last manual triggered run, please trigger a run manually so that it can run correctly.)
 ![](img/workflow.png)
 
 3. Click any running record, and then click in the order of 1 and 2 as shown in the figure below. You can see the running record and error description.
