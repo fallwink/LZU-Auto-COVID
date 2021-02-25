@@ -40,7 +40,7 @@
 
 支持[Fork本仓库直接使用工作流(推荐)](#使用方法)，[自行创建仓库使用工作流](#自行配置工作流)，[CronTab/Python后台定时调度运行](#qa)，[Docker运行](#docker)，[Kubernetes直接运行](#kubernetes)，[使用Helm包管理在Kubernetes运行](#helm)，[Heroku部署运行](#heroku)等。
 
-[Docker镜像](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report)支持在`amd64`、`arm64`、`arm32v7`、`arm32v6`、`ppc64le`、`s390x`、`i386`多架构(包括大型机、普通PC机以及树莓派等开发板)运行。
+[Docker镜像](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report)支持在`amd64`、`arm64`、~~`arm32v7`、`arm32v6`~~、`ppc64le`、`s390x`、`i386`多架构(包括大型机、普通PC机以及树莓派等开发板)运行。
 
 ## 使用方法
 
@@ -128,6 +128,8 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 4. 随后可以测试工作流，一切正常的话你就可以在Telegram上看到自动打卡结果相关信息了。如果你还想将自己的打卡信息推送给其他账号，请在另外的账号上重复步骤2和3，并修改`TGCHATID`，多个ID间使用`,`分隔即可。
 
 ## 将打卡消息推送到浏览器通知
+
+你可以从[这里](https://hollowman.ml/Site-Notifications/)获取到订阅码, 随后创建一个 Actions Secret，name为`SUBSINFO`，value为你的订阅码
 
 只需要在[网页前端](https://hollowman.ml/LZU-Auto-COVID-Health-Report/)`Fork仓库操作`处点击`启用浏览器订阅打卡消息`，并且按浏览器提示打开通知权限。
 
@@ -326,7 +328,7 @@ Fully automatic reporting, privacy protection for personal information, support 
 
 support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab / Python schedule](#qa)，[run with Docker](#docker)，[run with Kubernetes directly](#kubernetes), [Use Helm Package Manager to run in Kubernetes](#helm), [use Heroku to deploy](#heroku) etc.
 
-[Docker Image](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report) support running on multiple architectures such as `amd64`, `arm64`, `arm32v7`, `arm32v6`, `ppc64le`, `s390x`, `i386` including Mainframe, PC and Demoboard like Raspberry Pi.
+[Docker Image](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report) support running on multiple architectures such as `amd64`, `arm64`, ~~`arm32v7`, `arm32v6`~~, `ppc64le`, `s390x`, `i386` including Mainframe, PC and Demoboard like Raspberry Pi.
 
 ## Usage
 
@@ -412,6 +414,8 @@ Then create an Actions Secret with the name `TGBOTTOKEN` and the value of your t
 4. Then you can test the workflow. If everything is normal, you can see the relevant information of the automatic reporting result on the telegram. If you want to push your result to another account, please repeat steps 2 and 3 on the other account, and modify `TGCHATID`. Use `,` to separate between IDs.
 
 ## Push report result to browser notification
+
+You can get the subscription code from [here](https://hollowman.ml/Site-Notifications/), then create an Actions Secret with name `SUBSINFO` and value your subscription code.
 
 Just click `启用浏览器订阅打卡消息` in the `Fork仓库操作` part of the [Web Front-end](https://hollowman.ml/LZU-Auto-COVID-Health-Report/), and then open the notification permission according to the browser prompt
 
