@@ -19,10 +19,12 @@ RUN pip install --upgrade --no-cache-dir pip && if [ "x86_64" = "`arch`" ] || [ 
     && apt-get install -y \
       rustc \
       libffi-dev \
+      libssl-dev \
     && pip install --no-cache-dir -r /requirements.txt \
     && apt-get --purge remove -y \
       rustc \
       libffi-dev \
+      libssl-dev \
     && apt-get autoremove -y \
     && apt-get clean; fi; else \
     apt-get update \
@@ -32,6 +34,7 @@ RUN pip install --upgrade --no-cache-dir pip && if [ "x86_64" = "`arch`" ] || [ 
       gcc \
       zlib1g-dev \
       libffi-dev \
+      libssl-dev \
       rustc \
     && pip install --no-cache-dir -r /requirements.txt \
     && apt-get --purge remove -y \
@@ -41,6 +44,7 @@ RUN pip install --upgrade --no-cache-dir pip && if [ "x86_64" = "`arch`" ] || [ 
       zlib1g-dev \
       manpages \
       libffi-dev \
+      libssl-dev \
       rustc \
     && apt-get autoremove -y \
     && apt-get install -y \
