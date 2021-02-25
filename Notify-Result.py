@@ -18,7 +18,7 @@ tgchatids = os.environ['TGCHATID']
 subsInfo = os.environ['SUBSINFO']
 status = sys.argv[1]
 info = ""
-if len(sys.argv) > 1:
+if len(sys.argv) > 2:
     record = sys.argv[2]
     info = "工作流运行记录查看地址: " + record + "\n"
 errorNotify = ""

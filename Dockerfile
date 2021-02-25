@@ -14,8 +14,15 @@ COPY requirements-run.txt /requirements.txt
 
 ENV TZ Asia/Shanghai
 
-RUN pip install --upgrade --no-cache-dir pip && if [ "x86_64" = "`arch`" ] || [ "aarch64" = "`arch`" ]; then \
-    pip install --no-cache-dir -r /requirements.txt; else \
+RUN pip install --upgrade --no-cache-dir pip && if [ "x86_64" = "`arch`" ] || [ "aarch64" = "`arch`" ] || [ "i386" = "`arch`" ]; then \
+    pip install --no-cache-dir -r /requirements.txt; if [ ! "$?" = "0" ]; then apt-get update \
+    && apt-get install -y \
+      rustc \
+    && pip install --no-cache-dir -r /requirements.txt \
+    && apt-get --purge remove -y \
+      rustc \
+    && apt-get autoremove -y \
+    && apt-get clean; fi; else \
     apt-get update \
     && apt-get install -y \
       libxml2 \
@@ -24,7 +31,6 @@ RUN pip install --upgrade --no-cache-dir pip && if [ "x86_64" = "`arch`" ] || [ 
       zlib1g-dev \
       rustc \
     && pip install --no-cache-dir -r /requirements.txt \
-    && chmod +x /entrypoint.sh \
     && apt-get --purge remove -y \
       libxml2 \
       libxslt1-dev \
