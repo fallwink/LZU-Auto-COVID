@@ -18,6 +18,7 @@ tgchatids = os.environ['TGCHATID']
 subsInfo = os.environ['SUBSINFO']
 status = sys.argv[1]
 info = ""
+record = ""
 if len(sys.argv) > 2:
     record = sys.argv[2]
     info = "工作流运行记录查看地址: " + record + "\n"
@@ -146,6 +147,10 @@ if subsInfo:
     }
     if status == "success":
         data['title'] = "成功✔ 兰州大学自动健康打卡"
+    if record:
+        data['data'] = record
+    else:
+        data['data'] = "https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report"
     try:
         webpush(
             subscription_info=json.loads(subsInfo),

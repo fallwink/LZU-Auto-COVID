@@ -18,9 +18,11 @@ RUN pip install --upgrade --no-cache-dir pip && if [ "x86_64" = "`arch`" ] || [ 
     pip install --no-cache-dir -r /requirements.txt; if [ ! "$?" = "0" ]; then apt-get update \
     && apt-get install -y \
       rustc \
+      libffi-dev \
     && pip install --no-cache-dir -r /requirements.txt \
     && apt-get --purge remove -y \
       rustc \
+      libffi-dev \
     && apt-get autoremove -y \
     && apt-get clean; fi; else \
     apt-get update \
@@ -29,6 +31,7 @@ RUN pip install --upgrade --no-cache-dir pip && if [ "x86_64" = "`arch`" ] || [ 
       libxslt1-dev \
       gcc \
       zlib1g-dev \
+      libffi-dev \
       rustc \
     && pip install --no-cache-dir -r /requirements.txt \
     && apt-get --purge remove -y \
@@ -37,6 +40,7 @@ RUN pip install --upgrade --no-cache-dir pip && if [ "x86_64" = "`arch`" ] || [ 
       gcc \
       zlib1g-dev \
       manpages \
+      libffi-dev \
       rustc \
     && apt-get autoremove -y \
     && apt-get install -y \
