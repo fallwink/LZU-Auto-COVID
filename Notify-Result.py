@@ -155,6 +155,7 @@ if subsInfo:
                 "sub": "mailto:hollowman@hollowman.ml",
             }
         )
+        print("成功通过浏览器订阅消息推送将结果通知给相关用户!")
     except WebPushException as ex:
         print("I'm sorry, but: {}", repr(ex))
         # Mozilla returns additional information in the body of the response.
