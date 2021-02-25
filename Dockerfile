@@ -22,6 +22,7 @@ RUN pip install --upgrade --no-cache-dir pip && if [ "x86_64" = "`arch`" ] || [ 
       libxslt1-dev \
       gcc \
       zlib1g-dev \
+      rustc \
     && pip install --no-cache-dir -r /requirements.txt \
     && chmod +x /entrypoint.sh \
     && apt-get --purge remove -y \
@@ -30,6 +31,7 @@ RUN pip install --upgrade --no-cache-dir pip && if [ "x86_64" = "`arch`" ] || [ 
       gcc \
       zlib1g-dev \
       manpages \
+      rustc \
     && apt-get autoremove -y \
     && apt-get install -y \
        libxslt1.1 \
