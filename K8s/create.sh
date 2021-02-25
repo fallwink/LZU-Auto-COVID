@@ -2,7 +2,7 @@
 
 # Setup Secrets
 echo "---Enter your Actions Secrets, empty if it doesn't exists---"
-secrets=("cardid" "password" "serverchansckey" "openid" "pptoken" "pptopic" "tgbottoken" "tgchatid")
+secrets=("cardid" "password" "serverchansckey" "openid" "pptoken" "pptopic" "tgbottoken" "tgchatid" "subsinfo")
 command="kubectl create secret generic lzu-auto-covid-health-report-secrets"
 for secret in ${secrets[*]}
 do

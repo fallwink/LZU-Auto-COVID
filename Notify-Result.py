@@ -2,6 +2,7 @@
 # -*-coding:utf-8-*-
 # by 'hollowman6' from Lanzhou University(兰州大学)
 
+from pywebpush import webpush, WebPushException
 import os
 import sys
 import requests
@@ -14,21 +15,25 @@ pptoken = os.environ['PPTOKEN']
 pptopic = os.environ['PPTOPIC']
 tgbottoken = os.environ['TGBOTTOKEN']
 tgchatids = os.environ['TGCHATID']
+subsInfo = os.environ['SUBSINFO']
 status = sys.argv[1]
 info = ""
+if len(sys.argv) > 1:
+    record = sys.argv[2]
+    info = "工作流运行记录查看地址: " + record + "\n"
 errorNotify = ""
 
 if sckey:
     try:
         with open("information.txt") as infofile:
-            info = urllib.parse.quote_plus(
+            info += urllib.parse.quote_plus(
                 infofile.read().replace('\n', '\n\n'))
     except Exception as e:
         print(e)
     finally:
         try:
             if not info:
-                info = "工作流或者打卡程序存在问题，请查看运行记录并提交issue!"
+                info += "工作流或者打卡程序存在问题，请查看运行记录并提交issue!"
                 status = "failure"
             message = "%E5%A4%B1%E8%B4%A5%E2%9C%96"
             if status == "success":
@@ -61,7 +66,7 @@ else:
 if pptoken:
     try:
         with open("information.txt") as infofile:
-            info = urllib.parse.quote_plus(
+            info += urllib.parse.quote_plus(
                 infofile.read().replace('***************************\n', "", 1).replace(
                     "***************************\n", "<hr>").replace('\n', '<br>'))
     except Exception as e:
@@ -69,7 +74,7 @@ if pptoken:
     finally:
         try:
             if not info:
-                info = "工作流或者打卡程序存在问题，请查看运行记录并提交issue!"
+                info += "工作流或者打卡程序存在问题，请查看运行记录并提交issue!"
                 status = "failure"
             message = "%E5%A4%B1%E8%B4%A5%E2%9C%96"
             if status == "success":
@@ -97,7 +102,7 @@ if tgbottoken:
             if tgchatid:
                 try:
                     with open("information.txt") as infofile:
-                        info = urllib.parse.quote_plus(
+                        info += urllib.parse.quote_plus(
                             "\n\n" + infofile.read().replace('\n', '\n\n').replace(
                                 "***************************\n", "------------------------------------------------------------").replace(
                                 '-', '\\-').replace('.', '\\.').replace('{', '\\{').replace('}', '\\}').replace('!', '\\!'))
@@ -106,7 +111,7 @@ if tgbottoken:
                 finally:
                     try:
                         if not info:
-                            info = "工作流或者打卡程序存在问题，请查看运行记录并提交issue!"
+                            info += "工作流或者打卡程序存在问题，请查看运行记录并提交issue!"
                             status = "failure"
                         message = "%E5%A4%B1%E8%B4%A5%E2%9C%96"
                         if status == "success":
@@ -114,13 +119,14 @@ if tgbottoken:
                         host = "https://api.telegram.org/bot"
                         user = ""
                         res = requests.get(host + tgbottoken + "/sendMessage?chat_id=" + tgchatid + "&text=*%20_%20__" + message +
-                                        "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1__%20_%20*" + info
-                                        + "&parse_mode=MarkdownV2")
+                                           "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1__%20_%20*" + info
+                                           + "&parse_mode=MarkdownV2")
                         result = json.loads(res.text)
                         if result['ok']:
                             print("成功通过Telegram将结果通知给用户" + str(index) + "!")
                         else:
-                            errorNotify += "Telegram用户" + str(index) + "推送错误: " + res.text + "\n"
+                            errorNotify += "Telegram用户" + \
+                                str(index) + "推送错误: " + res.text + "\n"
                     except Exception as e:
                         print(e)
                         errorNotify += "Telegram用户" + str(index) + "推送错误!\n"
@@ -129,6 +135,39 @@ if tgbottoken:
         print("未设置TGCHATID，无法推送到Telegram!")
 else:
     print("未设置TGBOOTTOKEN！")
+
+if subsInfo:
+    data = {
+        "requireInteraction": True,
+        "vibrate": [200, 100, 200],
+        "icon": "https://avatars.githubusercontent.com/oa/1472343?s=64&v=4",
+        "body": "点击通知查看打卡记录工作流!",
+        "title": "失败✖ 兰州大学自动健康打卡"
+    }
+    if status == "success":
+        data['title'] = "成功✔ 兰州大学自动健康打卡"
+    try:
+        webpush(
+            subscription_info=json.loads(subsInfo),
+            data=json.dumps(data),
+            vapid_private_key="tUCZ-8DGMlUhr3ntyN4PQoDbALJSBnv8yZXhi4XX1iI",
+            vapid_claims={
+                "sub": "mailto:hollowman@hollowman.ml",
+            }
+        )
+    except WebPushException as ex:
+        print("I'm sorry, but: {}", repr(ex))
+        # Mozilla returns additional information in the body of the response.
+        if ex.response and ex.response.json():
+            extra = ex.response.json()
+            print("Remote service replied with a {}:{}, {}",
+                  extra.code,
+                  extra.errno,
+                  extra.message
+                  )
+        errorNotify += "浏览器订阅消息推送错误!\n"
+else:
+    print("未设置SUBSINFO！")
 
 if errorNotify:
     raise Exception(errorNotify)

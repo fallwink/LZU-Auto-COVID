@@ -30,6 +30,9 @@ inputs:
   TGCHATID:
     description: 'Telegram User ID'
     required: false
+  SUBSINFO:
+    description: 'Browser Notification Subscription Code (浏览器通知订阅代码)'
+    required: false
 
 runs:
   using: 'docker'

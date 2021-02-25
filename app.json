@@ -60,6 +60,11 @@
             "description": "打卡失败延迟时间，遵循Linux Sleep命令时间表达式(默认为30分钟，不启用则不填)",
             "value": "30m",
             "required": false
+        },
+        "SUBSINFO": {
+            "description": "浏览器推送打卡通知代码",
+            "value": "",
+            "required": false
         }
     },
     "website": "https://hollowman.ml/LZU-Auto-COVID-Health-Report/",

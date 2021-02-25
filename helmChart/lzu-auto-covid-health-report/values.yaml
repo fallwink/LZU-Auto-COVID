@@ -13,6 +13,7 @@ ppToken: ""
 ppTopic: ""
 tgBotToken: ""
 tgChatID: ""
+subsInfo: ""
 failureDelayTime: "30m"
 failedJobsHistoryLimit: 1
 successfulJobsHistoryLimit: 3

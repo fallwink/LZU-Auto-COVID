@@ -66,6 +66,11 @@ spec:
                   secretKeyRef:
                     name: lzu-auto-covid-health-report-secrets
                     key: tgchatid
+              - name: SUBSINFO
+                valueFrom:
+                  secretKeyRef:
+                    name: lzu-auto-covid-health-report-secrets
+                    key: subsinfo
             volumeMounts:
             - mountPath: /cache
               name: report-delays-marking

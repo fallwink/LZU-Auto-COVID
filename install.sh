@@ -5,7 +5,7 @@ pip install -r requirements.txt
 
 # Setup Environmental Variables
 echo "---Enter your Actions Secrets, empty if it doesn't exists---"
-secrets=("CARDID" "PASSWORD" "PPTOKEN" "PPTOPIC" "SERVERCHANSCKEY" "OPENID" "TGBOTTOKEN" "TGCHATID" "CRONEXP" "DELAYS")
+secrets=("CARDID" "PASSWORD" "PPTOKEN" "PPTOPIC" "SERVERCHANSCKEY" "OPENID" "TGBOTTOKEN" "TGCHATID" "SUBSINFO" "CRONEXP" "DELAYS")
 for secret in ${secrets[*]}
 do
     read -p "-"$secret": " content

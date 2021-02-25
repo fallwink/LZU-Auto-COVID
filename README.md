@@ -169,6 +169,7 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 * PPTOPIC: PushPlus 群组编码
 * TGBOTTOKEN: Telegraph Bot Token
 * TGCHATID: Telegram User ID
+* SUBSINFO: 浏览器通知订阅代码
 
 ### 示例
 
@@ -184,7 +185,8 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
     PPTOKEN: ${{ secrets.PPTOKEN }}
     PPTOPIC: ${{ secrets.PPTOPIC }}
     TGBOTTOKEN: ${{ secrets.TGBOTTOKEN }}
-    TGCHATID: ${{ secrets.TGCHATID }}   
+    TGCHATID: ${{ secrets.TGCHATID }}
+    SUBSINFO: ${{ secrets.SUBSINFO }}
 ```
 
 ## Docker
@@ -203,6 +205,7 @@ docker run -it \
     -e PPTOPIC=$PPTOPIC \
     -e TGBOTTOKEN=$TGBOTTOKEN \
     -e TGCHATID=$TGCHATID \
+    -e SUBSINFO=$SUBSINFO \
     hollowman6/lzu-auto-covid-health-report
 ```
 
@@ -450,6 +453,7 @@ You can create your own repository and configure your own workflow to use, [Exam
 * PPTOPIC: PushPlus Topic
 * TGBOTTOKEN: Telegraph Bot Token
 * TGCHATID: Telegram User ID
+* SUBSINFO: Browser Notification Subscription Code
 
 ### Example
 
@@ -466,6 +470,7 @@ You can create your own repository and configure your own workflow to use, [Exam
     PPTOPIC: ${{ secrets.PPTOPIC }}
     TGBOTTOKEN: ${{ secrets.TGBOTTOKEN }}
     TGCHATID: ${{ secrets.TGCHATID }}
+    SUBSINFO: ${{ secrets.SUBSINFO }}
 ```
 
 ## Docker
@@ -485,6 +490,7 @@ docker run -it \
     -e PPTOPIC=$PPTOPIC \
     -e TGBOTTOKEN=$TGBOTTOKEN \
     -e TGCHATID=$TGCHATID \
+    -e SUBSINFO=$SUBSINFO \
     hollowman6/lzu-auto-covid-health-report
 ```
 

@@ -4,11 +4,36 @@ entries:
   - annotations:
       artifacthub.io/images: |
         - name: lzu-auto-covid-health-report
+          image: hollowman6/lzu-auto-covid-health-report:1.1.2
+      artifacthub.io/license: GPL-3.0
+    apiVersion: v2
+    appVersion: 1.1.2
+    created: "2021-02-26T00:07:21.7556858+08:00"
+    description: A chart for deploying LZU Auto COVID Health Report. (兰大疫情期间自动定时健康打卡)
+    digest: 217e20bdc84b82c6db00227019df9acd44b0643023c796cf6e008fbc55f98456
+    home: https://hollowman.ml/
+    icon: https://avatars.githubusercontent.com/u/67548465?s=200&v=4
+    keywords:
+    - lzu
+    - covid-report
+    maintainers:
+    - email: hollowman@hollowman.ml
+      name: Hollow Man
+    name: lzu-auto-covid-health-report
+    sources:
+    - https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report
+    type: application
+    urls:
+    - http://hollowman.ml/LZU-Auto-COVID-Health-Report/helmChart/lzu-auto-covid-health-report-1.1.2.tgz
+    version: 1.1.2
+  - annotations:
+      artifacthub.io/images: |
+        - name: lzu-auto-covid-health-report
           image: hollowman6/lzu-auto-covid-health-report:1.1.1
       artifacthub.io/license: GPL-3.0
     apiVersion: v2
     appVersion: 1.1.1
-    created: "2021-02-24T23:05:22.0542015+08:00"
+    created: "2021-02-26T00:07:21.7546383+08:00"
     description: A chart for deploying LZU Auto COVID Health Report. (兰大疫情期间自动定时健康打卡)
     digest: 497b5da90c6f6c146a8b39cd6c2c19999e61d66eebae1fb2e998f66fa8416f92
     home: https://hollowman.ml/
@@ -33,7 +58,7 @@ entries:
       artifacthub.io/license: GPL-3.0
     apiVersion: v2
     appVersion: 1.0.10
-    created: "2021-02-24T23:05:22.0532038+08:00"
+    created: "2021-02-26T00:07:21.6956414+08:00"
     description: A chart for deploying LZU Auto COVID Health Report. (兰大疫情期间自动定时健康打卡)
     digest: 6e6479233b80170e77e0c4e07ef0cf975f28c8f60d4e6b2d0ee00bcce2c788f5
     home: https://hollowman.ml/
@@ -51,4 +76,4 @@ entries:
     urls:
     - http://hollowman.ml/LZU-Auto-COVID-Health-Report/helmChart/lzu-auto-covid-health-report-1.0.10.tgz
     version: 1.0.10
-generated: "2021-02-24T23:05:22.0512644+08:00"
+generated: "2021-02-26T00:07:21.6935636+08:00"

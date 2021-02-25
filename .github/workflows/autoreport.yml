@@ -47,8 +47,11 @@ jobs:
             PPTOPIC: ${{ secrets.PPTOPIC }}
             TGBOTTOKEN: ${{ secrets.TGBOTTOKEN }}
             TGCHATID: ${{ secrets.TGCHATID }}
+            SUBSINFO: ${{ secrets.SUBSINFO }}
           if: ${{ failure() }}
-          run: python Notify-Result.py failure && cat information.txt
+          run: |
+            job_url=`curl $GITHUB_API_URL/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs | grep html_url | cut -d \" -f 4` \
+            && python Notify-Result.py failure ${job_url}?check_suite_focus=true && cat information.txt
         - name: 'Notify Success'
           env:
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
@@ -57,8 +60,11 @@ jobs:
             PPTOPIC: ${{ secrets.PPTOPIC }}
             TGBOTTOKEN: ${{ secrets.TGBOTTOKEN }}
             TGCHATID: ${{ secrets.TGCHATID }}
+            SUBSINFO: ${{ secrets.SUBSINFO }}
           if: ${{ success() }}
-          run: python Notify-Result.py success
+          run: |
+            job_url=`curl $GITHUB_API_URL/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs | grep html_url | cut -d \" -f 4` \
+            && python Notify-Result.py success ${job_url}?check_suite_focus=true
         - name: 'Re-run workflow if failed and GPATOKEN set'
           if: ${{ failure() }}
           run: |
@@ -69,19 +75,3 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             $workflow_url/dispatches \
             -d '{"ref":"${{ github.ref }}", "inputs": { "delays": "30m" }}'
-        - name: 'Web Push Notification if Success'
-          env:
-            SUBSINFO: ${{ secrets.SUBSINFO }}
-          if: ${{ success() && (env.SUBSINFO != '') }}
-          run: |
-            job_url=`curl $GITHUB_API_URL/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs | grep html_url | cut -d \" -f 4` \
-            && pip install pywebpush six \
-            && python webpush.py 成功 ${job_url}?check_suite_focus=true
-        - name: 'Web Push Notification if Failed'
-          env:
-            SUBSINFO: ${{ secrets.SUBSINFO }}
-          if: ${{ failure() && (env.SUBSINFO != '') }}
-          run: |
-            job_url=`curl $GITHUB_API_URL/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs | grep html_url | cut -d \" -f 4` \
-            && pip install pywebpush six \
-            && python webpush.py 失败 ${job_url}?check_suite_focus=true
