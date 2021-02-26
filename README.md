@@ -40,7 +40,7 @@
 
 支持[Fork本仓库直接使用工作流(推荐)](#使用方法)，[自行创建仓库使用工作流](#自行配置工作流)，[CronTab/Python后台定时调度运行](#qa)，[Docker运行](#docker)，[Kubernetes直接运行](#kubernetes)，[使用Helm包管理在Kubernetes运行](#helm)，[Heroku部署运行](#heroku)等。
 
-[Docker镜像](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report)支持在`amd64`、`arm64`、~~`arm32v7`~~、`arm32v6`、`ppc64le`、~~`s390x`~~、`i386`多架构(~~删去~~代表v1.1.2版本后因为cryptography编译问题所以不再支持)(包括大型机、普通PC机以及树莓派等开发板)运行。
+[Docker镜像](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report)支持在`amd64`、`arm64`、~~`arm32v7`、`arm32v6`~~、`ppc64le`、~~`s390x`~~、`i386`多架构(~~删去~~代表v1.1.2版本后因为cryptography编译问题所以不再支持)(包括大型机、普通PC机以及树莓派等开发板)运行。
 
 ## 使用方法
 
@@ -328,7 +328,7 @@ Fully automatic reporting, privacy protection for personal information, support 
 
 support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab / Python schedule](#qa)，[run with Docker](#docker)，[run with Kubernetes directly](#kubernetes), [Use Helm Package Manager to run in Kubernetes](#helm), [use Heroku to deploy](#heroku) etc.
 
-[Docker Image](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report) support running on multiple architectures such as `amd64`, `arm64`, ~~`arm32v7`~~, `arm32v6`, `ppc64le`, ~~`s390x`~~, `i386` (~~Cross out~~ represents chat due to compile issue for cryptography, after v1.1.2 they no longer supported) including Mainframe, PC and Demoboard like Raspberry Pi.
+[Docker Image](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report) support running on multiple architectures such as `amd64`, `arm64`, ~~`arm32v7`, `arm32v6`~~, `ppc64le`, ~~`s390x`~~, `i386` (~~Cross out~~ represents chat due to compile issue for cryptography, after v1.1.2 they no longer supported) including Mainframe, PC and Demoboard like Raspberry Pi.
 
 ## Usage
 
