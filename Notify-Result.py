@@ -141,7 +141,7 @@ if subsInfo:
     data = {
         "requireInteraction": True,
         "vibrate": [200, 100, 200],
-        "icon": "https://avatars.githubusercontent.com/oa/1472343?s=64&v=4",
+        "icon": "https://hollowman.ml/LZU-Auto-COVID-Health-Report/lzu.png",
         "body": "点击通知查看打卡记录工作流!",
         "title": "失败✖ 兰州大学自动健康打卡"
     }
