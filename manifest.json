@@ -1,0 +1,16 @@
+{
+    "short_name": "LZU COVID",
+    "name": "LZU Auto COVID Health Report",
+    "icons": [
+      {
+        "src": "./lzu.png",
+        "sizes": "340x340",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ],
+    "start_url": "/LZU-Auto-COVID-Health-Report/",
+    "display": "standalone",
+    "background_color": "#eee",
+    "theme_color": "#eee"
+  }

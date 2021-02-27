@@ -23,6 +23,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta name="Author" content="Hollow Man" />
     <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#EEEEEE" />
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./lzu.png">
     <link href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark/dist/css/bootstrap-dark.min.css"
         rel="stylesheet">
@@ -32,7 +35,7 @@
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@forevolve/bootstrap-dark/dist/css/toggle-bootstrap-print.min.css"
         rel="stylesheet">
-    <link rel="icon" href="https://avatars.githubusercontent.com/oa/1472343?s=64&v=4" type="image/png">
+    <link rel="icon" href="./lzu.png" type="image/png">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <link id="theme-swal" href="" rel="stylesheet">
     <link href="/css/dayNightSwitchButton.css" rel="stylesheet">
@@ -165,10 +168,54 @@
         <label class="toggle--btn" for="toggle--daynight1"><span class="toggle--feature"></span></label>
     </div>
     <script>
+        function register(config) {
+            if ("serviceWorker" in navigator) {
+                var swUrl = config.path + "/" + config.name + "?v=" + config.ver;
+                navigator.serviceWorker
+                    .register(swUrl)
+                    .then(function (registration) {
+                        if (config && config.onRegster) {
+                            config.onRegster(registration);
+                        }
+                        registration.onupdatefound = function (e) {
+                            var installingWorker =
+                                e.target.installing ||
+                                e.target.waiting ||
+                                e.target.active;
+                            if (installingWorker == null) {
+                                return;
+                            }
+                            installingWorker.addEventListener("statechange", e => {
+                                if (installingWorker.state === "installed") {
+                                    if (navigator.serviceWorker.controller) {
+                                        if (config && config.onUpdate) {
+                                            config.onUpdate(registration);
+                                        }
+                                    } else {
+                                        if (config && config.onSuccess) {
+                                            config.onSuccess(registration);
+                                        }
+                                    }
+                                }
+                            });
+                        };
+                    })
+                    .catch(function (error) {
+                        console.error("serviceWorker Error When Register:", error);
+                    });
+            }
+        }
+
+        register({
+            ver: 1,
+            path: "",
+            name: "sw.js"
+        });
+
         function createNotify(title, options) {
             options.requireInteraction = true;
             options.vibrate = [200, 100, 200];
-            options.icon = "https://avatars.githubusercontent.com/oa/1472343?s=64&v=4";
+            options.icon = "./lzu.png";
 
             if (!window.Notification || !Notification.requestPermission) {
                 return false;
@@ -192,14 +239,18 @@
                         window.focus();
                     };
                 } catch (e) {
-                    if (e.name == 'TypeError') {
-                        navigator.serviceWorker.register('/js/sw.js').then(async function (registration) {
+                    if (e.name == 'TypeError' && "serviceWorker" in navigator) {
+                        navigator.serviceWorker.ready.then(async function (registration) {
                             await registration.pushManager.getSubscription()
                                 .then(function (subscription) {
                                     if (!subscription) {
                                         registration.pushManager.subscribe({
                                             userVisibleOnly: true
-                                        }).catch(function (err) {});
+                                        }).catch(function (err) {
+                                            console.log(
+                                                'Failed to subscribe notification to the user: ',
+                                                err);
+                                        });
                                     }
                                 });
                             registration.showNotification($title, $options);
@@ -378,7 +429,7 @@
         }
     </script>
     <blockquote class="blockquote text-center">
-        <p class="mb-0"><img src="https://avatars.githubusercontent.com/oa/1472343?s=64&v=4" height="20rem"
+        <p class="mb-0"><img src="./lzu.png" height="20rem"
                 style="margin-top: -0.2rem" />兰州大学疫情期间自动定时健康打卡</p>
         <footer class="blockquote-footer">LZU Auto COVID Health Report <cite title="Source Title">Using GitHub
                 Actions</cite></footer>
@@ -391,17 +442,19 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写完 <i class="fa fa-wpforms" aria-hidden="true"></i>
         表单相关信息并且 <i class="fa fa-check" aria-hidden="true"></i> 提交后，本网页软件会将<a target="_blank"
             onclick="notifyNotif('源仓库');" class="text-success"
-            href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report">源仓库</a>自动 <i class="fa fa-code-fork" aria-hidden="true"></i> 
-            Fork到你的 <i class="fa fa-github"
-            aria-hidden="true"></i> GitHub账户下并自动配置相关打卡信息到你的
-            <i class="fa fa-github" aria-hidden="true"></i> GitHub的 <i class="fa fa-code-fork" aria-hidden="true"></i>
-            Fork仓库工作流运行环境中( <i class="fa fa-user-secret" aria-hidden="true"></i> Actions
+            href="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report">源仓库</a>自动 <i class="fa fa-code-fork"
+            aria-hidden="true"></i>
+        Fork到你的 <i class="fa fa-github" aria-hidden="true"></i> GitHub账户下并自动配置相关打卡信息到你的
+        <i class="fa fa-github" aria-hidden="true"></i> GitHub的 <i class="fa fa-code-fork" aria-hidden="true"></i>
+        Fork仓库工作流运行环境中( <i class="fa fa-user-secret" aria-hidden="true"></i> Actions
         Secrets)，通过预定义在工作流中的定时任务和 <i class="fa fa-github" aria-hidden="true"></i> GitHub Actions
         实现全自动打卡，同时支持打卡结果推送到 <i class="fa fa-weixin" aria-hidden="true"></i>
-        微信、<i class="fa fa-telegram" aria-hidden="true"></i> Telegram等社交软件，以及浏览器订阅打卡消息 <i class="fa fa-bullhorn" aria-hidden="true"></i>
+        微信、<i class="fa fa-telegram" aria-hidden="true"></i> Telegram等社交软件，以及浏览器订阅打卡消息 <i class="fa fa-bullhorn"
+            aria-hidden="true"></i>
         通知(即使网页已经关闭，你仍然可以收到 <i class="fa fa-bullhorn" aria-hidden="true"></i> 通知信息)。本网页软件通过
         <i class="fa fa-github" aria-hidden="true"></i> GitHub OAuth以及相关API实现，不会记录你的任何信息，打卡工作流托管于你的
-        <i class="fa fa-github" aria-hidden="true"></i> GitHub 的对应 <i class="fa fa-code-fork" aria-hidden="true"></i> Fork仓库中，实现了 <i class="fa fa-user-secret" aria-hidden="true"></i> 
+        <i class="fa fa-github" aria-hidden="true"></i> GitHub 的对应 <i class="fa fa-code-fork" aria-hidden="true"></i>
+        Fork仓库中，实现了 <i class="fa fa-user-secret" aria-hidden="true"></i>
         隐私保护，请放心使用。如果检测到已经 <i class="fa fa-code-fork" aria-hidden="true"></i>
         Fork过本仓库，软件还提供了一系列 <i class="fa fa-cog fa-spin" aria-hidden="true"></i> 管理以及自定义功能操作。<br />
         <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 说明: </strong></i>
@@ -414,11 +467,16 @@
             class="fa fa-envelope-o" aria-hidden="true"></i> 邮箱<a class="text-success"
             onclick="notifyNotif('写邮件给作者邮箱');" target="_blank"
             href="mailto:hollowman@hollowman.ml">hollowman@hollowman.ml</a>联系我。<br />
-        <i><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 注意: </strong></i><br />1. 请不要使用 <span class="fa-stack fa-lg"><i class="fa fa-internet-explorer fa-stack-1x"></i><i class="fa fa-ban fa-stack-2x text-danger"></i></span> IE 浏览本页面!
-        推荐使用最新版 <i class="fa fa-chrome" aria-hidden="true"></i> 谷歌Chrome、<i class="fa fa-edge" aria-hidden="true"></i> 微软Edge或者 <i
-        class="fa fa-firefox" aria-hidden="true"></i> Mozilla Firefox。<br />2. 因为 <i class="fa fa-github" aria-hidden="true"></i> GitHub
-        API的限制，请不要频繁尝试提交该网页表单!<br />3. <i class="fa fa-user-secret" aria-hidden="true"></i> Secrets提交并离开本页面后将无法再查看相关内容!<br />
-        4. 再次提交表单将会覆盖上次填写的所有 <i class="fa fa-user-secret" aria-hidden="true"></i> Secrets!<br />5. 默认自动打卡 <i class="fa fa-clock-o" aria-hidden="true"></i> 时间为北京时间1,2,7,8月每天早7点(因
+        <i><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 注意: </strong></i><br />1. 请不要使用 <span
+            class="fa-stack fa-lg"><i class="fa fa-internet-explorer fa-stack-1x"></i><i
+                class="fa fa-ban fa-stack-2x text-danger"></i></span> IE 浏览本页面!
+        推荐使用最新版 <i class="fa fa-chrome" aria-hidden="true"></i> 谷歌Chrome、<i class="fa fa-edge" aria-hidden="true"></i>
+        微软Edge或者 <i class="fa fa-firefox" aria-hidden="true"></i> Mozilla Firefox。<br />2. 因为 <i class="fa fa-github"
+            aria-hidden="true"></i> GitHub
+        API的限制，请不要频繁尝试提交该网页表单!<br />3. <i class="fa fa-user-secret" aria-hidden="true"></i>
+        Secrets提交并离开本页面后将无法再查看相关内容!<br />
+        4. 再次提交表单将会覆盖上次填写的所有 <i class="fa fa-user-secret" aria-hidden="true"></i> Secrets!<br />5. 默认自动打卡 <i
+            class="fa fa-clock-o" aria-hidden="true"></i> 时间为北京时间1,2,7,8月每天早7点(因
         <i class="fa fa-github" aria-hidden="true"></i> GitHub 方原因，可能会有半小时左右的延迟)<br />
         6. <i class="fa fa-android" aria-hidden="true"></i>
         安卓端 <i class="fa fa-chrome" aria-hidden="true"></i> Chrome、<i class="fa fa-edge" aria-hidden="true"></i> Edge、<i
@@ -432,10 +490,11 @@
     <div id="repository" class="card" style="display: none;">
         <h5 class="card-header"><i class="fa fa-cogs" aria-hidden="true"></i> Fork仓库操作</h5>
         <div class="card-body" id="forkRepoAction" align="center">
-            <button type="button" class="btn btn-outline-secondary" id="NotifPushBtn"><i class="fa fa-bullhorn" aria-hidden="true"></i> 启用浏览器订阅打卡消息</button>
+            <button type="button" class="btn btn-outline-secondary" id="NotifPushBtn"><i class="fa fa-bullhorn"
+                    aria-hidden="true"></i> 启用浏览器订阅打卡消息</button>
             <br />
-            <button type="button" class="btn btn-outline-primary" id="forkRepoAddr" onclick=""><i class="fa fa-code-fork"
-                    aria-hidden="true"></i> 查看你的Fork仓库</button>
+            <button type="button" class="btn btn-outline-primary" id="forkRepoAddr" onclick=""><i
+                    class="fa fa-code-fork" aria-hidden="true"></i> 查看你的Fork仓库</button>
             <button type="button" class="btn btn-outline-primary" id="workflowAddr" onclick=""><i class="fa fa-eye"
                     aria-hidden="true"></i> 查看你的自动打卡工作流运行历史记录</button>
             <button type="button" class="btn btn-outline-secondary" id="workflowDispatch"
@@ -452,8 +511,9 @@
         </div>
     </div>
     <div class="card">
-        <h5 class="card-header"><i class="fa fa-cog fa-spin" aria-hidden="true"></i> Fork仓库工作流运行环境配置( <i class="fa fa-user-secret" aria-hidden="true"></i>
-        Actions Secrets)
+        <h5 class="card-header"><i class="fa fa-cog fa-spin" aria-hidden="true"></i> Fork仓库工作流运行环境配置( <i
+                class="fa fa-user-secret" aria-hidden="true"></i>
+            Actions Secrets)
         </h5>
         <div class="card-body">
             <div id="setActionsSecret" class="form-group">
@@ -550,15 +610,20 @@
             </div>
             <div class="alert alert-danger" role="alert">
                 <i><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 免责声明: </strong></i><br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于每个人的打卡程序都托管在各自 <i class="fa fa-github" aria-hidden="true"></i> GitHub账户的
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于每个人的打卡程序都托管在各自 <i class="fa fa-github"
+                    aria-hidden="true"></i> GitHub账户的
                 <i class="fa fa-code-fork" aria-hidden="true"></i>
-                Fork仓库中，使用 <i class="fa fa-github" aria-hidden="true"></i> GitHub Actions进行自动打卡，并且本程序遵循GPL-3.0协议，你可以自由地修改你的 <i class="fa fa-code-fork" aria-hidden="true"></i>
+                Fork仓库中，使用 <i class="fa fa-github" aria-hidden="true"></i> GitHub
+                Actions进行自动打卡，并且本程序遵循GPL-3.0协议，你可以自由地修改你的 <i class="fa fa-code-fork" aria-hidden="true"></i>
                 Fork仓库中的程序，此外由于打卡程序的 <i class="fa fa-history" aria-hidden="true"></i>
                 时效性，所以 <i class="fa fa-user-o" aria-hidden="true"></i> 原作者不能永远确保你的打卡程序的正确性，也不能确保
-                <i class="fa fa-github" aria-hidden="true"></i> GitHub平台执行 <i class="fa fa-clock-o" aria-hidden="true"></i> 定时任务的稳定性，
-                即<strong>不能确保自动打卡程序始终能按照预期方式工作</strong>。因而<strong>根据打卡结果更新 <i class="fa fa-code-fork" aria-hidden="true"></i> Fork仓库、调整相关程序或打卡信息是用户的义务，
-                    因打卡程序不稳定或者失效而产生的一切后果与 <i class="fa fa-user-o" aria-hidden="true"></i> <a target="_blank" onclick="notifyNotif('原作者GitHub');" class="text-danger"
-                    href="https://github.com/HollowMan6">原作者</a>无关</strong>。<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击以下按钮即代表你<i
+                <i class="fa fa-github" aria-hidden="true"></i> GitHub平台执行 <i class="fa fa-clock-o"
+                    aria-hidden="true"></i> 定时任务的稳定性，
+                即<strong>不能确保自动打卡程序始终能按照预期方式工作</strong>。因而<strong>根据打卡结果更新 <i class="fa fa-code-fork"
+                        aria-hidden="true"></i> Fork仓库、调整相关程序或打卡信息是用户的义务，
+                    因打卡程序不稳定或者失效而产生的一切后果与 <i class="fa fa-user-o" aria-hidden="true"></i> <a target="_blank"
+                        onclick="notifyNotif('原作者GitHub');" class="text-danger"
+                        href="https://github.com/HollowMan6">原作者</a>无关</strong>。<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击以下按钮即代表你<i
                     class="fa fa-check" aria-hidden="true"></i> 接受该免责声明。
             </div>
             <p align="center"><button type="button" class="btn btn-primary" id="buildRepo" onclick="startBuild();"><i
@@ -609,7 +674,7 @@
             if (isSubscribed) {
                 pushButton.innerHTML = '<i class="fa fa-power-off" aria-hidden="true"></i> 关闭浏览器订阅打卡消息';
             } else {
-                pushButton.innerHTML='<i class="fa fa-bullhorn" aria-hidden="true"></i> 启用浏览器订阅打卡消息';
+                pushButton.innerHTML = '<i class="fa fa-bullhorn" aria-hidden="true"></i> 启用浏览器订阅打卡消息';
             }
 
             pushButton.disabled = false;
@@ -694,7 +759,7 @@
         }
 
         if ('serviceWorker' in navigator && 'PushManager' in window) {
-            navigator.serviceWorker.register('/js/sw.js')
+            navigator.serviceWorker.ready
                 .then(function (swReg) {
                     swRegistration = swReg;
                 })
