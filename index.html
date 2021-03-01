@@ -957,9 +957,16 @@
         var originWorkflowSha = "";
         var modifiedWorkflowContent = "";
 
-        async function disableDockerWorkflow() {
+        async function disableUnrelevantWorkflow() {
             await fetch('https://api.github.com/repos/' + userid +
                 '/LZU-Auto-COVID-Health-Report/actions/workflows/docker-publish.yml/disable', {
+                    method: "PUT",
+                    headers: headers,
+                }).catch(function (error) {
+                console.log(error);
+            });
+            await fetch('https://api.github.com/repos/' + userid +
+                '/LZU-Auto-COVID-Health-Report/actions/workflows/gitee.yml/disable', {
                     method: "PUT",
                     headers: headers,
                 }).catch(function (error) {
@@ -1228,7 +1235,7 @@
         }
 
         async function modifyWorkflow() {
-            await disableDockerWorkflow();
+            await disableUnrelevantWorkflow();
             await fetch("https://api.github.com/repos/" + userid +
                     "/LZU-Auto-COVID-Health-Report/contents/.github/workflows/autoreport.yml", {
                         method: "PUT",
