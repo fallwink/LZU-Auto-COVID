@@ -32,15 +32,22 @@ before_script:
   - python -m pip install --upgrade pip
   - pip install -r requirements-run.txt
 
+stages:
+  - run
+  - error_logging
+
 run:
+  stage: run
   script:
     - python LZU-Auto-COVID-Health-Report.py >> information.txt
     - cat information.txt
-    - python Notify-Result.py success ${CI_REPOSITORY_URL%.git}/-/pipelines/${CI_PIPELINE_ID}/builds
+    - temp_URL=${CI_REPOSITORY_URL:0:len-4}
+    - python Notify-Result.py success $CI_JOB_URL
 
 error_logging:
+  stage: error_logging
   script:
-    - python Notify-Result.py failure ${CI_REPOSITORY_URL%.git}/-/pipelines/${CI_PIPELINE_ID}/builds
+    - python Notify-Result.py failure $CI_PIPELINE_URL
     - cat information.txt
   when: on_failure
 
