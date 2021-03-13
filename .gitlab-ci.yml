@@ -6,6 +6,13 @@ image: python:latest
 # only cache local items.
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  SERVERCHANSCKEY: ""
+  OPENID: ""
+  PPTOKEN: ""
+  PPTOPIC: ""
+  TGBOTTOKEN: ""
+  TGCHATID: ""
+  SUBSINFO: ""
 
 # Pip's cache doesn't store the python packages
 # https://pip.pypa.io/en/stable/reference/pip_install/#caching
