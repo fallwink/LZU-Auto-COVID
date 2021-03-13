@@ -22,24 +22,18 @@ before_script:
   - pip install virtualenv
   - virtualenv venv
   - source venv/bin/activate
-
-install_requirements:
-  script:
-    - python -m pip install --upgrade pip
-    - pip install -r requirements-run.txt
+  - python -m pip install --upgrade pip
+  - pip install -r requirements-run.txt
 
 run:
   script:
     - python LZU-Auto-COVID-Health-Report.py >> information.txt
     - cat information.txt
+    - python Notify-Result.py success ${CI_REPOSITORY_URL%.git}/-/pipelines/${CI_PIPELINE_ID}/builds
 
 error_logging:
   script:
     - python Notify-Result.py failure ${CI_REPOSITORY_URL%.git}/-/pipelines/${CI_PIPELINE_ID}/builds
     - cat information.txt
   when: on_failure
-
-notify_success:
-  script:
-    - python Notify-Result.py success ${CI_REPOSITORY_URL%.git}/-/pipelines/${CI_PIPELINE_ID}/builds
 
