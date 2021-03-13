@@ -41,13 +41,12 @@ run:
   script:
     - python LZU-Auto-COVID-Health-Report.py >> information.txt
     - cat information.txt
-    - temp_URL=${CI_REPOSITORY_URL:0:len-4}
     - python Notify-Result.py success $CI_JOB_URL
 
 error_logging:
   stage: error_logging
   script:
-    - python Notify-Result.py failure $CI_PIPELINE_URL
     - cat information.txt
+    - python Notify-Result.py failure $CI_PIPELINE_URL
   when: on_failure
 
