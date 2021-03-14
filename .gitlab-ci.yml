@@ -21,6 +21,7 @@ stages:
 wait:
   stage: wait
   script:
+    - echo "---Sleep $DELAYS---";
     - sleep $DELAYS
   rules:
     - if: $DELAYS != ""
