@@ -39,7 +39,6 @@ before_script:
 stages:
   - wait
   - run
-  - error
   - retry
 
 wait:
