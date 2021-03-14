@@ -1,6 +1,7 @@
 image: python:latest
 
 variables:
+  TZ: "Asia/Shanghai"
   CARDID: ""
   PASSWORD: ""
   SERVERCHANSCKEY: ""
