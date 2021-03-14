@@ -72,13 +72,6 @@ run:
         exit 1
     fi
 
-error:
-  stage: error
-  script:
-    - python Notify-Result.py failure $CI_PIPELINE_URL
-    - cat information.txt
-  when: on_failure
-
 retry:
   stage: retry
   script:
