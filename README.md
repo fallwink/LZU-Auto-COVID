@@ -38,7 +38,7 @@
 
 全自动打卡，个人信息隐私保护，支持打卡结果推送到社交软件。**新增**支持[将打卡消息推送到浏览器通知](#将打卡消息推送到浏览器通知)，从而实现直接推送到安卓/Linux/Windows/Mac等通知栏处。
 
-支持[Fork本仓库直接使用工作流(推荐)](#使用方法)，[自行创建仓库使用工作流](#自行配置工作流)，[CronTab/Python后台定时调度运行](#qa)，[Docker运行](#docker)，[Kubernetes直接运行](#kubernetes)，[使用Helm包管理在Kubernetes运行](#helm)，[Heroku部署运行](#heroku)等。
+支持[Fork本仓库直接使用工作流(推荐)](#使用方法)，[GitLab使用Pipeline](#GitLab)，[自行创建仓库使用工作流](#自行配置工作流)，[CronTab/Python后台定时调度运行](#qa)，[Docker运行](#docker)，[Kubernetes直接运行](#kubernetes)，[使用Helm包管理在Kubernetes运行](#helm)，[Heroku部署运行](#heroku)等。
 
 [Docker镜像](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report)支持在`amd64`、`arm64`、~~`arm32v7`、`arm32v6`~~、`ppc64le`、~~`s390x`~~、`i386`多架构(~~删去~~代表v1.1.2版本后因为cryptography编译问题所以不再支持)(包括大型机、普通PC机以及树莓派等开发板)运行。
 
@@ -150,6 +150,28 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 手机端效果示意:
 
 ![](img/Notification-Android.jpg)
+
+## GitLab
+
+GitLab仓库地址：https://gitlab.com/HollowMan6/LZU-Auto-COVID-Health-Report
+
+你还可以使用GitLab的Pipeline来进行自动打卡：
+
+同理，fork完GitLab仓库到你的名下后，创建Variables（类似于GitHub Actions Secrets）：
+
+![](img/gitlab_create_variable.png)
+
+![](img/gitlab_create_variable_result.png)
+
+同理，你还可以创建一个Access Token：
+
+![](img/gitlab_access_token.png)
+
+默认再次打卡等待时间为30分钟，如果你有需要可以修改你的fork仓库对应的[这里](.gitlab-ci.yml#L80)的`30m`替换为你想要的数值。
+
+设定schedule：
+
+![](img/schedule.png)
 
 ## 自行配置工作流
 
@@ -326,7 +348,7 @@ Source GitHub Repository Link: https://github.com/HollowMan6/LZU-Auto-COVID-Heal
 
 Fully automatic reporting, privacy protection for personal information, support pushing results to chat APPs. **Newly Added** support to [push report result to browser notification](#push-report-result-to-browser-notification), so to directly push the notification to the notification bar of Android / Linux / Windows / Mac etc.
 
-support [Fork this repository to use workflows(Recommend)](#usage)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab / Python schedule](#qa)，[run with Docker](#docker)，[run with Kubernetes directly](#kubernetes), [Use Helm Package Manager to run in Kubernetes](#helm), [use Heroku to deploy](#heroku) etc.
+support [Fork this repository to use workflows(Recommend)](#usage)，[GitLab using Pipeline](#GitLab)，[Self-Configure Workflow](#self-configure-workflow)，[run using CronTab / Python schedule](#qa)，[run with Docker](#docker)，[run with Kubernetes directly](#kubernetes), [Use Helm Package Manager to run in Kubernetes](#helm), [use Heroku to deploy](#heroku) etc.
 
 [Docker Image](https://hub.docker.com/r/hollowman6/lzu-auto-covid-health-report) support running on multiple architectures such as `amd64`, `arm64`, ~~`arm32v7`, `arm32v6`~~, `ppc64le`, ~~`s390x`~~, `i386` (~~Cross out~~ represents chat due to compile issue for cryptography, after v1.1.2 they no longer supported) including Mainframe, PC and Demoboard like Raspberry Pi.
 
@@ -436,6 +458,28 @@ Demo in PC:
 Demo in Phones:
 
 ![](img/Notification-Android.jpg)
+
+## GitLab
+
+GitLab Repository Address：https://gitlab.com/HollowMan6/LZU-Auto-COVID-Health-Report
+
+You can also use GitLab's Pipeline to auto-report：
+
+In the same way, after forking the gitlab repository under your account, create Variables（similar to GitHub Actions Secrets）:
+
+![](img/gitlab_create_variable.png)
+
+![](img/gitlab_create_variable_result.png)
+
+In the same way, you can also create an Access Token：
+
+![](img/gitlab_access_token.png)
+
+The default waiting time is 30 minutes. You can replace `30m` [here](.gitlab-ci.yml#L80) in your corresponding repository with the time you want. 
+
+Setup schedule：
+
+![](img/schedule.png)
 
 ## Self-Configure Workflow
 
