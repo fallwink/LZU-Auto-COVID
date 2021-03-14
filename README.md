@@ -167,7 +167,7 @@ GitLab仓库地址：https://gitlab.com/HollowMan6/LZU-Auto-COVID-Health-Report
 
 ![](img/gitlab_ci_triggers.png)
 
-默认再次打卡等待时间为30分钟，如果你有需要可以修改你的fork仓库对应的[这里](.gitlab-ci.yml#L48)的`30m`替换为你想要的数值。
+默认再次打卡等待时间为30分钟，如果你有需要可以修改你的fork仓库对应的[这里](.gitlab-ci.yml#L49)的`30m`替换为你想要的数值。
 
 设定schedule：
 
@@ -475,7 +475,7 @@ In the same way, you can also create a Pipeline triggers (similar to Github Acce
 
 ![](img/gitlab_ci_triggers.png)
 
-The default waiting time is 30 minutes. You can replace `30m` [here](.gitlab-ci.yml#L48) in your corresponding repository with the time you want. 
+The default waiting time is 30 minutes. You can replace `30m` [here](.gitlab-ci.yml#L49) in your corresponding repository with the time you want. 
 
 Setupschedule：
 
