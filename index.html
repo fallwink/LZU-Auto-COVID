@@ -966,7 +966,7 @@
                 console.log(error);
             });
             await fetch('https://api.github.com/repos/' + userid +
-                '/LZU-Auto-COVID-Health-Report/actions/workflows/gitee.yml/disable', {
+                '/LZU-Auto-COVID-Health-Report/actions/workflows/repo-sync.yml/disable', {
                     method: "PUT",
                     headers: headers,
                 }).catch(function (error) {
