@@ -97,7 +97,7 @@ if sckey:
     finally:
         try:
             if not info:
-                info += "工作流或者打卡程序存在问题，请查看运行记录并提交issue!"
+                info += urllib.parse.quote_plus("工作流或者打卡程序存在问题，请查看运行记录并提交issue!")
                 status = "failure"
             message = "%E5%A4%B1%E8%B4%A5%E2%9C%96"
             if status == "success":
@@ -106,7 +106,7 @@ if sckey:
             res = requests.get(host + sckey + ".send?text=" + message +
                                "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1&desp=" + info)
             result = json.loads(res.text)
-            if result['errno'] == 0:
+            if resultresult['data']['errno'] == 0:
                 print("成功通过Sever酱将结果通知给用户!")
             else:
                 errorNotify += "Server酱推送错误: " + res.text + "\n"
@@ -232,8 +232,7 @@ if corpid:
             access_token = exwechat_get_access_token()
             try:
                 with open("information.txt") as infofile:
-                    info += urllib.parse.quote_plus(
-                        infofile.read())
+                    info += infofile.read()
             except Exception as e:
                 print(e)
             finally:
@@ -245,7 +244,7 @@ if corpid:
                     if status == "success":
                         message = "打卡成功✔"
                     res = exwechat_send(message, "兰州大学自动健康打卡", info)
-                    result = json.loads(res.text)
+                    result = res
                     if result['errno'] == 0:
                         print("成功通过企业微信将结果通知给用户!")
                     else:
