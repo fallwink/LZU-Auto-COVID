@@ -9,6 +9,8 @@ import requests
 import json
 import urllib.parse
 
+from requests.api import head
+
 sckey = os.environ['SERVERCHANSCKEY']
 pptoken = os.environ['PPTOKEN']
 pptopic = os.environ['PPTOPIC']
@@ -20,11 +22,11 @@ corpsecret = os.environ['CORPSECRET']
 agentid = os.environ['AGENTID']
 status = sys.argv[1]
 access_token = ""
-info = ""
+head = ""
 record = ""
 if len(sys.argv) > 2:
     record = sys.argv[2]
-    info = "工作流运行记录查看地址: " + record + "\n"
+    head = "工作流运行记录查看地址: " + record + "\n"
 errorNotify = ""
 
 
@@ -88,6 +90,7 @@ def exwechat_send(title, digest, content=None):
 
 
 if sckey:
+    info = head
     try:
         with open("information.txt") as infofile:
             info += urllib.parse.quote_plus(
@@ -106,7 +109,7 @@ if sckey:
             res = requests.get(host + sckey + ".send?text=" + message +
                                "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1&desp=" + info)
             result = json.loads(res.text)
-            if resultresult['data']['errno'] == 0:
+            if result['data']['errno'] == 0:
                 print("成功通过Sever酱将结果通知给用户!")
             else:
                 errorNotify += "Server酱推送错误: " + res.text + "\n"
@@ -118,6 +121,7 @@ else:
     print("未设置SERVERCHANSCKEY，尝试使用PushPlus...")
 
 if pptoken:
+    info = head
     try:
         with open("information.txt") as infofile:
             info += urllib.parse.quote_plus(
@@ -153,6 +157,7 @@ if tgbottoken:
         index = 1
         for tgchatid in tgchatids.replace(' ', '').split(','):
             if tgchatid:
+                info = head
                 try:
                     with open("information.txt") as infofile:
                         info += urllib.parse.quote_plus(
@@ -227,6 +232,7 @@ else:
     print("未设置SUBSINFO！")
 
 if corpid:
+    info = head
     if corpsecret:
         if agentid:
             access_token = exwechat_get_access_token()
