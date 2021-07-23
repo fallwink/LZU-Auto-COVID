@@ -251,7 +251,7 @@ if corpid:
                         message = "打卡成功✔"
                     res = exwechat_send(message, "兰州大学自动健康打卡", info)
                     result = res
-                    if result['errno'] == 0:
+                    if result['errcode'] == 0:
                         print("成功通过企业微信将结果通知给用户!")
                     else:
                         errorNotify += "企业微信推送错误: " + res.text + "\n"
