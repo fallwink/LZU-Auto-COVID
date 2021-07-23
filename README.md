@@ -93,6 +93,10 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 5. 进入`我的企业` → `微信插件`，拉到下边扫描二维码，关注以后即可收到推送的消息。
 ![](img/wecom_wechat.png)
 
+效果示意:
+![](img/wecom.jpg)
+![](img/wecom_content.jpg)
+
 ### 可选：Server酱，支持企业微信/钉钉/飞书等推送打卡结果
 
 如使用[Server酱](https://sct.ftqq.com/)来实现，它的配置方法请参考其说明文档。
@@ -394,6 +398,10 @@ If you need to push the related information of automatic reporting results to mu
 ![](img/wecom_apps.png)
 1. Enter `My Company` → `WeChat Workplace`, pull to the bottom and scan the QR code. After following, you can receive the push message.
 ![](img/wecom_wechat.png)
+
+Demo:
+![](img/wecom.jpg)
+![](img/wecom_content.jpg)
 
 ### Optional: ServerChan, support Enterprise Wechat / Dingtalk / Feishu push results
 We Use [Server Chan](https://sct.ftqq.com/) to realize its functionality. For its configuration method, please refer to its documentation (In Chinese).

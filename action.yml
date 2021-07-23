@@ -28,13 +28,13 @@ inputs:
     description: 'Telegram User ID'
     required: false
   CORPID":
-    description": "Wecom Corporation ID",
+    description": "Wecom Corporation ID"
     required": false
   CORPSECRET":
-    description": "Wecom Corporation App Secret",
+    description": "Wecom Corporation App Secret"
     required": false
   AGENTID":
-    description": "Wecom Corporation App Agent ID",
+    description": "Wecom Corporation App Agent ID"
     required": false
   SUBSINFO:
     description: 'Browser Notification Subscription Code (浏览器通知订阅代码)'
