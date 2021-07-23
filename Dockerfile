@@ -10,6 +10,7 @@ LABEL maintainer="Hollow Man <hollowman@hollowman.ml>"
 COPY entrypoint.sh /entrypoint.sh
 COPY LZU-Auto-COVID-Health-Report.py /LZU-Auto-COVID-Health-Report.py
 COPY Notify-Result.py /Notify-Result.py
+COPY cover.jpg /cover.jpg
 COPY requirements-run.txt /requirements.txt
 
 ENV TZ Asia/Shanghai
