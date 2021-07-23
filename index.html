@@ -560,14 +560,42 @@
                 <input type="text" class="form-control" id="pptopic" placeholder="PushPlus Topic 群组编码(仅一对多推送需要)">
                 <br />
                 <h5>
-                    <a href="http://sc.ftqq.com/" onclick="notifyNotif('老版Server酱官网');" target="_blank"><s>
-                            Server酱(或测试号/</s>Turbo版)</a>:
+                    <i class="fa fa-wechat" aria-hidden="true"></i> 企业微信推送:
                 </h5>
-                <div class="alert alert-warning" role="alert">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                    因为微信公告将在2021年4月底下线模板消息，现强烈建议Server酱使用支持多通道的<a href="https://sct.ftqq.com/" class="text-warning"
-                        onclick="notifyNotif('Server酱 Turbo官网');" target="_blank">Turbo版(除测试号)</a>。
+                <div class="alert alert-secondary" role="alert">
+                    <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 配置企业微信推送方法:
+                        </strong></i><br />
+                    1. 首先注册<a href="https://work.weixin.qq.com/wework_admin/loginpage_wx" class="text-secondary"
+                        onclick="notifyNotif('企业微信管理页面');"
+                        target="_blank">企业微信</a>。<br />
+                    2. 注册成功后，获取企业id，填入下方<strong>CORPID</strong>。<br />
+                    <img src="img/wecomid.png"
+                        width="50%" /><br />
+                    3. 选择<strong>应用管理</strong> → <strong>应用</strong> → <strong>创建应用</strong>。<br />
+                    <img src="img/wecom_create_apps.png"
+                        width="50%" /><br />
+                    4. 自己创建完成后获取<strong>AgentId</strong>和<strong>Secret</strong>，分别填入下方<strong>CORPSECRET</strong>和<strong>AGENTID</strong>。
+                    <img src="img/wecom_apps.png"
+                        width="50%" /><br />
+                    5. 进入<strong>我的企业</strong> → <strong>微信插件</strong>，拉到下边扫描二维码，关注以后即可收到推送的消息。<br />
+                    <img src="img/wecom_wechat.png"
+                        width="50%" /><br />
                 </div>
+                <label for="input"><i class="fa fa-user-secret" aria-hidden="true"></i> CORPID：</label>
+                <input type="text" class="form-control" id="corpid"
+                    placeholder="企业ID(选用企业微信推送必填)">
+                <br />
+                <label for="input"><i class="fa fa-user-secret" aria-hidden="true"></i> AGENTID：</label>
+                <input type="text" class="form-control" id="agentid"
+                    placeholder="推送应用AgentId(选用企业微信推送必填)">
+                <br />
+                <label for="input"><i class="fa fa-user-secret" aria-hidden="true"></i> CORPSECRET：</label>
+                <input type="text" class="form-control" id="corpsecret"
+                    placeholder="推送应用Secret(选用企业微信推送必填)">
+                <br />
+                <h5>
+                    <a href="https://sct.ftqq.com/" onclick="notifyNotif('Server酱官网');" target="_blank">Server酱</a>:
+                </h5>
                 <div class="alert alert-secondary" role="alert">
                     <i><strong><i class="fa fa-info-circle" aria-hidden="true"></i> 使用Server酱系列配置微信/钉钉/飞书/APP等推送方法:
                         </strong></i><br />
@@ -575,11 +603,7 @@
                 </div>
                 <label for="input"><i class="fa fa-user-secret" aria-hidden="true"></i> SERVERCHANSCKEY：</label>
                 <input type="text" class="form-control" id="serverchansckey"
-                    placeholder="Server酱(或测试号/Turbo版) SCKEY/SendKey(选用Server酱系列推送必填)">
-                <br />
-                <label for="input"><i class="fa fa-user-secret" aria-hidden="true"></i> OPENID：</label>
-                <input type="text" class="form-control" id="openid"
-                    placeholder="额外微信公众号用户OpenID(Turbo版测试号仅发给自己填0, 否则填写该用户OpenID, 其他通道必填0; 老版不填)">
+                    placeholder="Server酱 SendKey(选用Server酱系列推送必填)">
                 <br />
                 <h5>
                     <i class="fa fa-telegram" aria-hidden="true"></i> Telegram Bot:
@@ -591,7 +615,7 @@
                         onclick="notifyNotif('BotFather Telegram账号');"
                         target="_blank">BotFather</a>这个账号，然后向其依次发送<strong>/start</strong>,
                     <strong>/newbot</strong>，按照提示设定机器人名字后，即可创建一个属于你自己的全新的机器人。记下该机器人的token并填写到下方<i>TGBOTTOKEN</i>处。(内容类似于<strong>110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw</strong>)<br />
-                    <img src="https://github.com/hollowman6/LZU-Auto-COVID-Health-Report/raw/main/img/Telegram.jpg"
+                    <img src="img/Telegram.jpg"
                         width="50%" /><br />
                     2. 搜索你刚刚创建的机器人的名字，并给它发送<strong>/start</strong>或者任意一条消息。<br />
                     <i><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
@@ -637,10 +661,10 @@
         var userid = "";
         var hasForked = false;
         var headers = new Headers();
-        var secretNameList = ["cardid", "password", "pptoken", "pptopic", "serverchansckey", "openid", "tgbottoken",
-            "tgchatid", "gpatoken", "subsinfo"
+        var secretNameList = ["cardid", "password", "pptoken", "pptopic", "serverchansckey",
+         "corpid", "corpsecret", "agentid", "tgbottoken", "tgchatid", "gpatoken", "subsinfo"
         ];
-        var secretValue = ["", "", "", "", "", "", "", "", "", ""];
+        var secretValue = ["", "", "", "", "", "", "", "", "", "", "", ""];
         var workflowActivated = false;
         var repoPublicKey = "";
         var repoKeyID = "";
@@ -1284,17 +1308,21 @@
             secretValue[3] = pptopic;
             var serverchansckey = document.getElementById("serverchansckey").value;
             secretValue[4] = serverchansckey;
-            var openid = document.getElementById("openid").value;
-            secretValue[5] = openid;
+            var corpid = document.getElementById("corpid").value;
+            secretValue[5] = corpid;
+            var corpsecret = document.getElementById("corpsecret").value;
+            secretValue[6] = corpsecret;
+            var agentid = document.getElementById("agentid").value;
+            secretValue[7] = agentid;
             var tgbottoken = document.getElementById("tgbottoken").value;
-            secretValue[6] = tgbottoken;
+            secretValue[8] = tgbottoken;
             var tgchatid = document.getElementById("tgchatid").value;
-            secretValue[7] = tgchatid;
+            secretValue[9] = tgchatid;
             var gpatoken = "";
             if (document.getElementById("delaysEnable").checked) {
                 gpatoken = accessToken;
             }
-            secretValue[8] = gpatoken;
+            secretValue[10] = gpatoken;
             if (!cardid) {
                 Swal.fire({
                     icon: 'info',
@@ -1306,6 +1334,12 @@
                     icon: 'info',
                     title: '表单信息不完整!',
                     text: "请填写密码(兰州大学邮箱密码)!",
+                });
+            } else if (!(corpid && corpsecret && agentid) && (!corpid && !corpsecret && !agentid)) {
+                Swal.fire({
+                    icon: 'info',
+                    title: '表单信息不完整!',
+                    text: "请填写TGBOTTOKEN同时也填写TGCHATID!",
                 });
             } else if ((!tgbottoken || !tgchatid) && (tgbottoken || tgchatid)) {
                 Swal.fire({
