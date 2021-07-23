@@ -63,7 +63,7 @@ def exwechat_send(title, digest, content=None):
         "duplicate_check_interval": 1800
     }
     if content is not None:
-        img_url = f'cover.jpg'
+        img_url = os.path.join(os.path.dirname(__file__), 'cover.jpg')
         content = '<pre>' + content + '</pre>'
         data["msgtype"] = 'mpnews'
         data["mpnews"] = {
@@ -100,7 +100,8 @@ if sckey:
     finally:
         try:
             if not info:
-                info += urllib.parse.quote_plus("工作流或者打卡程序存在问题，请查看运行记录并提交issue!")
+                info += urllib.parse.quote_plus(
+                    "工作流或者打卡程序存在问题，请查看运行记录并提交issue!")
                 status = "failure"
             message = "%E5%A4%B1%E8%B4%A5%E2%9C%96"
             if status == "success":
