@@ -15,9 +15,6 @@ inputs:
   SERVERCHANSCKEY:
     description: 'Server酱 SCKEY'
     required: false
-  OPENID:
-    description: 'Server酱测试号版 微信公众号用户OpenID'
-    required: false
   PPTOKEN:
     description: 'PushPlus Token'
     required: false
@@ -30,6 +27,15 @@ inputs:
   TGCHATID:
     description: 'Telegram User ID'
     required: false
+  CORPID":
+    description": "Wecom Corporation ID",
+    required": false
+  CORPSECRET":
+    description": "Wecom Corporation App Secret",
+    required": false
+  AGENTID":
+    description": "Wecom Corporation App Agent ID",
+    required": false
   SUBSINFO:
     description: 'Browser Notification Subscription Code (浏览器通知订阅代码)'
     required: false

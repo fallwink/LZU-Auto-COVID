@@ -33,11 +33,6 @@
             "value": "",
             "required": false
         },
-        "OPENID": {
-            "description": "额外微信公众号用户OpenID(Turbo版测试号仅发给自己填0, 否则填写该用户OpenID, 其他通道必填0; 老版不填)",
-            "value": "0",
-            "required": false
-        },
         "TGBOTTOKEN": {
             "description": "Telegraph Bot Token(选用Telegram Bot推送必填*)",
             "value": "",
@@ -45,6 +40,21 @@
         },
         "TGCHATID": {
             "description": "Telegram User ID(选用Telegram Bot推送必填*)",
+            "value": "",
+            "required": false
+        },
+        "CORPID": {
+            "description": "Wecom Corporation ID(选用微信企业版推送必填*)",
+            "value": "",
+            "required": false
+        },
+        "CORPSECRET": {
+            "description": "Wecom Corporation App Secret(选用微信企业版推送必填*)",
+            "value": "",
+            "required": false
+        },
+        "AGENTID": {
+            "description": "Wecom Corporation App Agent ID(选用微信企业版推送必填*)",
             "value": "",
             "required": false
         },

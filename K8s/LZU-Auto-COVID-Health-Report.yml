@@ -41,11 +41,6 @@ spec:
                   secretKeyRef:
                     name: lzu-auto-covid-health-report-secrets
                     key: serverchansckey
-              - name: OPENID
-                valueFrom:
-                  secretKeyRef:
-                    name: lzu-auto-covid-health-report-secrets
-                    key: openid
               - name: PPTOKEN
                 valueFrom:
                   secretKeyRef:
@@ -71,6 +66,21 @@ spec:
                   secretKeyRef:
                     name: lzu-auto-covid-health-report-secrets
                     key: subsinfo
+              - name: CORPID
+                valueFrom:
+                  secretKeyRef:
+                    name: lzu-auto-covid-health-report-secrets
+                    key: corpid
+              - name: CORPSECRET
+                valueFrom:
+                  secretKeyRef:
+                    name: lzu-auto-covid-health-report-secrets
+                    key: corpsecret
+              - name: AGENTID
+                valueFrom:
+                  secretKeyRef:
+                    name: lzu-auto-covid-health-report-secrets
+                    key: agentid
             volumeMounts:
             - mountPath: /cache
               name: report-delays-marking

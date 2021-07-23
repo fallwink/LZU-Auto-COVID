@@ -86,6 +86,21 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.name }}-secrets
                   key: subsinfo
+            - name: CORPID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.name }}-secrets
+                  key: corpid
+            - name: CORPSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.name }}-secrets
+                  key: corpsecret
+            - name: AGENTID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.name }}-secrets
+                  key: agentid
             {{- with .Values.env }}
 {{ toYaml . | indent 12 }}
             {{- end }}
@@ -159,6 +174,9 @@ stringData:
   tgbottoken: {{ .Values.tgBotToken | quote }}
   tgchatid: {{ .Values.tgChatID | quote }}
   subsinfo: {{ .Values.subsInfo | quote }}
+  corpid: {{ .Values.corpID | quote }}
+  corpsecret: {{ .Values.corpSecret | quote }}
+  agentid: {{ .Values.agentID | quote }}
   {{- with .Values.secret }}
 {{ toYaml . | indent 2 }}
   {{- end }}

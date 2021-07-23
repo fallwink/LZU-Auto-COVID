@@ -5,7 +5,6 @@ variables:
   CARDID: ""
   PASSWORD: ""
   SERVERCHANSCKEY: ""
-  OPENID: ""
   PPTOKEN: ""
   PPTOPIC: ""
   TGBOTTOKEN: ""
@@ -13,6 +12,9 @@ variables:
   SUBSINFO: ""
   DELAYS: ""
   GPATOKEN: ""
+  CORPID: ""
+  CORPSECRET: ""
+  AGENTID: ""
 
 stages:
   - wait
