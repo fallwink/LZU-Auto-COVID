@@ -42,12 +42,14 @@ jobs:
         - name: 'Error logging and Notifying'
           env:
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
-            OPENID: ${{ secrets.OPENID }}
             PPTOKEN: ${{ secrets.PPTOKEN }}
             PPTOPIC: ${{ secrets.PPTOPIC }}
             TGBOTTOKEN: ${{ secrets.TGBOTTOKEN }}
             TGCHATID: ${{ secrets.TGCHATID }}
             SUBSINFO: ${{ secrets.SUBSINFO }}
+            CORPID: ${{ secrets.CORPID }}
+            CORPSECRET: ${{ secrets.CORPSECRET }}
+            AGENTID: ${{ secrets.AGENTID }}
           if: ${{ failure() }}
           run: |
             job_url=`curl $GITHUB_API_URL/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs | grep html_url | cut -d \" -f 4` \
@@ -55,12 +57,14 @@ jobs:
         - name: 'Notify Success'
           env:
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
-            OPENID: ${{ secrets.OPENID }}
             PPTOKEN: ${{ secrets.PPTOKEN }}
             PPTOPIC: ${{ secrets.PPTOPIC }}
             TGBOTTOKEN: ${{ secrets.TGBOTTOKEN }}
             TGCHATID: ${{ secrets.TGCHATID }}
             SUBSINFO: ${{ secrets.SUBSINFO }}
+            CORPID: ${{ secrets.CORPID }}
+            CORPSECRET: ${{ secrets.CORPSECRET }}
+            AGENTID: ${{ secrets.AGENTID }}
           if: ${{ success() }}
           run: |
             job_url=`curl $GITHUB_API_URL/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs | grep html_url | cut -d \" -f 4` \

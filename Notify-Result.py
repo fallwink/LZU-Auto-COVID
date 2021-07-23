@@ -10,15 +10,14 @@ import json
 import urllib.parse
 
 sckey = os.environ['SERVERCHANSCKEY']
-openid = os.environ['OPENID']
 pptoken = os.environ['PPTOKEN']
 pptopic = os.environ['PPTOPIC']
 tgbottoken = os.environ['TGBOTTOKEN']
 tgchatids = os.environ['TGCHATID']
 subsInfo = os.environ['SUBSINFO']
-corpid = os.environ['EXWCORPID']
-corpsecret = os.environ['EXWCORPSECRET']
-agentid = os.environ['EXWAGENTID']
+corpid = os.environ['CORPID']
+corpsecret = os.environ['CORPSECRET']
+agentid = os.environ['AGENTID']
 status = sys.argv[1]
 access_token = ""
 info = ""

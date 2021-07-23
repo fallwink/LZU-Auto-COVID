@@ -27,12 +27,14 @@ jobs:
             PASSWORD: ${{ secrets.PASSWORD }}
             DELAYS: ${{ github.event.inputs.delays }}
             SERVERCHANSCKEY: ${{ secrets.SERVERCHANSCKEY }}
-            OPENID: ${{ secrets.OPENID }}
             PPTOKEN: ${{ secrets.PPTOKEN }}
             PPTOPIC: ${{ secrets.PPTOPIC }}
             TGBOTTOKEN: ${{ secrets.TGBOTTOKEN }}
             TGCHATID: ${{ secrets.TGCHATID }}
             SUBSINFO: ${{ secrets.SUBSINFO }}
+            CORPID: ${{ secrets.CORPID }}
+            CORPSECRET: ${{ secrets.CORPSECRET }}
+            AGENTID: ${{ secrets.AGENTID }}
         - name: 'Re-run workflow if failed and GPATOKEN set'
           if: ${{ failure() }}
           run: |
