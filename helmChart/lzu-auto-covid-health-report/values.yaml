@@ -8,7 +8,6 @@ schedule: "0 23 * 1,2,7,8 *"
 
 # Optional data and settings
 serverChanSCKey: ""
-openID: ""
 ppToken: ""
 ppTopic: ""
 tgBotToken: ""
