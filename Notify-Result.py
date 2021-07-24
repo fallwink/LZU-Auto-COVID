@@ -253,7 +253,7 @@ if corpid:
                     message = "打卡失败✖"
                     if status == "success":
                         message = "打卡成功✔"
-                    info += "<br/><hr/><h3>点击下方<b><font color=#1A5FB4>阅读原文</font></b>来管理自动打卡仓库的</h3>"
+                    info += "<hr/><h3>点击下方<b><font color=#1A5FB4>阅读原文</font></b>来管理自动打卡仓库的</h3>"
                     res = exwechat_send(message, "兰州大学自动健康打卡", info)
                     result = res
                     if result['errcode'] == 0:
