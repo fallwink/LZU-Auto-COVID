@@ -52,7 +52,14 @@ def exwechat_get_ShortTimeMedia(img_url):
     return json.loads(r.text)['media_id']
 
 
-def exwechat_send(title, digest, content=None):
+def exwechat_get_LongTimeMedia(img_url):
+    media_url = f'https://qyapi.weixin.qq.com/cgi-bin/media/uploadimg?access_token={access_token}&type=file'
+    f = open(img_url, "rb").read()
+    r = requests.post(media_url, files={'media': f}, json=True)
+    return json.loads(r.text)['url']
+
+
+def exwechat_send(title, digest, content):
     url = 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=' + access_token
     data = {
         "touser": "@all",
@@ -62,28 +69,21 @@ def exwechat_send(title, digest, content=None):
         "enable_duplicate_check": 0,
         "duplicate_check_interval": 1800
     }
-    if content is not None:
-        img_url = os.path.join(os.path.dirname(__file__), 'cover.jpg')
-        content = '<pre>' + content + '</pre>'
-        data["msgtype"] = 'mpnews'
-        data["mpnews"] = {
-            "articles": [
-                {
-                    "title": title,
-                    "thumb_media_id": exwechat_get_ShortTimeMedia(img_url),
-                    "author": "",
-                    "content_source_url": "",
-                    "content": content,
-                    "digest": digest
-                }
-            ]
-        }
-    else:
-        data["msgtype"] = "textcard"
-        data["textcard"] = {
-            "title": title,
-            "description": digest,
-            "url": "URL"}
+    img_url = os.path.join(os.path.dirname(__file__), 'cover.jpg')
+    content = content
+    data["msgtype"] = 'mpnews'
+    data["mpnews"] = {
+        "articles": [
+            {
+                "title": title,
+                "thumb_media_id": exwechat_get_ShortTimeMedia(img_url),
+                "author": "Hollow Man",
+                "content_source_url": "https://hollowman.ml/LZU-Auto-COVID-Health-Report/",
+                "content": "<a href=https://github.com/HollowMan6><img src=" + exwechat_get_LongTimeMedia(img_url) + " /></a>" + content,
+                "digest": digest
+            }
+        ]
+    }
     resp = requests.post(url, data=json.dumps(data))
     resp.raise_for_status()
     return resp.json()
@@ -99,7 +99,7 @@ if sckey:
         print(e)
     finally:
         try:
-            if not info:
+            if info == head:
                 info += urllib.parse.quote_plus(
                     "工作流或者打卡程序存在问题，请查看运行记录并提交issue!")
                 status = "failure"
@@ -132,7 +132,7 @@ if pptoken:
         print(e)
     finally:
         try:
-            if not info:
+            if info == head:
                 info += "工作流或者打卡程序存在问题，请查看运行记录并提交issue!"
                 status = "failure"
             message = "%E5%A4%B1%E8%B4%A5%E2%9C%96"
@@ -169,7 +169,7 @@ if tgbottoken:
                     print(e)
                 finally:
                     try:
-                        if not info:
+                        if info == head:
                             info += "工作流或者打卡程序存在问题，请查看运行记录并提交issue!"
                             status = "failure"
                         message = "%E5%A4%B1%E8%B4%A5%E2%9C%96"
@@ -239,17 +239,21 @@ if corpid:
             access_token = exwechat_get_access_token()
             try:
                 with open("information.txt") as infofile:
-                    info += infofile.read()
+                    info += "<font size=2>"
+                    info += infofile.read().replace("***************************\n",
+                                                    "<hr/>").replace("\n", "<br/>")
+                    info += "</font>"
             except Exception as e:
                 print(e)
             finally:
                 try:
-                    if not info:
-                        info += "工作流或者打卡程序存在问题，请查看运行记录并提交issue!"
+                    if info == head:
+                        info += "<hr/>工作流或者打卡程序存在问题，请查看运行记录并提交issue!"
                         status = "failure"
                     message = "打卡失败✖"
                     if status == "success":
                         message = "打卡成功✔"
+                    info += "<br/><hr/><h3>点击下方<b><font color=#1A5FB4>阅读原文</font></b>来管理自动打卡仓库的</h3>"
                     res = exwechat_send(message, "兰州大学自动健康打卡", info)
                     result = res
                     if result['errcode'] == 0:
