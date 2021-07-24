@@ -96,6 +96,7 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 效果示意:
 ![](img/wecom.jpg)
 ![](img/wecom_content.jpg)
+[示例内容](https://open.work.weixin.qq.com/wwopen/mpnews?mixuin=pHhNDQAABwCobsHiAAAUAA&mfid=WW0324-8tTQjQAABwBCZs6oZBo1yA3mwAO57&idx=0&sn=4f42d0909560e8b42dd756d0ac1b04b6)
 
 ### 可选：Server酱，支持企业微信/钉钉/飞书等推送打卡结果
 
@@ -402,6 +403,7 @@ If you need to push the related information of automatic reporting results to mu
 Demo:
 ![](img/wecom.jpg)
 ![](img/wecom_content.jpg)
+[Example Content](https://open.work.weixin.qq.com/wwopen/mpnews?mixuin=pHhNDQAABwCobsHiAAAUAA&mfid=WW0324-8tTQjQAABwBCZs6oZBo1yA3mwAO57&idx=0&sn=4f42d0909560e8b42dd756d0ac1b04b6)
 
 ### Optional: ServerChan, support Enterprise Wechat / Dingtalk / Feishu push results
 We Use [Server Chan](https://sct.ftqq.com/) to realize its functionality. For its configuration method, please refer to its documentation (In Chinese).
