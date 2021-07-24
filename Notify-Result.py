@@ -70,7 +70,6 @@ def exwechat_send(title, digest, content):
         "duplicate_check_interval": 1800
     }
     img_url = os.path.join(os.path.dirname(__file__), 'cover.jpg')
-    content = content
     data["msgtype"] = 'mpnews'
     data["mpnews"] = {
         "articles": [
@@ -86,7 +85,7 @@ def exwechat_send(title, digest, content):
     }
     resp = requests.post(url, data=json.dumps(data))
     resp.raise_for_status()
-    return resp.json()
+    return resp
 
 
 if sckey:
@@ -255,7 +254,7 @@ if corpid:
                         message = "打卡成功✔"
                     info += "<hr/><h3>点击下方<b><font color=#1A5FB4>阅读原文</font></b>来管理自动打卡仓库</h3>"
                     res = exwechat_send(message, "兰州大学自动健康打卡", info)
-                    result = res
+                    result = res.json()
                     if result['errcode'] == 0:
                         print("成功通过企业微信将结果通知给用户!")
                     else:
