@@ -1331,80 +1331,92 @@
                     title: '表单信息不完整!',
                     text: "请填写学号(校园卡号)!",
                 });
+                return;
             } else if (!password) {
                 Swal.fire({
                     icon: 'info',
                     title: '表单信息不完整!',
                     text: "请填写密码(兰州大学邮箱密码)!",
                 });
-            } else if (!(corpid && corpsecret && agentid) && (!corpid && !corpsecret && !agentid)) {
-                Swal.fire({
-                    icon: 'info',
-                    title: '表单信息不完整!',
-                    text: "请填写TGBOTTOKEN同时也填写TGCHATID!",
-                });
+                return;
+            } else if (!(corpid && corpsecret && agentid)) {
+                if (!corpid && !corpsecret && !agentid) {
+                    Swal.fire({
+                        icon: 'info',
+                        title: '表单信息不完整!',
+                        text: "请同时填写CORPID、AGENTID和CORPSECRET!",
+                    });
+                    return;
+                } else if ((!tgbottoken || !tgchatid) && (tgbottoken || tgchatid)) {
+                    Swal.fire({
+                        icon: 'info',
+                        title: '表单信息不完整!',
+                        text: "请填写TGBOTTOKEN同时也填写TGCHATID!",
+                    });
+                    return;
+                }
             } else if ((!tgbottoken || !tgchatid) && (tgbottoken || tgchatid)) {
                 Swal.fire({
                     icon: 'info',
                     title: '表单信息不完整!',
                     text: "请填写TGBOTTOKEN同时也填写TGCHATID!",
                 });
-            } else {
-                Swal.fire({
-                    icon: 'question',
-                    title: '确定表单信息填写正确吗',
-                    allowOutsideClick: false,
-                    showCancelButton: true,
-                    confirmButtonText: '我确认!',
-                    cancelButtonText: '再改改!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        if (hasForked) {
-                            Swal.fire({
-                                icon: 'question',
-                                title: '检测到你已经Fork仓库',
-                                text: '是否需要删除原仓库再重新Fork来获得最新的版本',
-                                showCancelButton: true,
-                                allowOutsideClick: false,
-                                confirmButtonText: '需要!',
-                                cancelButtonText: '不要!'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    Swal.fire({
-                                        icon: 'info',
-                                        allowOutsideClick: false,
-                                        showConfirmButton: false,
-                                        title: '删除原仓库中...',
-                                        didOpen: () => {
-                                            return deleteForkToRecreate();
-                                        }
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        icon: 'info',
-                                        allowOutsideClick: false,
-                                        showConfirmButton: false,
-                                        title: '正在为你创建Actions Secrets...创建完成后自动触发一次打卡',
-                                        didOpen: () => {
-                                            return buildAllRepoSecrets();
-                                        }
-                                    })
-                                }
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: 'info',
-                                allowOutsideClick: false,
-                                showConfirmButton: false,
-                                title: 'Fork仓库中...',
-                                didOpen: () => {
-                                    return forkRepository();
-                                }
-                            });
-                        }
-                    }
-                });
+                return;
             }
+            Swal.fire({
+                icon: 'question',
+                title: '确定表单信息填写正确吗',
+                allowOutsideClick: false,
+                showCancelButton: true,
+                confirmButtonText: '我确认!',
+                cancelButtonText: '再改改!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    if (hasForked) {
+                        Swal.fire({
+                            icon: 'question',
+                            title: '检测到你已经Fork仓库',
+                            text: '是否需要删除原仓库再重新Fork来获得最新的版本',
+                            showCancelButton: true,
+                            allowOutsideClick: false,
+                            confirmButtonText: '需要!',
+                            cancelButtonText: '不要!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire({
+                                    icon: 'info',
+                                    allowOutsideClick: false,
+                                    showConfirmButton: false,
+                                    title: '删除原仓库中...',
+                                    didOpen: () => {
+                                        return deleteForkToRecreate();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'info',
+                                    allowOutsideClick: false,
+                                    showConfirmButton: false,
+                                    title: '正在为你创建Actions Secrets...创建完成后自动触发一次打卡',
+                                    didOpen: () => {
+                                        return buildAllRepoSecrets();
+                                    }
+                                })
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'info',
+                            allowOutsideClick: false,
+                            showConfirmButton: false,
+                            title: 'Fork仓库中...',
+                            didOpen: () => {
+                                return forkRepository();
+                            }
+                        });
+                    }
+                }
+            });
         }
 
         function checkIfForked(firstTime = true) {
