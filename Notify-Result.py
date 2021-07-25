@@ -160,7 +160,8 @@ if tgbottoken:
                 info = head
                 try:
                     with open("information.txt") as infofile:
-                        info += "\n" + infofile.read()
+                        info = "\n" + info
+                        info += infofile.read()
                 except Exception as e:
                     print(e)
                 finally:
@@ -171,7 +172,7 @@ if tgbottoken:
                         message = "%E5%A4%B1%E8%B4%A5%E2%9C%96"
                         if status == "success":
                             message = "%E6%88%90%E5%8A%9F%E2%9C%94"
-                        info = urllib.parse.quote_plus(info.replace('\n', '\n\n').replace(
+                        info = urllib.parse.quote_plus(info.replace(
                             "***************************\n", "------------------------------------------------------------").replace(
                             '-', '\\-').replace('.', '\\.').replace('{', '\\{').replace('}', '\\}').replace('!', '\\!'))
                         host = "https://api.telegram.org/bot"
