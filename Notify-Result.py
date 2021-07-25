@@ -49,14 +49,14 @@ def exwechat_get_ShortTimeMedia(img_url):
     media_url = f'https://qyapi.weixin.qq.com/cgi-bin/media/upload?access_token={access_token}&type=file'
     f = open(img_url, "rb").read()
     r = requests.post(media_url, files={'file': f}, json=True)
-    return json.loads(r.text)['media_id']
+    return r.json()['media_id']
 
 
 def exwechat_get_LongTimeMedia(img_url):
     media_url = f'https://qyapi.weixin.qq.com/cgi-bin/media/uploadimg?access_token={access_token}&type=file'
     f = open(img_url, "rb").read()
     r = requests.post(media_url, files={'media': f}, json=True)
-    return json.loads(r.text)['url']
+    return r.json()['url']
 
 
 def exwechat_send(title, digest, content):
@@ -108,7 +108,7 @@ if sckey:
             host = "https://sctapi.ftqq.com/"
             res = requests.get(host + sckey + ".send?title=" + message +
                                "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1&desp=" + info)
-            result = json.loads(res.text)
+            result = res.json()
             if result['data']['errno'] == 0:
                 print("成功通过Sever酱将结果通知给用户!")
             else:
@@ -126,7 +126,7 @@ if pptoken:
         with open("information.txt") as infofile:
             info += urllib.parse.quote_plus(
                 infofile.read().replace(
-                    "***************************\n", "<hr><br>").replace('\n', '<br>'))
+                    "***************************\n", "<hr>").replace('\n', '<br>'))
     except Exception as e:
         print(e)
     finally:
@@ -141,7 +141,7 @@ if pptoken:
             res = requests.get(host + "send?token=" + pptoken + "&title=" + message +
                                "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1&content=" + info
                                + "&template=html&topic=" + pptopic)
-            result = json.loads(res.text)
+            result = res.json()
             if result['code'] == 200:
                 print("成功通过PushPlus将结果通知给相关用户!")
             else:
@@ -160,10 +160,7 @@ if tgbottoken:
                 info = head
                 try:
                     with open("information.txt") as infofile:
-                        info += urllib.parse.quote_plus(
-                            "\n\n" + infofile.read().replace('\n', '\n\n').replace(
-                                "***************************\n", "------------------------------------------------------------").replace(
-                                '-', '\\-').replace('.', '\\.').replace('{', '\\{').replace('}', '\\}').replace('!', '\\!'))
+                        info += "\n" + infofile.read()
                 except Exception as e:
                     print(e)
                 finally:
@@ -174,11 +171,14 @@ if tgbottoken:
                         message = "%E5%A4%B1%E8%B4%A5%E2%9C%96"
                         if status == "success":
                             message = "%E6%88%90%E5%8A%9F%E2%9C%94"
+                        info = urllib.parse.quote_plus(info.replace('\n', '\n\n').replace(
+                            "***************************\n", "------------------------------------------------------------").replace(
+                            '-', '\\-').replace('.', '\\.').replace('{', '\\{').replace('}', '\\}').replace('!', '\\!'))
                         host = "https://api.telegram.org/bot"
                         res = requests.get(host + tgbottoken + "/sendMessage?chat_id=" + tgchatid + "&text=*%20_%20__" + message +
                                            "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1__%20_%20*" + info
                                            + "&parse_mode=MarkdownV2")
-                        result = json.loads(res.text)
+                        result = res.json()
                         if result['ok']:
                             print("成功通过Telegram将结果通知给用户" + str(index) + "!")
                         else:
