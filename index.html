@@ -1340,7 +1340,7 @@
                 });
                 return;
             } else if (!(corpid && corpsecret && agentid)) {
-                if (!corpid && !corpsecret && !agentid) {
+                if (!(!corpid && !corpsecret && !agentid)) {
                     Swal.fire({
                         icon: 'info',
                         title: '表单信息不完整!',
