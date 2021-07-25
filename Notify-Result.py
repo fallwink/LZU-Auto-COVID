@@ -125,8 +125,8 @@ if pptoken:
     try:
         with open("information.txt") as infofile:
             info += urllib.parse.quote_plus(
-                infofile.read().replace('***************************\n', "", 1).replace(
-                    "***************************\n", "<hr>").replace('\n', '<br>'))
+                infofile.read().replace(
+                    "***************************\n", "<hr><br>").replace('\n', '<br>'))
     except Exception as e:
         print(e)
     finally:
