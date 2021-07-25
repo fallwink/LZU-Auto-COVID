@@ -307,6 +307,8 @@ kubectl delete ns lzu-auto-covid-health-report
 
 你还可以将上述Actions Secret变量名和值分别设置为系统环境变量后，另外增加一个DELAYS为打卡等待时间，值同[使用方法](#使用方法)步骤6中要求，再增加一个CRONEXP为Cron表达式存储定时调度时间，然后后台运行`python clock.py`。这里为了方便使用，我制作了[安装配置shell脚本](install.sh)，你可以直接运行该脚本，输入相关信息后即可在后台定时运行脚本。
 
+如果你使用的是Windows，你可以将本仓库切换到[windows分支](../../tree/windows)，然后使用PowerShell运行[`run.ps1`](../../blob/windows/run.ps1)即可。
+
 1. 怎么查看自己有没有打卡成功？
 
 如果你指的是兰大app里面的健康打卡系统，请把兰大app里面的健康打卡系统中“教职工是否在兰（学生是否在校）”那一栏选中状态取消并手动打一次卡。成功打卡后，打开APP会提示“当日填报完成，如变化请更新！”。
@@ -612,6 +614,8 @@ Because Free Dyno will automatically sleep in 30 minutes, it will not automatica
 *PS:* If you want to use crontab on your own Linux server to execute the auto Health Report, I recommend using [docker](#docker), otherwise please clone this repository and after installing relevant Python dependencies, adapt the path of the python program in [entrypoint.sh](entrypoint.sh). Set the Actions Secrets name and value mentioned above as the environment variable respectively (In addition, add a DELAYS as the waiting time, and the value is the same requirement as that in step 6 of [usage](#usage)) to run.
 
 You can also set the Actions Secrets name and value mentioned above as the environment variable respectively, in addition, add a DELAYS as the waiting time, and the value is the same requirement as that in step 6 of [usage](#usage), and add a CRONEXP as the schedule time, the value being the cron expression. Finally run `python clock.py` in the background. Here, for the convenience of use, I made a [install and configure shell script](install.sh). you can run the script directly, and then the program will run and schedule in the background after inputting relevant information.
+
+If you use Windows, you can switch this repository into [branch `windows`](../../tree/windows), then use PowerShell to run [`run.ps1`](../../blob/windows/run.ps1).
 
 1. How to check whether you have reported your health successfully?
 
