@@ -174,7 +174,7 @@ if tgbottoken:
                             message = "%E6%88%90%E5%8A%9F%E2%9C%94"
                         info = urllib.parse.quote_plus(info.replace(
                             "***************************\n", "---------------------------------------------------\n").replace(
-                            '-', '\\-').replace('.', '\\.').replace('{', '\\{').replace('}', '\\}').replace('!', '\\!'))
+                            '-', '\\-').replace('.', '\\.').replace('{', '\\{').replace('}', '\\}').replace('!', '\\!').replace('=', '\\='))
                         host = "https://api.telegram.org/bot"
                         res = requests.get(host + tgbottoken + "/sendMessage?chat_id=" + tgchatid + "&text=*%20_%20__" + message +
                                            "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1__%20_%20*" + info
