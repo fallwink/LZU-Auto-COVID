@@ -4,13 +4,18 @@ pip install -r requirements.txt
 # Setup Environmental Variables
 Write-Host "---Enter your Actions Secrets, empty if it doesn't exists---"
 $secrets = "CARDID", "PASSWORD", "PPTOKEN", "PPTOPIC", "SERVERCHANSCKEY", "TGBOTTOKEN", "TGCHATID", "SUBSINFO", "CORPID", "CORPSECRET", "AGENTID", "CRONEXP", "DELAYS"
+$cmd = 'Set-Location ' + (Get-Item .).FullName + '; '
 ForEach ($secret in $secrets) {
     $content = Read-Host ('-' + $secret)
     if (!$content) {
         $content = 'NONE'
     }
-    $cmd = '$env:' + "$secret='$content'"
+    $cmd += '$env:' + "$secret='$content'; "
     Invoke-Expression $cmd
 }
-
-& "python" "clock.py"
+$cmd += 'python clock.py'
+Remove-Item .\clock.ps1
+Write-Output $cmd >> .\clock.ps1
+Invoke-WmiMethod -Class Win32_Process -Name Create -ArgumentList "powershell.exe -windowstyle hidden $cmd" -Confirm
+New-Item logs.txt
+Get-Content .\logs.txt -Wait
