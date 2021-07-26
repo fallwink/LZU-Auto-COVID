@@ -14,8 +14,10 @@ ForEach ($secret in $secrets) {
     Invoke-Expression $cmd
 }
 $cmd += 'python clock.py'
-Remove-Item .\clock.ps1
-Write-Output $cmd >> .\clock.ps1
-Invoke-WmiMethod -Class Win32_Process -Name Create -ArgumentList "powershell.exe -windowstyle hidden $cmd" -Confirm
-New-Item logs.txt
-Get-Content .\logs.txt -Wait
+Remove-Item clock.ps1
+Write-Output $cmd >> clock.ps1
+if (-not (Test-Path logs.txt)) {
+    New-Item logs.txt
+}
+Invoke-WmiMethod -Class Win32_Process -Name Create -ArgumentList "powershell.exe -windowstyle hidden -File $PWD\clock.ps1" -Confirm
+Get-Content logs.txt -Wait
