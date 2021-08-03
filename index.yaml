@@ -4,11 +4,36 @@ entries:
   - annotations:
       artifacthub.io/images: |
         - name: lzu-auto-covid-health-report
+          image: hollowman6/lzu-auto-covid-health-report:1.2.6
+      artifacthub.io/license: GPL-3.0
+    apiVersion: v2
+    appVersion: 1.2.6
+    created: "2021-08-03T17:39:45.2865692+08:00"
+    description: A chart for deploying LZU Auto COVID Health Report. (兰大疫情期间自动定时健康打卡)
+    digest: 1988771b88cef2b02a33f2ebef2a8ab2183c8aaace9aa96b619ea5e60cfb0836
+    home: https://hollowman.ml/
+    icon: https://avatars.githubusercontent.com/u/67548465?s=200&v=4
+    keywords:
+    - lzu
+    - covid-report
+    maintainers:
+    - email: hollowman@hollowman.ml
+      name: Hollow Man
+    name: lzu-auto-covid-health-report
+    sources:
+    - https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report
+    type: application
+    urls:
+    - http://hollowman.ml/LZU-Auto-COVID-Health-Report/helmChart/lzu-auto-covid-health-report-1.2.6.tgz
+    version: 1.2.6
+  - annotations:
+      artifacthub.io/images: |
+        - name: lzu-auto-covid-health-report
           image: hollowman6/lzu-auto-covid-health-report:1.2.5
       artifacthub.io/license: GPL-3.0
     apiVersion: v2
     appVersion: 1.2.5
-    created: "2021-07-27T13:17:15.1293899+08:00"
+    created: "2021-08-03T17:39:45.2855752+08:00"
     description: A chart for deploying LZU Auto COVID Health Report. (兰大疫情期间自动定时健康打卡)
     digest: eef48004fcb38613e2197cf79935b93dfd891fdc2f8862ea8d3d241ddee3c48f
     home: https://hollowman.ml/
@@ -24,7 +49,7 @@ entries:
     - https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report
     type: application
     urls:
-    - helmChart/lzu-auto-covid-health-report-1.2.5.tgz
+    - http://hollowman.ml/LZU-Auto-COVID-Health-Report/helmChart/lzu-auto-covid-health-report-1.2.5.tgz
     version: 1.2.5
   - annotations:
       artifacthub.io/images: |
@@ -33,7 +58,7 @@ entries:
       artifacthub.io/license: GPL-3.0
     apiVersion: v2
     appVersion: 1.1.2
-    created: "2021-07-27T13:17:15.1273831+08:00"
+    created: "2021-08-03T17:39:45.2716549+08:00"
     description: A chart for deploying LZU Auto COVID Health Report. (兰大疫情期间自动定时健康打卡)
     digest: 77423614d93d34b70ee7a69bbcea5bce0f720c2ee6bff4f92e2d740ae7598f65
     home: https://hollowman.ml/
@@ -49,7 +74,7 @@ entries:
     - https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report
     type: application
     urls:
-    - helmChart/lzu-auto-covid-health-report-1.1.2.tgz
+    - http://hollowman.ml/LZU-Auto-COVID-Health-Report/helmChart/lzu-auto-covid-health-report-1.1.2.tgz
     version: 1.1.2
   - annotations:
       artifacthub.io/images: |
@@ -58,7 +83,7 @@ entries:
       artifacthub.io/license: GPL-3.0
     apiVersion: v2
     appVersion: 1.1.1
-    created: "2021-07-27T13:17:15.1253887+08:00"
+    created: "2021-08-03T17:39:45.2656236+08:00"
     description: A chart for deploying LZU Auto COVID Health Report. (兰大疫情期间自动定时健康打卡)
     digest: 497b5da90c6f6c146a8b39cd6c2c19999e61d66eebae1fb2e998f66fa8416f92
     home: https://hollowman.ml/
@@ -74,7 +99,7 @@ entries:
     - https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report
     type: application
     urls:
-    - helmChart/lzu-auto-covid-health-report-1.1.1.tgz
+    - http://hollowman.ml/LZU-Auto-COVID-Health-Report/helmChart/lzu-auto-covid-health-report-1.1.1.tgz
     version: 1.1.1
   - annotations:
       artifacthub.io/images: |
@@ -83,7 +108,7 @@ entries:
       artifacthub.io/license: GPL-3.0
     apiVersion: v2
     appVersion: 1.0.10
-    created: "2021-07-27T13:17:15.1243912+08:00"
+    created: "2021-08-03T17:39:45.2536562+08:00"
     description: A chart for deploying LZU Auto COVID Health Report. (兰大疫情期间自动定时健康打卡)
     digest: 6e6479233b80170e77e0c4e07ef0cf975f28c8f60d4e6b2d0ee00bcce2c788f5
     home: https://hollowman.ml/
@@ -99,6 +124,6 @@ entries:
     - https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report
     type: application
     urls:
-    - helmChart/lzu-auto-covid-health-report-1.0.10.tgz
+    - http://hollowman.ml/LZU-Auto-COVID-Health-Report/helmChart/lzu-auto-covid-health-report-1.0.10.tgz
     version: 1.0.10
-generated: "2021-07-27T13:17:15.1223974+08:00"
+generated: "2021-08-03T17:39:45.1532187+08:00"

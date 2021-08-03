@@ -75,11 +75,11 @@ https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report/blob/main/.github/wor
 
 #### PushPlus(推荐)
 
-首先[登录PushPlus](https://pushplus.hxtrip.com/login)，然后在pushplus网站中找到您的token，仿照[使用方法](#使用方法)步骤1，创建一个Name为`PPTOKEN`，value为您的token值的Actions secret，就可以进行一对一推送自动打卡结果相关信息。
+首先[登录PushPlus](https://www.pushplus.plus/push1.html)，然后在pushplus网站中找到您的token，仿照[使用方法](#使用方法)步骤1，创建一个Name为`PPTOKEN`，value为您的token值的Actions secret，就可以进行一对一推送自动打卡结果相关信息。
 
 如果需要对多个账号推送自动打卡结果相关信息，即一对多推送，还需要另外新建一个群组，记下群组编码，然后创建一个Name为`PPTOPIC`，value为您的群组编码的Actions secret。
 
-![](https://pushplus.hxtrip.com/doc/img/c1.png)
+![](img/c1.png)
 
 #### 企业微信推送 
 
@@ -384,11 +384,11 @@ If the error is caused by the repository program itself, you can cancel the runn
 
 #### PushPlus(Recommended)
 
-First [log into pushplus](https://pushplus.hxtrip.com/login), and then find your token in pushplus website, follow [Usage](#Usage) step 1, create a actions secret with the name of `PPTOKEN` and the value of your token value, and then one-to-one push the related information of automatic reporting results.
+First [log into pushplus](https://www.pushplus.plus/push1.html), and then find your token in pushplus website, follow [Usage](#Usage) step 1, create a actions secret with the name of `PPTOKEN` and the value of your token value, and then one-to-one push the related information of automatic reporting results.
 
 If you need to push the related information of automatic reporting results to multiple Wechat accounts, that is, one-to-many push, you need to create a group, write down the group code, and then create an actions secret with the name of `PPTOPIC` and the value of your group code.
 
-![](https://pushplus.hxtrip.com/doc/img/c1.png)
+![](img/c1.png)
 
 #### Wecom push by Wechat 
 

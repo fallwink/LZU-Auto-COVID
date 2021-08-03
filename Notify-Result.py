@@ -137,7 +137,7 @@ if pptoken:
             message = "%E5%A4%B1%E8%B4%A5%E2%9C%96"
             if status == "success":
                 message = "%E6%88%90%E5%8A%9F%E2%9C%94"
-            host = "http://pushplus.hxtrip.com/"
+            host = "http://www.pushplus.plus/"
             res = requests.get(host + "send?token=" + pptoken + "&title=" + message +
                                "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1&content=" + info
                                + "&template=html&topic=" + pptopic)
