@@ -92,8 +92,9 @@ if sckey:
     info = head
     try:
         with open("information.txt") as infofile:
-            info += urllib.parse.quote_plus(
-                infofile.read().replace('\n', '\n\n'))
+            info += infofile.read()
+            info = urllib.parse.quote_plus(
+                info.replace('\n', '\n\n'))
     except Exception as e:
         print(e)
     finally:
@@ -124,8 +125,9 @@ if pptoken:
     info = head
     try:
         with open("information.txt") as infofile:
-            info += urllib.parse.quote_plus(
-                infofile.read().replace(
+            info += infofile.read()
+            info = urllib.parse.quote_plus(
+                info.replace(
                     "***************************\n", "<hr>").replace('\n', '<br>'))
     except Exception as e:
         print(e)
@@ -240,7 +242,8 @@ if corpid:
             try:
                 with open("information.txt") as infofile:
                     info += "<font size=2>"
-                    info += infofile.read().replace("***************************\n",
+                    info += infofile.read()
+                    info = info.replace("***************************\n",
                                                     "<hr/>").replace("\n", "<br/>")
                     info += "</font>"
             except Exception as e:
