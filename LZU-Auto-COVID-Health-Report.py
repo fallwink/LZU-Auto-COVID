@@ -234,18 +234,27 @@ if __name__ == "__main__":
         raise Exception("未设置变量PASSWORD，请检查！")
 
     try:
+        delay = random.randint(0,1200)
+        print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "随机延迟"+ str(delay) +"秒")
+        time.sleep(delay)
         submitCard()
     except Exception:
         print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第一次尝试失败, 再次尝试中...")
         try:
-            time.sleep(60)
+            delay = random.randint(0,120)
+            print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "随机延迟"+ str(delay) +"秒")
+            time.sleep(delay)
             submitCard()
         except Exception:
             print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第二次尝试失败, 再次尝试中...")
             try:
-                time.sleep(60)
+                delay = random.randint(0,120)
+                print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "随机延迟"+ str(delay) +"秒")
+                time.sleep(delay)
                 submitCard()
             except Exception:
                 print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第三次尝试失败, 再次尝试中...")
-                time.sleep(60)
+                delay = random.randint(0,120)
+                print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "随机延迟"+ str(delay) +"秒")
+                time.sleep(delay)
                 submitCard()
