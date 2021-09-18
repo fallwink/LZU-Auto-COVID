@@ -38,9 +38,9 @@ run:
     - pip install -r requirements-run.txt
     - echo "---Auto COVID Health Report---";
       if [ -z $DELAYRAND ] && [ -z $DELAYS ]; then 
-      command="python LZU-Auto-COVID-Health-Report.py >> information.txt && cat information.txt"; else
-      command="python LZU-Auto-COVID-Health-Report.py delayrand >> information.txt && cat information.txt"; fi;
-      if $command; then
+      python LZU-Auto-COVID-Health-Report.py >> information.txt && cat information.txt; else
+      python LZU-Auto-COVID-Health-Report.py delayrand >> information.txt && cat information.txt; fi;
+      if [ $? -eq 0 ]; then
       echo "---Notify Success---";
       python Notify-Result.py success $CI_JOB_URL; else
       echo "---Error logging and Notifying---";
