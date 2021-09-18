@@ -25,7 +25,7 @@ then
     fi
 fi
 echo "---Auto COVID Health Report---"
-if python /LZU-Auto-COVID-Health-Report.py >> information.txt && cat information.txt;
+if python /LZU-Auto-COVID-Health-Report.py delayrand >> information.txt && cat information.txt;
 then
     echo "---Notify Success---"
     python /Notify-Result.py success

@@ -1,9 +1,9 @@
 apiVersion: v2
 name: lzu-auto-covid-health-report
 description: A chart for deploying LZU Auto COVID Health Report. (兰大疫情期间自动定时健康打卡)
-version: 1.2.7
+version: 1.2.8
 type: application
-appVersion: "1.2.7"
+appVersion: "1.2.8"
 keywords:
   - lzu  
   - covid-report
@@ -17,5 +17,5 @@ maintainers:
 annotations:
   artifacthub.io/images: |
     - name: lzu-auto-covid-health-report
-      image: hollowman6/lzu-auto-covid-health-report:1.2.7
+      image: hollowman6/lzu-auto-covid-health-report:1.2.8
   artifacthub.io/license: GPL-3.0
