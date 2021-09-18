@@ -39,7 +39,7 @@ jobs:
             PASSWORD: ${{ secrets.PASSWORD }}
             TZ: Asia/Shanghai
           run: |
-            if "${{ github.event_name }}"="workflow_dispatch" && [ ! -n "${{ github.event.inputs.delays }}" ]; then 
+            if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -z "${{ github.event.inputs.delays }}" ]; then 
             python LZU-Auto-COVID-Health-Report.py >> information.txt && cat information.txt; else
             python LZU-Auto-COVID-Health-Report.py delayrand >> information.txt && cat information.txt; fi;
         - name: 'Error logging and Notifying'
