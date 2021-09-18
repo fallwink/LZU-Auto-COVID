@@ -110,8 +110,9 @@ if sckey:
     info = head
     try:
         with open("information.txt") as infofile:
-            info += urllib.parse.quote_plus(
-                infofile.read().replace('\n', '\n\n'))
+            info += infofile.read()
+            info = urllib.parse.quote_plus(
+                info.replace('\n', '\n\n'))
     except Exception as e:
         print(e)
     finally:
@@ -142,8 +143,9 @@ if pptoken:
     info = head
     try:
         with open("information.txt") as infofile:
-            info += urllib.parse.quote_plus(
-                infofile.read().replace(
+            info += infofile.read()
+            info = urllib.parse.quote_plus(
+                info.replace(
                     "***************************\n", "<hr>").replace('\n', '<br>'))
     except Exception as e:
         print(e)
@@ -155,7 +157,7 @@ if pptoken:
             message = "%E5%A4%B1%E8%B4%A5%E2%9C%96"
             if status == "success":
                 message = "%E6%88%90%E5%8A%9F%E2%9C%94"
-            host = "http://pushplus.hxtrip.com/"
+            host = "http://www.pushplus.plus/"
             res = requests.get(host + "send?token=" + pptoken + "&title=" + message +
                                "%E5%85%B0%E5%B7%9E%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1&content=" + info
                                + "&template=html&topic=" + pptopic)
@@ -217,7 +219,7 @@ if subsInfo:
         "requireInteraction": True,
         "vibrate": [200, 100, 200],
         "icon": "https://hollowman.ml/LZU-Auto-COVID-Health-Report/lzu.png",
-        "body": "",
+        "body": "点击通知查看打卡记录工作流!",
         "title": "失败✖ 兰州大学自动健康打卡"
     }
     if status == "success":
@@ -258,7 +260,8 @@ if corpid:
             try:
                 with open("information.txt") as infofile:
                     info += "<font size=2>"
-                    info += infofile.read().replace("***************************\n",
+                    info += infofile.read()
+                    info = info.replace("***************************\n",
                                                     "<hr/>").replace("\n", "<br/>")
                     info += "</font>"
             except Exception as e:

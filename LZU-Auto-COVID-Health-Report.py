@@ -15,6 +15,7 @@ I will not be responsible for any adverse consequences caused by using this code
 
 import time
 import os
+import sys
 import requests
 import json
 import random
@@ -205,7 +206,6 @@ def submitCard():
     if not passwd:
         raise Exception("未设置变量PASSWORD，请检查！")
     # Test Code: python LZU-Auto-COVID-Health-Report.py [cardID] [password]
-    # import sys
     # cardID = sys.argv[1]
     # passwd = sys.argv[2]
 
@@ -236,18 +236,33 @@ def submitCard():
 
 if __name__ == "__main__":
     try:
+        if len(sys.argv) > 1 and sys.argv[1] == 'delayrand':
+            delay = random.randint(0,1200)
+            print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "随机延迟"+ str(delay) +"秒")
+            time.sleep(delay)
         submitCard()
     except Exception:
-        print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第一次尝试失败, 再次尝试中...")
-        try:
-            time.sleep(60)
-            submitCard()
-        except Exception:
-            print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第二次尝试失败, 再次尝试中...")
+        if len(sys.argv) > 1 and sys.argv[1] == 'delayrand':
+            print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第一次尝试失败, 再次尝试中...")
             try:
-                time.sleep(60)
+                delay = random.randint(0,120)
+                print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "随机延迟"+ str(delay) +"秒")
+                time.sleep(delay)
                 submitCard()
             except Exception:
-                print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第三次尝试失败, 再次尝试中...")
-                time.sleep(60)
-                submitCard()
+                print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第二次尝试失败, 再次尝试中...")
+                try:
+                    delay = random.randint(0,120)
+                    print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "随机延迟"+ str(delay) +"秒")
+                    time.sleep(delay)
+                    submitCard()
+                except Exception:
+                    print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "第三次尝试失败, 再次尝试中...")
+                    delay = random.randint(0,120)
+                    print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "随机延迟"+ str(delay) +"秒")
+                    time.sleep(delay)
+                    submitCard()
+        else:
+            print(time.strftime("%Y-%m-%d %H:%M", time.localtime()), "打卡失败, 请检查相关工作流配置, 或者等待一段时间后再次运行! 如有疑问请提交相关问题到issue中")
+            exit(1)
+

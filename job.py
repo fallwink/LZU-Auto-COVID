@@ -7,7 +7,7 @@ import os
 
 def job_function():
     failure = False
-    if os.system("python LZU-Auto-COVID-Health-Report.py >> information.txt && type information.txt >> logs.txt && type information.txt") == 0:
+    if os.system("python LZU-Auto-COVID-Health-Report.py delayrand >> information.txt && type information.txt >> logs.txt && type information.txt") == 0:
         if os.system("python Notify-Result.py success >> logs.txt") != 0:
             failure = True
     else:
