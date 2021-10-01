@@ -1,5 +1,6 @@
 name: 'Docker Version - GitHub Actions LZU Auto COVID Health Report'
-    
+concurrency: docker-report-${{ github.ref }}
+
 on:
   workflow_dispatch:  # Allow manual triggers
     inputs:

@@ -1,5 +1,6 @@
 name: 'GitHub Actions LZU Auto COVID Health Report'
-    
+concurrency: report-${{ github.ref }}
+
 on:
   workflow_dispatch:  # Allow manual triggers
     inputs:
