@@ -2,6 +2,7 @@ image: python:latest
 
 variables:
   TZ: "Asia/Shanghai"
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
   CARDID: ""
   PASSWORD: ""
   SERVERCHANSCKEY: ""
@@ -16,6 +17,10 @@ variables:
   CORPID: ""
   CORPSECRET: ""
   AGENTID: ""
+
+cache:
+  paths:
+    - .cache/pip
 
 stages:
   - wait
