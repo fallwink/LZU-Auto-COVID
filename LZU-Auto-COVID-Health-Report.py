@@ -62,9 +62,9 @@ def getSubmit(auToken, dailyCookie, info, now, FilledInfo):
         # 晚上温度(体温)
         "sbr": info_data['sbr'], # 上报人
         "sjd": info['data']['sjd'], # 时间段
-        "initLng": info_data['dwip'] if info_data['dwip'] else "", # 初始经度/定位ip?（似乎暂未启用，后续可能会启用，到时手动打卡一次就会自动沿用）
-        "initLat": info_data['dwdz'] if info_data['dwdz'] else "", # 初始纬度/定位地址?（似乎暂未启用，后续可能会启用，到时手动打卡一次就会自动沿用）
-        "dwfs": info_data['dwfs'] if info_data['dwfs'] else "" # 定位方式（似乎暂未启用，后续可能会启用，到时手动打卡一次就会自动沿用）
+        "initLng": "", # 初始经度/定位ip?（似乎暂未启用，后续可能会启用）
+        "initLat": "", # 初始纬度/定位地址?（似乎暂未启用，后续可能会启用）
+        "dwfs": "" # 定位方式（似乎暂未启用，后续可能会启用）
     }
 
     res = session.post(subApi, info_data, headers=subHeaders).text
