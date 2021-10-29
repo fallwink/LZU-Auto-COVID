@@ -38,6 +38,7 @@ def getSubmit(auToken, dailyCookie, info, now, FilledInfo):
         "bh": info_data['bh'],  # 编号
         "xykh": info_data['xykh'],  # 校园卡号
         "twfw": "0",  # 体温范围(0为小于37.3摄氏度)
+        "jkm": "0", # 健康码(0为绿码)
         "sfzx": sfzx[0],  # 是否在校(0离校，1在校)
         "sfgl": "0",  # 是否隔离(0正常，1隔离)
         "szsf": info_data['szsf'] if info_data['szsf'] else FilledInfo['xszsf'],  # 所在省份（没有打卡记录则是基本信息中现所在省份）
@@ -60,7 +61,10 @@ def getSubmit(auToken, dailyCookie, info, now, FilledInfo):
         "wswd": round(random.uniform(36.3, 36.8), 1) if 19 <= now < 21 and sfzx[0] == "1" else (info_data['wswd'] if info_data['zcwd'] else 0.0),
         # 晚上温度(体温)
         "sbr": info_data['sbr'], # 上报人
-        "sjd": info['data']['sjd'] # 时间段
+        "sjd": info['data']['sjd'], # 时间段
+        "initLng": info_data['dwip'] if info_data['dwip'] else "", # 初始经度/定位ip?（似乎暂未启用，后续可能会启用，到时手动打卡一次就会自动沿用）
+        "initLat": info_data['dwdz'] if info_data['dwdz'] else "", # 初始纬度/定位地址?（似乎暂未启用，后续可能会启用，到时手动打卡一次就会自动沿用）
+        "dwfs": info_data['dwfs'] if info_data['dwfs'] else "" # 定位方式（似乎暂未启用，后续可能会启用，到时手动打卡一次就会自动沿用）
     }
 
     res = session.post(subApi, info_data, headers=subHeaders).text

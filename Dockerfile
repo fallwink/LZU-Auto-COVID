@@ -2,7 +2,7 @@ FROM python:3.9-slim
 
 MAINTAINER Hollow Man <hollowman@hollowman.ml>
 
-LABEL version="1.2.8"
+LABEL version="1.2.9"
 LABEL repository="https://github.com/HollowMan6/LZU-Auto-COVID-Health-Report"
 LABEL homepage="https://hollowman.ml/"
 LABEL maintainer="Hollow Man <hollowman@hollowman.ml>"
