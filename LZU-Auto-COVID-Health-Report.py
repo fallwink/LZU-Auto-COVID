@@ -25,7 +25,7 @@ from lxml import etree
 session = requests.session()
 
 
-def getSubmit(auToken, dailyCookie, info, now, FilledInfo):
+def getSubmit(auToken, dailyCookie, info, FilledInfo):
     subApi = 'http://appservice.lzu.edu.cn/dailyReportAll/api/grtbMrsb/submit'
     subHeaders = {
         'Authorization': str(auToken),
@@ -41,11 +41,11 @@ def getSubmit(auToken, dailyCookie, info, now, FilledInfo):
         "jkm": "0", # 健康码(0为绿码)
         "sfzx": sfzx[0],  # 是否在校(0离校，1在校)
         "sfgl": "0",  # 是否隔离(0正常，1隔离)
-        "szsf": info_data['szsf'] if info_data['szsf'] else FilledInfo['xszsf'],  # 所在省份（没有打卡记录则是基本信息中现所在省份）
-        "szds": info_data['szds'] if info_data['szds'] else FilledInfo['xszds'],  # 所在地级市（没有打卡记录则是基本信息中现所在地级市）
-        "szxq": info_data['szxq'] if info_data['szxq'] else FilledInfo['xszxq'],  # 所在县/区（没有打卡记录则是基本信息中现所在县/区）
-        "sfcg": info_data['sfcg'] if info_data['sfcg'] else FilledInfo['sfcg'],  # 是否出国（没有打卡记录则是基本信息中是否出国）
-        "cgdd": info_data['cgdd'] if info_data['cgdd'] else FilledInfo['cgdd'],  # 出国地点（没有打卡记录则是基本信息中出国地点）
+        "szsf": info_data['szsf'] if info_data['szsf'] else "",  # 所在省份（没有打过卡或在校则为空）
+        "szds": info_data['szds'] if info_data['szds'] else "",  # 所在地级市（没有打过卡或在校则为空）
+        "szxq": info_data['szxq'] if info_data['szxq'] else "",  # 所在县/区（没有打过卡或在校则为空）
+        "sfcg": info_data['sfcg'] if info_data['sfcg'] else "0",  # 是否出国（没有则为否）
+        "cgdd": info_data['cgdd'] if info_data['cgdd'] else "",  # 出国地点（没有则无）
         "gldd": "",  # 隔离地点
         "jzyy": "",  # 就诊医院
         "bllb": "0",  # 是否被列入(疑似/确诊)病例(0没有，其它为疑似/确诊)
@@ -54,12 +54,9 @@ def getSubmit(auToken, dailyCookie, info, now, FilledInfo):
         "xgjcjlsj": "", # 相关接触经历时间
         "xgjcjldd": "", # 相关接触经历地点
         "xgjcjlsm": "", # 相关接触经历说明
-        "zcwd": round(random.uniform(36.3, 36.8), 1) if 7 <= now < 9 and sfzx[0] == "1" else (info_data['zcwd'] if info_data['zcwd'] else 0.0),
-        # 早晨温度(体温)
-        "zwwd": round(random.uniform(36.3, 36.8), 1) if 11 <= now < 13 and sfzx[0] == "1" else (info_data['zwwd'] if info_data['zcwd'] else 0.0),
-        # 中午温度(体温)
-        "wswd": round(random.uniform(36.3, 36.8), 1) if 19 <= now < 21 and sfzx[0] == "1" else (info_data['wswd'] if info_data['zcwd'] else 0.0),
-        # 晚上温度(体温)
+        "zcwd": "0.0", # 早晨温度(体温)
+        "zwwd": "0.0", # 中午温度(体温)
+        "wswd": "0.0", # 晚上温度(体温)
         "sbr": info_data['sbr'], # 上报人
         "sjd": info['data']['sjd'], # 时间段
         "initLng": "", # 初始经度/定位ip?（似乎暂未启用，后续可能会启用）
@@ -161,21 +158,19 @@ def getFilledInfo(cardID, cardMD5, auToken):
 def getDailyToken(user, password):
     login_url = 'http://my.lzu.edu.cn:8080/login?service=http://my.lzu.edu.cn'
     header = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4385.0 Safari/537.36',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36 Edg/95.0.1020.40',
     }
     response = session.get(login_url, headers=header)
     tree = etree.HTML(response.text)
     lt = tree.xpath("//*[@id='loginForm']/div[3]/div[2]/input[2]/@value")
     execution = tree.xpath("//*[@id='loginForm']/div[3]/div[2]/input[3]/@value")
     eventId = tree.xpath("//*[@id='loginForm']/div[3]/div[2]/input[4]/@value")
-    captcha = tree.xpath("//*[@id='loginForm']/div[3]/div[2]/input[5]/@value")
     formData = {
         'username': user,
         'password': password,
         'lt': lt,
         'execution': execution,
-        '_eventId': eventId,
-        'captcha': captcha
+        '_eventId': eventId
     }
     response = session.post(login_url, formData,
                             headers=header, allow_redirects=False)
@@ -213,15 +208,9 @@ def submitCard():
     if info['code'] != 1:
         print(str(timeStamp)+" 未知错误，无法打卡!")
         raise Exception(str(timeStamp)+" 未知错误，无法打卡!")
-    now = int(time.strftime("%H", time.localtime()))
-    response, info_data = getSubmit(AuToken, dayCok, info, now, FilledInfo)
+    response, _ = getSubmit(AuToken, dayCok, info, FilledInfo)
     if response['code'] == 1:
-        print(str(timeStamp) + " 打卡成功，" + str(response) + ((
-            ("，早体温：{}".format(info_data['zcwd'])) if (7 <= now < 9) else (
-                ("，中体温：{}".format(info_data['zwwd'])) if (11 <= now < 13) else (
-                    ("，晚体温：{}".format(info_data['wswd'])) if (
-                        19 <= now < 21) else ""
-                ))) if info_data['sfzx'][0] == '1' else "，疫情期间，记得好好在家呆着!"))
+        print(str(timeStamp) + " 打卡成功，" + str(response) + "，疫情期间，记得好好在家呆着!")
     else:
         print(str(timeStamp) + "打卡失败, " +
                         str(response) + "，请提交相关问题到issue中!")
