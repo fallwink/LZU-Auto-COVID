@@ -353,7 +353,7 @@
         if (getUrlParam("error")) {
             authFailed(getUrlParam("error"), getUrlParam("error_description"), getUrlParam("error_uri"));
         } else if (getUrlParam("code")) {
-            var codeAPI = 'https://lzu-covid-github-app.azurewebsites.net/authenticate/' + getUrlParam("code");
+            var codeAPI = 'https://lzu-covid-github-app.herokuapp.com/authenticate/' + getUrlParam("code");
             Swal.fire({
                 icon: 'info',
                 allowOutsideClick: false,
