@@ -309,6 +309,8 @@ kubectl delete ns lzu-auto-covid-health-report
 
 你还可以将上述Actions Secret变量名和值分别设置为系统环境变量后，另外增加一个DELAYS为打卡等待时间，值同[使用方法](#使用方法)步骤6中要求，再增加一个CRONEXP为Cron表达式存储定时调度时间，然后后台运行`python clock.py`。这里为了方便使用，我制作了[安装配置shell脚本](install.sh)，你可以直接运行该脚本，输入相关信息后即可在后台定时运行脚本。
 
+[点击这里查看详细教程](docs/CronTab.md)
+
 如果你使用的是Windows，你可以将本仓库切换到[windows分支](../../tree/windows)，然后使用PowerShell运行[`run.ps1`](../../blob/windows/run.ps1)即可。
 
 ## Q&A
